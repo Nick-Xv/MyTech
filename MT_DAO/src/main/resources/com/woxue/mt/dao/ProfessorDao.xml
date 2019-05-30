@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woxue.mt.dao.ProfessorDao">
+
+    <!--注意：id=数据库字段名-->
+    <resultMap id="科技专家" type="Professor">
+        <id property="id" column="ID" javaType="String"/>
+        <result property="birthday" column="出生日期" javaType="String"/>
+        <result property="organization" column="机构" javaType="String"/>
+        <result property="introduction" column="简介" javaType="String"/>
+        <result property="name" column="姓名" javaType="String"/>
+        <result property="post" column="职称" javaType="String"/>
+    </resultMap>
+
+<!--#后面放的是实体类的属性名，不是数据库表的字段名-->
+    <insert id="insert" parameterType="Professor">
+        insert into 科技专家 values(#{id},#{birthday},#{organization},#{introduction},#{name},#{post})
+    </insert>
+
+    <update id="update" parameterType="Professor">
+        update 科技专家
+        set 出生日期=#{birthday},机构=#{organization},简介=#{introduction},姓名=#{name},职称=#{post}
+        where ID =#{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        delete from 科技专家 where ID=#{id}
+    </delete>
+
+    <!--resultMap后面跟的竟然是数据库字段名 惊了-->
+    <select id="select" parameterType="String" resultMap="科技专家">
+        select * from 科技专家 where ID=#{id}
+    </select>
+
+    <select id="selectAll" resultMap="科技专家">
+        select * from 科技专家
+    </select>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woxue.mt.dao.UserDao">
+
+    <!--注意：id=数据库字段名-->
+    <resultMap id="用户" type="User">
+        <id property="id" column="ID" javaType="String"/>
+        <result property="field" column="关注领域" javaType="String"/>
+        <result property="credit" column="积分值" javaType="int"/>
+        <result property="password" column="密码" javaType="String"/>
+        <result property="name" column="昵称" javaType="String"/>
+        <result property="phone" column="手机号" javaType="String"/>
+        <result property="email" column="邮箱" javaType="String"/>
+    </resultMap>
+
+<!--#后面放的是实体类的属性名，不是数据库表的字段名-->
+    <insert id="insert" parameterType="User">
+        insert into 用户 values(#{id},#{field},#{credit},#{password},#{name},#{phone},#{email})
+    </insert>
+
+    <update id="update" parameterType="User">
+        update 用户
+        set 关注领域=#{field},积分值=#{credit},密码=#{password},昵称=#{name},手机号=#{phone},邮箱=#{email}
+        where ID =#{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        delete from 用户 where ID=#{id}
+    </delete>
+
+    <!--resultMap后面跟的竟然是数据库字段名 惊了-->
+    <select id="select" parameterType="String" resultMap="用户">
+        select * from 用户 where ID=#{id}
+    </select>
+
+    <select id="selectAll" resultMap="用户">
+        select * from 用户
+    </select>
+
+</mapper>

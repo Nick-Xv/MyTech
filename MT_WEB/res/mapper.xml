@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper">
+
+    <select id="searchThesis" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+        from
+        论文表 limit #{0}
+    </select>
+
+    <select id="searchThesisUnverified" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+        from 论文表
+        where 审核状态 = 0
+        limit #{0}
+    </select>
+
+    <select id="searchThesisOr" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+        from 论文表
+        where
+        <foreach collection="list" index="index" item="item" open="" separator="or" close="">
+            lower(concat_ws(' ', 论文名字, 作者, 摘要)) regexp lower(#{item})
+        </foreach>
+    </select>
+
+    <select id="searchThesisAnd" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+        from 论文表
+        where
+        <foreach collection="list" index="index" item="item" open="" separator="and" close="">
+            lower(concat_ws(' ', 论文名字, 作者, 摘要)) regexp lower(#{item})
+        </foreach>
+    </select>
+
+    <update id="updateThesis">
+        update 论文表
+        <set>
+            <if test="title != null"> 论文名字 = #{title}, </if>
+            <if test="author != null"> 作者 = #{author}, </if>
+            <if test="referenceCount != null"> 被引次数 = #{referenceCount}, </if>
+            <if test="publishTime != null"> 发表时间 = #{publishTime}, </if>
+            <if test="keywords != null"> 关键词 = #{keywords}, </if>
+            <if test="summary != null"> 摘要 = #{summary}, </if>
+            <if test="url != null"> 链接 = #{url}, </if>
+            <if test="verifyState != null"> 审核状态 = #{verifyState}, </if>
+        </set>
+        where 论文DOI = #{id}
+    </update>
+
+    <select id="searchProfessor" resultType="com.woxue.mt.sqldealer.Professor">
+        select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+        from xuezhebiao
+        limit #{0}
+    </select>
+
+    <select id="searchProfessorUnverified" resultType="com.woxue.mt.sqldealer.Professor">
+        select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+        from xuezhebiao
+        where 审核状态 = 0
+        limit #{0}
+    </select>
+
+    <select id="searchProfessorByArea" resultType="com.woxue.mt.sqldealer.Professor">
+        select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+        from xuezhebiao
+        where regexp #{0}
+    </select>
+
+    <update id="updateProfessor">
+        update xuezhebiao
+        <set>
+            <if test="name != null"> name = #{name}, </if>
+            <if test="organization != null"> org = #{organization}, </if>
+            <if test="referenceCount != null"> ach_num = #{referenceCount}, </if>
+            <if test="workNumber != null"> work_num = #{workNumber}, </if>
+            <if test="area != null"> area = #{area}, </if>
+            <if test="verifyState != null"> 审核状态 = #{verifyState}, </if>
+        </set>
+        where scholar_id = #{id}
+    </update>
+
+    <select id="countProfessor" resultType="int">
+        select count(*) from xuezhebiao
+    </select>
+
+    <select id="searchUser" resultType="com.woxue.mt.sqldealer.User">
+        select ID as id, 关注领域 as focusArea, 积分值 as score, 密码 as password, 昵称 as nickname, 手机号 as phoneNumber, 邮箱 as email
+        from 用户
+    </select>
+
+    <select id="searchUserById" resultType="com.woxue.mt.sqldealer.User">
+        select ID as id, 关注领域 as focusArea, 积分值 as score, 密码 as password, 昵称 as nickname, 手机号 as phoneNumber, 邮箱 as email
+        from 用户
+        where ID = #{id}
+    </select>
+
+    <update id="updateUser">
+        update 用户
+        <set>
+            <if test="focusArea != null"> 关注领域 = #{focusArea}, </if>
+            <if test="nickname != null"> 昵称 = #{nickname}, </if>
+            <if test="password != null"> 密码 = #{password}, </if>
+            <if test="phoneNumber != null"> 手机号 = #{phoneNumber}, </if>
+            <if test="email != null"> 邮箱 = #{email}, </if>
+            <if test="score != null"> 积分值 = #{score}, </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <insert id="insertUser">
+        insert into 用户 values(#{id}, #{focusArea}, #{score}, #{password}, #{nickname}, #{phoneNumber}, #{email})
+    </insert>
+
+    <delete id="deleteUserById">
+        delete from 用户
+        where ID = #{id}
+    </delete>
+
+    <select id="searchTrendByProfessorId" resultType="com.woxue.mt.sqldealer.Trend">
+        select ID as id, 专家ID as professorId, 内容 as content, 时间 as publishTime
+        from 动态
+        where 专家ID = #{professorId}
+    </select>
+</mapper>
