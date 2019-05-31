@@ -101,12 +101,12 @@ public class ManagerController {
      * public String url;
      * public int verifyState;
      */
-    @RequestMapping("/viewScience")
-    public String viewScience(Model model) {
-        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, 0,0);
-        model.addAttribute("sciList", sciList);
-        return "scienceManage";
-    }
+//    @RequestMapping("/viewScience")
+//    public String viewScience(Model model) {
+//        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, 0,0);
+//        model.addAttribute("sciList", sciList);
+//        return "scienceManage";
+//    }
 
     @RequestMapping("/viewUncheckedScience")
     public String viewUncheckedScience(Model model) {

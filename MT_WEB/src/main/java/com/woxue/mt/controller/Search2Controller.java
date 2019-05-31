@@ -49,19 +49,27 @@ public class Search2Controller {
         if(keywords.size()==0){
             keywords = null;
         }
-        int filterInt,sortInt;
+        SqlDealer.Order order = SqlDealer.Order.DEFAULT;
         String filter = request.getParameter("filter");
-        if(filter == null){
-            filterInt=0;
-        }
-        else{
-            if(filter.equals("10")){
-                filterInt = 0;
-                //
+        String startYear = "0000";
+        if(filter != null){
+            if(filter.equals("1")){
+                startYear = "2019";
             }
-            else{
-                filterInt = Integer.parseInt(filter);
-                //
+            else if(filter.equals("2")){
+                startYear = "2018";
+            }
+            else if(filter.equals("3")){
+                startYear = "2017";
+            }
+            else if(filter.equals("4")){
+                startYear = "2016";
+            }
+            else if(filter.equals("5")){
+                startYear = "2015";
+            }
+            if(filter.equals("10")){
+                ;
             }
         }
 
@@ -69,7 +77,7 @@ public class Search2Controller {
             try {
                 System.out.println(keywords);
                 SqlDealer sqlDealer = new SqlDealer();
-                List<Thesis> result = sqlDealer.searchThesisAnd(keywords,st,st+20);
+                List<Thesis> result = sqlDealer.searchThesisAnd(keywords,startYear,order,st,st+20);
                 model.addAttribute("productList",result);
             }catch (Exception e){
                 e.printStackTrace();
@@ -130,7 +138,7 @@ public class Search2Controller {
                 System.out.println(date1);
                 System.out.println(date2);
                 SqlDealer sqlDealer = new SqlDealer();
-                List<Thesis> result = sqlDealer.searchThesisAnd(keywords,st,st+20);
+                List<Thesis> result = sqlDealer.advancedSearchThesisAnd(keywords,authorl,keywordl,date1,date2,order,st,st+20);
                 model.addAttribute("productList",result);
             }catch (Exception e){
                 e.printStackTrace();
