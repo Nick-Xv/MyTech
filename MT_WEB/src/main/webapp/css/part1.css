@@ -3,6 +3,20 @@
 	color: #FFFFFF;
 }
 
+#navbar a{
+	color: #FFF;
+}
+
+#navbar a:hover {
+	color: #661F66;
+}
+
+.navbar-hover:hover {
+	background-color: #FFF;
+}
+
+
+
 #introjumbotron {
 	background: url(../img/intro.jpg);
 	background-size: 100%;
@@ -20,8 +34,8 @@
 #searchjumbotronsmall {
 	background-color: #661F66;
 	color: #FFFFFF;
-	padding: 10px 0 30px 0;
-	margin-bottom: 10px;
+	padding: 20px 0 30px 10px;
+	margin-bottom: 0;
 }
 
 #essayjumbotronsmall {
@@ -36,7 +50,7 @@
 	background-color: #EEE;
 }
 
-#essaybody {
+#essaybody{
 	background-color: #FFF;
 	padding-bottom: 20px;
 }
@@ -79,12 +93,22 @@
 }
 
 #btn {
-	background-color: #B8860B;
+	background-color: #EE7621;
 }
 
 #btn:hover {
 	background-color: #FFF;
 	color: #661F66;
+}
+
+#btn2 {
+	
+}
+
+#textareactm {
+	border-radius: 0;
+	-webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, .075);
+	        box-shadow: inset 0 0 0 rgba(0, 0, 0, .075);
 }
 
 .btnctm:hover {
@@ -96,7 +120,44 @@
 	outline: 0;
 }
 
-#resultlist {
-	margin-bottom: 30px;
+.resultlist {
+	margin: 0 0 0 0;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
+.commentlist {
+	padding: 5px 0 5px 0;
+}
+
+.commentlist h5 {
+	font-weight: bold;
+}
+
+.resultlist:hover {
+	background-color: #F8F8F8;
+}
+
+a {
+	color: #2149FF;
+}
+
+a:hover {
+	color: #5179FF;
+	text-decoration: none;
+}
+
+.filter {
+	padding-top: 5px;
+	padding-bottom:5px;
+	padding-left:10px;
+}
+
+.filter a {
+	color: #666;
+}
+
+.filterselected {
+	background-color: #F8F8F8;
+}

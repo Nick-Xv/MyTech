@@ -23,16 +23,16 @@
 <body style="background-color: #EEE;">
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand">StudyIO</a>
+        <div class="navbar-header navbar-hover">
+            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-hover">
                 <li>
                     <a href="/MyTech/index">OTHER</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right navbar-hover">
                 <li>
                     <a href="/MyTech/index">SIGN IN</a>
                 </li>
@@ -73,12 +73,33 @@
 
 <div id="commentjumbotron">
     <div class="container">
-        <h4>发表看法</h4>
-        <form action="/MyTech/essay" method="get">
-            <textarea class="form-control" rows="3"></textarea>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <h4>评论</h4>
+    	<div class="row">
+    		<div class="col-md-9">
+    			<h4>发表看法</h4>
+    			<form action="/MyTech/essay" method="post">
+    			    <textarea class="form-control" id="textareactm" name="comment" rows="3"></textarea>
+    			    <button type="submit" id="btn2" class="btn btnctm">提交</button>
+    			</form>
+    		</div>
+    	</div>
+    </div>
+    <div id="commentgroup">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-9">
+    				<h4 style="padding-top:10px;">评论</h4>
+    				<c:forEach items="${commentList}" var="comment">
+    				    <div class="commentlist">
+    				        <h5>${product.用户名} <small>${product.发表时间}</small></h5>
+    				        <p>${product.评论内容}啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+    						啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+    						啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+    						啊啊啊啊啊啊啊啊啊啊啊啊</p>
+    				    </div>
+    				</c:forEach>
+    			</div>
+    		</div>
+    	</div>
     </div>
 </div>
 

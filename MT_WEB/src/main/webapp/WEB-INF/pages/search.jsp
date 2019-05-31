@@ -24,16 +24,16 @@
 <body>
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand">StudyIO</a>
+        <div class="navbar-header navbar-hover">
+            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-hover">
                 <li>
                     <a href="/MyTech/index">OTHER</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right navbar-hover">
                 <li>
                     <a href="/MyTech/${jump}">${login}</a>
                 </li>
@@ -48,7 +48,7 @@
             <div class="form-inline">
                 <input type="" class="form-controlctm form-control" name="title" id="" style="width: 450px;" value="" placeholder="您想找什么？"/>
                 <button type="submit" class="btn btnctm" style="width: 70px;">检索</button>
-				<a type="button" class="btn btnctm" id="btn" href="/MyTech/search2?title=&mode=true&author=&keyword=">高级检索</a>
+				<a type="button" class="btn btnctm" id="btn" href="/MyTech/search2?title=&author=&keyword=&date1=&date2=&mode=true">高级检索</a>
             </div>
 
         </form>
