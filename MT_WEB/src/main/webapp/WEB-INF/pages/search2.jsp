@@ -116,6 +116,6 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/part1.js"></script>
+<script type="text/javascript" src="js/part1.js"></script>
 </body>
 </html>
