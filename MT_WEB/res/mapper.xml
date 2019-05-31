@@ -13,7 +13,7 @@
         select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
         from 论文表
         where
-        <foreach collection="list" index="index" item="item" open="" separator="or" close="">
+        <foreach collection="keywords" index="index" item="item" open="" separator="or" close="">
             lower(concat_ws(' ', 论文名字, 作者, 摘要)) regexp lower(#{item})
         </foreach>
         limit #{limit1}, #{limit2}
@@ -23,7 +23,7 @@
         select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
         from 论文表
         where
-        <foreach collection="list" index="index" item="item" open="" separator="and" close="">
+        <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
             lower(concat_ws(' ', 论文名字, 作者, 关键词, 摘要)) regexp lower(#{item})
         </foreach>
         limit #{limit1}, #{limit2}
