@@ -68,15 +68,15 @@ public class ManagerController {
      */
     @RequestMapping("/viewProfessor")
     public String viewProfessor(Model model) {
-        List<Professor> profList = sqlDealer.searchProfessor(300);
+        List<Professor> profList = sqlDealer.searchProfessor(0,300);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
 
     @RequestMapping("/viewUncheckedProfessor")
     public String viewUncheckedProfessor(Model model) {
-        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(100);
-        model.addAttribute("uncheckedProfList", uncheckedProfList);
+        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,100);
+        model.addAttribute("profList", uncheckedProfList);
         return "professorManage";
     }
 
@@ -103,15 +103,15 @@ public class ManagerController {
      */
     @RequestMapping("/viewScience")
     public String viewScience(Model model) {
-        List<Thesis> sciList= sqlDealer.searchThesis(300);
+        List<Thesis> sciList= sqlDealer.searchThesis(0, 300);
         model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
 
     @RequestMapping("/viewUncheckedScience")
     public String viewUncheckedScience(Model model) {
-        List<Thesis> uncheckedSciList = sqlDealer.searchThesisUnverified(100);
-        model.addAttribute("uncheckedSciList", uncheckedSciList);
+        List<Thesis> uncheckedSciList = sqlDealer.searchThesisUnverified(0,100);
+        model.addAttribute("sciList", uncheckedSciList);
         return "scienceManage";
     }
 
@@ -135,7 +135,7 @@ public class ManagerController {
      */
     @RequestMapping("/viewUser")
     public String viewUser(Model model) {
-        List<User> userList = sqlDealer.searchUser();
+        List<User> userList = sqlDealer.searchUser(0, 100);
         model.addAttribute("userList", userList);
         return "userManage";
     }
