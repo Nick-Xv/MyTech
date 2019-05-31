@@ -14,8 +14,13 @@
         from 论文表
         where
         <foreach collection="keywords" index="index" item="item" open="" separator="or" close="">
-            lower(concat_ws(' ', 论文名字, 作者, 摘要)) regexp lower(#{item})
+            lower(concat_ws(' ', 论文名字, 作者, 关键词)) regexp lower(#{item})
         </foreach>
+        and 发表时间 &gt;= #{yearStart} and 发表时间 &lt; #{yearEnd}
+        order by
+        <if test='order == "REFERENCE_COUNT"'> cast(被引次数 as signed integer) desc, </if>
+        <if test='order == "RECENT"'> 发表时间 desc, </if>
+        论文DOI asc
         limit #{limit1}, #{limit2}
     </select>
 
@@ -24,8 +29,13 @@
         from 论文表
         where
         <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
-            lower(concat_ws(' ', 论文名字, 作者, 关键词, 摘要)) regexp lower(#{item})
+            lower(concat_ws(' ', 论文名字, 作者, 关键词)) regexp lower(#{item})
         </foreach>
+        and 发表时间 &gt;= #{yearStart} and 发表时间 &lt; #{yearEnd}
+        order by
+        <if test='order == "REFERENCE_COUNT"'> cast(被引次数 as signed integer) desc, </if>
+        <if test='order == "RECENT"'> 发表时间 desc, </if>
+        论文DOI asc
         limit #{limit1}, #{limit2}
     </select>
 
@@ -44,7 +54,11 @@
         <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
             lower(关键词) regexp lower(#{item})
         </foreach>
-        and 发布时间 &gt;= #{yearStart} and 发布时间 &lt; #{yearEnd}
+        and 发表时间 &gt;= #{yearStart} and 发表时间 &lt; #{yearEnd}
+        order by
+        <if test='order == "REFERENCE_COUNT"'> cast(被引次数 as signed integer) desc, </if>
+        <if test='order == "RECENT"'> 发表时间 desc, </if>
+        论文DOI asc
         limit #{limit1}, #{limit2}
     </select>
 
