@@ -146,10 +146,15 @@
 			<h3 style="margin-top: 20px;margin-bottom: 10px;">结果筛选</h3>
 			<h4 style="margin-top: 20px;margin-bottom: 10px;">发表时间</h4>
 			<ul class="list-group list-unstyled">
-				<li id="filter1" class="filter"><a href="javascript:void(0);" onclick="filter(1)">1年内</a></li>
-				<li id="filter2" class="filter"><a href="javascript:void(0);" onclick="filter(2)">3年内</a></li>
-				<li id="filter3" class="filter"><a href="javascript:void(0);" onclick="filter(3)">5年内</a></li>
-				<li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">5年前</a></li>
+				<%--<li id="filter1" class="filter"><a href="javascript:void(0);" onclick="filter(1)">1年内</a></li>--%>
+				<%--<li id="filter2" class="filter"><a href="javascript:void(0);" onclick="filter(2)">3年内</a></li>--%>
+				<%--<li id="filter3" class="filter"><a href="javascript:void(0);" onclick="filter(3)">5年内</a></li>--%>
+				<%--<li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">5年前</a></li>--%>
+                <li id="filter1" class="filter"><a href="javascript:void(0);" onclick="filter(1)">2019年</a></li>
+                <li id="filter2" class="filter"><a href="javascript:void(0);" onclick="filter(2)">2018年起</a></li>
+                <li id="filter3" class="filter"><a href="javascript:void(0);" onclick="filter(3)">2017年起</a></li>
+                <li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">2016年起</a></li>
+                <li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(5)">2015年起</a></li>
 			</ul>
 			<h4 style="margin-top: 20px;margin-bottom: 10px;">被引次数</h4>
 			<ul class="list-group list-unstyled">
