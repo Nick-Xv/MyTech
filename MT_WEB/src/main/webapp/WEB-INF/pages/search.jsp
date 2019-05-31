@@ -13,13 +13,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
-    <style>
-
-    </style>
-
-    <script>
-
-    </script>
 </head>
 <body>
 <nav id="navbar" class="navbar-inverse">
@@ -43,14 +36,24 @@
 </nav>
 <div id="searchjumbotron" class="jumbotron">
     <div class="container">
-        <h2>文献检索</h2>
-        <form action="/MyTech/search2" method="get">
+        <h2>资源检索</h2>
+        <form action="/MyTech/search2" id="form1" method="get">
             <div class="form-inline">
                 <input type="" class="form-controlctm form-control" name="title" id="" style="width: 450px;" value="" placeholder="您想找什么？"/>
                 <button type="submit" class="btn btnctm" style="width: 70px;">检索</button>
-				<a type="button" class="btn btnctm" id="btn" href="/MyTech/search2?title=&author=&keyword=&date1=&date2=&mode=true">高级检索</a>
+				<button type="button" class="btn btnctm" id="btn" onclick="advsearch()">高级检索</button>
             </div>
-
+			<div id="radiogroup">
+				<div class="radio-inline">
+				  <label><input type="radio" name="searchtype" id="optionsRadios1" value="option1" onclick="advsearchtype(1)" checked>搜文献</label>
+				</div>
+				<div class="radio-inline">
+				  <label><input type="radio" name="searchtype" id="optionsRadios2" value="option2" onclick="advsearchtype(2)">搜专利</label>
+				</div>
+				<div class="radio-inline">
+				  <label><input type="radio" name="searchtype" id="optionsRadios3" value="option3" onclick="advsearchtype(3)">搜专家</label>
+				</div>
+			</div>
         </form>
     </div>
 </div>
@@ -72,5 +75,6 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/part2.js"></script>
 </body>
 </html>

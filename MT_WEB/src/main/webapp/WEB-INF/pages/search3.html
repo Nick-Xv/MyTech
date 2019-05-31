@@ -1,20 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: xuyun
-  Date: 2019/5/21
-  Time: 15:47
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Bootstrap 模板</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/part1.css" rel="stylesheet">
+    <link href="../../css/part1.css" rel="stylesheet">
 </head>
 <body onload="GetRequest()">
 <nav id="navbar" class="navbar-inverse">
@@ -38,21 +28,22 @@
 </nav>
 <div id="searchjumbotronsmall" class="jumbotron">
     <div class="container">
-        <form class="form-inline" action="/MyTech/search2" method="get">
+        <form class="form-inline" action="/MyTech/search3" method="get">
             <div>
-                <input type="" class="form-controlctm form-control" id="title" name="title" placeholder="主题" value=""/>
+                <input type="" class="form-controlctm form-control" id="title" name="title" placeholder="专利名" value=""/>
                 <button type="submit" class="btn btnctm" style="width: 70px; margin-left: 4px;">检索</button>
 				<button type="button" class="btn btnctm" style="margin-left: 4px;" id="btn" onclick="aaa()" data-toggle="collapse" data-target="#advsearch">高级检索</button>
 				<div class="collapse" id="advsearch">
-					<input type="" class="form-controlctm form-control" id="author" name="author" placeholder="作者" value=""/>
-					<input type="" class="form-controlctm form-control" id="keyword" name="keyword" placeholder="关键词" value=""/>
+					<input type="" class="form-controlctm form-control" id="author" name="author" placeholder="申请人" value=""/>
+					<input type="" class="form-controlctm form-control" id="author2" name="author2" placeholder="发明人" value=""/>
+					<input type="" class="form-controlctm form-control" id="number" name="number" placeholder="申请号" value=""/>
 					<div class="dategroup">
 						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">起始日期</label>
-						<input type="month" class="form-controlctm form-control" id="date1" name="date1" placeholder="日期" value=""/>
+						<input type="date" class="form-controlctm form-control" id="date1" name="date1" placeholder="日期" value=""/>
 					</div>
 					<div class="dategroup">
 						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">截止日期</label>
-						<input type="month" class="form-controlctm form-control" id="date2" name="date2" placeholder="日期" value=""/>
+						<input type="date" class="form-controlctm form-control" id="date2" name="date2" placeholder="日期" value=""/>
 					</div>
 				</div>
             </div>
@@ -116,6 +107,6 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/part1.js"></script>
+<script type="text/javascript" src="../../js/part1.js"></script>
 </body>
 </html>

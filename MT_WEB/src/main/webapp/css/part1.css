@@ -15,8 +15,6 @@
 	background-color: #FFF;
 }
 
-
-
 #introjumbotron {
 	background: url(../img/intro.jpg);
 	background-size: 100%;
@@ -29,6 +27,16 @@
 	color: #FFFFFF;
 	text-align: center;
 	padding: 50px 0 100px 0;
+}
+
+#professorjumbotron {
+	background-color: #661F66;
+	color: #FFFFFF;
+	padding: 20px 0 20px 0;
+}
+
+#radiogroup {
+	padding-top: 15px;
 }
 
 #searchjumbotronsmall {
@@ -64,11 +72,11 @@
 	width: 450px;
 }
 
-#title, #author, #keyword {
+#title, #author, #keyword, #number, #author2 {
 	width: 450px;
 }
 
-#author, #keyword, .dategroup{
+#author, #keyword, #number, #author2, .dategroup{
 	display: block;
 }
 
@@ -79,7 +87,6 @@
 #date1, #date2 {
 	width: 385px;
 }
-
 
 .btnctm {
 	margin-top: 8px;
@@ -96,13 +103,29 @@
 	background-color: #EE7621;
 }
 
+#btn:disabled {
+	background-color: #BBB;
+}
+
+#btn:disabled:hover {
+	background-color: #BBB;
+	color: #FFF;
+}
+
 #btn:hover {
 	background-color: #FFF;
 	color: #661F66;
 }
 
 #btn2 {
-	
+	float:right;
+	background-color: #661F66;
+	display: inline-block;
+	margin-top: 0;
+}
+
+#btn2:hover {
+	background-color: #FFF;
 }
 
 #textareactm {
@@ -125,6 +148,14 @@
 	padding-left: 15px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-right: 15px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.professorlist {
+	padding-top: 5px;
 }
 
 .commentlist {
@@ -160,4 +191,65 @@ a:hover {
 
 .filterselected {
 	background-color: #F8F8F8;
+}
+
+.filterselected a {
+	color: #661F66;
+}
+
+.paginationctm >.active>a,
+.paginationctm >.active>a:hover,
+.paginationctm >.active>span,
+.paginationctm >.active>span:hover{
+	background-color: #661F66;
+	border-color: #661F66;
+}
+
+.paginationctm >li>a,
+.paginationctm >li>a:hover,
+.paginationctm >li>span:hover,
+.paginationctm >li>span{
+	color: #661F66;
+}
+
+.star-rating { 
+  font-family: 'FontAwesome'; 
+  margin-top: 10px;
+} 
+.star-rating > fieldset { 
+  border: none; 
+  display: inline-block; 
+} 
+.star-rating > fieldset:not(:checked) > input { 
+  position: absolute; 
+  top: -9999px; 
+  clip: rect(0, 0, 0, 0); 
+} 
+.star-rating > fieldset:not(:checked) > label { 
+  float: right; 
+  width: 1em; 
+  padding: 0 .05em; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  cursor: pointer; 
+  font-size: 200%; 
+  color: #661F66; 
+} 
+.star-rating > fieldset:not(:checked) > label:before { 
+  content: '\f006  '; 
+} 
+.star-rating > fieldset:not(:checked) > label:hover, 
+.star-rating > fieldset:not(:checked) > label:hover ~ label { 
+  color: #661F66;  
+} 
+.star-rating > fieldset:not(:checked) > label:hover:before, 
+.star-rating > fieldset:not(:checked) > label:hover ~ label:before { 
+  content: '\f005  '; 
+} 
+.star-rating > fieldset > input:checked ~ label:before { 
+  content: '\f005  '; 
+} 
+.star-rating > fieldset > label:active { 
+  position: relative; 
+  top: 2px; 
 }
