@@ -38,7 +38,7 @@ public class Search2Controller {
         try {
             System.out.println(keywords);
             SqlDealer sqlDealer = new SqlDealer();
-            List<Thesis> result = sqlDealer.searchThesisAnd(keywords);
+            List<Thesis> result = sqlDealer.searchThesisAnd(keywords,1,1);
             model.addAttribute("productList",result);
         }catch (Exception e){
             e.printStackTrace();

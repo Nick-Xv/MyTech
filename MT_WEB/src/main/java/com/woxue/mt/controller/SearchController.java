@@ -16,15 +16,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class SearchController {
-    @Autowired
-    private GlobalBiz globalBiz;
-    @Autowired
-    private ProfessorBiz professorBiz;
-    @Autowired
-    private AdminBiz adminBiz;
-    @Autowired
-    private UserBiz userBiz;
-
     @RequestMapping("/search")
     public String printSearch(ModelMap model, HttpSession session, User user){
         user = (User)session.getAttribute("user");
