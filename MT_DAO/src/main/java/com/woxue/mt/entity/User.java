@@ -1,6 +1,7 @@
 package com.woxue.mt.entity;
 
-public class User {
+public class User  implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
     private String id;//ID
     private String field;//关注领域
     private int credit;//积分值

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Bootstrap 模板</title>
@@ -17,7 +18,7 @@
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
-            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
+            <a class="navbar-brand" href="/MyTech/search">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
@@ -27,7 +28,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">
                 <li>
-                    <a href="/MyTech/index">SIGN IN</a>
+                    <a href="/MyTech/${jump}">${login}</a>
                 </li>
             </ul>
         </div>
@@ -40,9 +41,10 @@
 </div> -->
 <div id="professorjumbotron" class="jumbotron">
     <div class="container">
-        <h2 style="margin-top: 30px;">宋友</h2>
-        <h3 style="margin-top: 20px;">北京航空航天大学 教授</h3>
-        <p style="margin-top: 20px;">出生日期 1970年1月</p>
+        <h2 style="margin-top: 30px;">${name}</h2>
+        <h3 style="margin-top: 20px;">${ins} ${prof}</h3>
+        <p style="margin-top: 20px;">${birth}</p>
+        <p>${area}</p>
     </div>
 </div>
 
@@ -52,20 +54,12 @@
             <h3>简介</h3>
             <p style="padding-bottom: 20px;">老师很好</p>
             <h3>关系网络</h3>
-            <c:forEach items="${productList}" var="product">
+            <c:forEach items="${profList}" var="professor">
                 <div class="professorlist">
-                    <h4>林广艳</h4>
-                    <p>合作次数:10</p>
+                    <h4>${professor.name}</h4>
+                    <p><a href="${professor.url}">外部链接</a></p>
                 </div>
             </c:forEach>
-            <div class="professorlist">
-                <h4>林广艳</h4>
-                <p>合作次数:10</p>
-            </div>
-            <div class="professorlist">
-                <h4>林广艳</h4>
-                <p>合作次数:10</p>
-            </div>
         </div>
     </div>
 </div>

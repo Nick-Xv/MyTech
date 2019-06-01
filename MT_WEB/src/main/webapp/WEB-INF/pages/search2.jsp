@@ -20,7 +20,7 @@
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
-            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
+            <a class="navbar-brand" href="/MyTech/search">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
@@ -47,12 +47,12 @@
 					<input type="" class="form-controlctm form-control" id="author" name="author" placeholder="作者" value=""/>
 					<input type="" class="form-controlctm form-control" id="keyword" name="keyword" placeholder="关键词" value=""/>
 					<div class="dategroup">
-						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">起始日期</label>
-						<input type="month" class="form-controlctm form-control" id="date1" name="date1" placeholder="日期" value=""/>
+						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">起始年份</label>
+						<input type="year" class="form-controlctm form-control" id="date1" name="date1" placeholder="年份" value=""/>
 					</div>
 					<div class="dategroup">
-						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">截止日期</label>
-						<input type="month" class="form-controlctm form-control" id="date2" name="date2" placeholder="日期" value=""/>
+						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">截止年份</label>
+						<input type="year" class="form-controlctm form-control" id="date2" name="date2" placeholder="年份" value=""/>
 					</div>
 				</div>
             </div>
@@ -67,7 +67,9 @@
                 <div class="resultlist">
                     <h4><a href="/MyTech/essay?id=${product.id}">${product.title}</a></h4>
                     <p>作者: ${product.author}</p>
-                    <p>链接: <a href=${product.url}>${product.url}</a></p>
+                    <p>关键字：${product.keyword}</p>
+                    <p>年份：${product.publishTime}</p>
+                    <p><a href=${product.url}>#外部链接</a></p>
                 </div>
             </c:forEach>
         </div>
@@ -81,10 +83,10 @@
                 <li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">2016年起</a></li>
                 <li id="filter5" class="filter"><a href="javascript:void(0);" onclick="filter(5)">2015年起</a></li>
 			</ul>
-			<h4 style="margin-top: 20px;margin-bottom: 10px;">被引次数</h4>
+			<h4 style="margin-top: 20px;margin-bottom: 10px;">排序方式</h4>
 			<ul class="list-group list-unstyled">
 				<li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按被引次数排序</a></li>
-				<li id="sorter2" class="filter"><a href="javascript:void(0);" onclick="sorter(2)">按如你所愿排序，添加时注意更改id和onclick</a></li>
+				<li id="sorter2" class="filter"><a href="javascript:void(0);" onclick="sorter(2)">按发表年份排序</a></li>
 			</ul>
 		</div>
     </div>

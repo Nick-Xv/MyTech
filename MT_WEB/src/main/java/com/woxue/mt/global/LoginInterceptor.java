@@ -26,6 +26,11 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        //如果路径包含关键字，表明是科技成果业务，放行
+        else if(url.toLowerCase().indexOf("essay")>=0 || url.toLowerCase().indexOf("patent")>=0 || url.toLowerCase().indexOf("professor")>=0 || url.toLowerCase().indexOf("index")>=0){
+            return true;
+        }
+
         //通过session判断用户是否处在已登录状态，已登录状态则放行
         HttpSession session = httpServletRequest.getSession();
         if(session.getAttribute("user")!=null){

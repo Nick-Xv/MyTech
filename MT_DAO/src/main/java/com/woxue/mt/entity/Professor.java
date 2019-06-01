@@ -1,6 +1,7 @@
 package com.woxue.mt.entity;
 
-public class Professor {
+public class Professor  implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
     private String id;//ID
     private String birthday;//出生日期
     private String organization;//机构

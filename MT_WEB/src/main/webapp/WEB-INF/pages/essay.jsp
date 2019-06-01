@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Bootstrap 模板</title>
@@ -25,7 +26,7 @@
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
-            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
+            <a class="navbar-brand" href="/MyTech/search">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
@@ -35,7 +36,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">
                 <li>
-                    <a href="/MyTech/index">SIGN IN</a>
+                    <a href="/MyTech/${jump}">${login}</a>
                 </li>
             </ul>
         </div>
@@ -50,22 +51,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h2>A Tactical Information Management System for Unmanned Vehicles Using Vehicular Adhoc Networks</h2>
-                <p>作者: <a href="#">Jeyaprakash, Thangakumar</a>; Mukesh, Rajeshwari</p>
-                <p>BMC COMPLEMENTARY AND ALTERNATIVE MEDICINE  卷: 15     文献号: 258   出版年: JUL 30 2015</p>
+                <h2>${title}</h2>
+                <p>作者: ${authors}</p>
+                <p>领域：${field}</p>
                 <h3>摘要</h3>
-                <p>Unmanned Ground Vehicles (UGV) are playing a vital role in Military Services. The main abstract of this project is proposed for provide a Tactical information Management system for Unmanned Ground Vehicles using Vehicular Adhoc Networks [1] (VANET). VANET is a perfect option for vehicle to vehicle communication to share the Information with each other. An Information Control Unit will be attached inbuilt with all unmanned ground vehicles to share the information. An Information Control unit consists of front and rear Radar (Radio Detection and Ranging), Event Data Recorder, Global positioning system (GPS), Sensor, and a communication system. When a failure detected in an Unmanned Ground vehicle due to the enemy attack, the tactical information will be shared with the neighboured UGVs among the VANET about the status of failed UGV. The damaged UGV will be replaced immediately with the neighbour to fill up the gap using the Tactical information shared using the WAVE (Wireless Application for Vehicle Environment) SMS protocol. This information is used to avoid collision also during fog.</p>
+                <p>${info}</p>
                 <h3>关键词</h3>
-                <p>Unmanned Vehicles; Vehicular Adhoc Networks; Radio Detection and Ranging</p>
+                <p>${keywords}</p>
             </div>
             <div class="col-md-3">
                 <h4 style="margin-top: 30px;">查看文献</h4>
-                <p><a href="#">知网</a></p>
-                <p><a href="#">万方</a></p>
+                <p><a href=${url}>外部链接</a></p>
                 <h4 style="margin-top: 20px;">被引次数</h4>
-                <p style="font-size: 40px;">4</p>
+                <p style="font-size: 40px;">${refcount}</p>
+                <h4 style="margin-top: 20px;">查看次数</h4>
+                <p style="font-size: 40px;">${clickcount}</p>
                 <h4 style="margin-top: 20px;">网友评分</h4>
-                <p style="font-size: 20px;">4.5/5</p>
+                <p style="font-size: 20px;">${grade}/5</p>
             </div>
         </div>
     </div>
@@ -76,7 +78,7 @@
     <div class="container">
     	<div class="row">
     		<div class="col-md-9">
-    			<h4>发表看法</h4>
+    			<h4>评论评分</h4>
     			<form action="/MyTech/essay" method="get">
     			    <textarea class="form-control" id="textareactm" name="comment" rows="3"></textarea>
 					<div class="star-rating"> 
@@ -100,11 +102,8 @@
     				<h4>评论</h4>
     				<c:forEach items="${commentList}" var="comment">
     				    <div class="commentlist">
-    				        <h5>${product.用户名} <small>${product.发表时间}</small></h5>
-    				        <p>${product.评论内容}啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-    						啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-    						啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-    						啊啊啊啊啊啊啊啊啊啊啊啊</p>
+    				        <h5>${comment.ID2} <small>${comment.发表时间}</small></h5>
+    				        <p>${comment.评论内容}啊啊啊啊</p>
     				    </div>
     				</c:forEach>
     			</div>

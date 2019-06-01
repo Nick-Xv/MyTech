@@ -15,8 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller("globalController")
-public class GlobalController {
-
+public class GlobalController implements java.io.Serializable{
     @Autowired
     private GlobalBiz globalBiz;
     @Autowired

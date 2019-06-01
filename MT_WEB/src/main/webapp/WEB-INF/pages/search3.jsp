@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Bootstrap 模板</title>
@@ -19,7 +20,7 @@
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
-            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
+            <a class="navbar-brand" href="/MyTech/search">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
@@ -63,11 +64,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <c:forEach items="${productList}" var="product">
+            <c:forEach items="${patentList}" var="patent">
                 <div class="resultlist">
-                    <h4><a href="/MyTech/essay?id=${product.id}">${product.title}</a></h4>
-                    <p>作者: ${product.author}</p>
-                    <p>链接: <a href=${product.url}>${product.url}</a></p>
+                    <h4><a href="/MyTech/patent?id=${patent.id}">${patent.title}</a></h4>
+                    <p>发明人: ${patent.author}</p>
+                    <p>申请人: ${patent.author1}</p>
+                    <p>申请日：${patent.date}</p>
+                    <p>申请号：${patent.id}</p>
                 </div>
             </c:forEach>
         </div>
@@ -81,10 +84,9 @@
                 <li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">2016年起</a></li>
                 <li id="filter5" class="filter"><a href="javascript:void(0);" onclick="filter(5)">2015年起</a></li>
             </ul>
-            <h4 style="margin-top: 20px;margin-bottom: 10px;">被引次数</h4>
+            <h4 style="margin-top: 20px;margin-bottom: 10px;">排序方式</h4>
             <ul class="list-group list-unstyled">
-                <li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按被引次数排序</a></li>
-                <li id="sorter2" class="filter"><a href="javascript:void(0);" onclick="sorter(2)">按如你所愿排序，添加时注意更改id和onclick</a></li>
+                <li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按申请日期排序</a></li>
             </ul>
         </div>
     </div>

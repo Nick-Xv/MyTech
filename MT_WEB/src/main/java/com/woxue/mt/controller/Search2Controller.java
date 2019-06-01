@@ -51,6 +51,7 @@ public class Search2Controller {
         }
         SqlDealer.Order order = SqlDealer.Order.DEFAULT;
         String filter = request.getParameter("filter");
+        String sorter = request.getParameter("sorter");
         String startYear = "0000";
         if(filter != null){
             if(filter.equals("1")){
@@ -68,16 +69,23 @@ public class Search2Controller {
             else if(filter.equals("5")){
                 startYear = "2015";
             }
-            if(filter.equals("10")){
-                ;
+        }
+        if(sorter != null){
+            if(sorter.equals("1")){
+                order = SqlDealer.Order.REFERENCE_COUNT;
+            }
+            else{
+                order = SqlDealer.Order.RECENT;
             }
         }
-
         if(mode.equals("false")){
             try {
                 System.out.println(keywords);
                 SqlDealer sqlDealer = new SqlDealer();
                 List<Thesis> result = sqlDealer.searchThesisAnd(keywords,startYear,order,st,st+20);
+                for(Thesis temp:result){
+                    temp.id = temp.id.replace(" ","");
+                }
                 model.addAttribute("productList",result);
             }catch (Exception e){
                 e.printStackTrace();
@@ -118,19 +126,18 @@ public class Search2Controller {
                     keywordl = null;
                 }
             }
-            if(date1 == null || date1.equals("undefined")){
-                date1 = null;
+            if(date1 == null || date1.equals("") || date1.equals("undefined")){
+                date1 = "0000";
             }
             else{
                 date1 = date1.split("-")[0];
             }
-            if(date2 == null || date2.equals("undefined")){
-                date2 = null;
+            if(date2 == null || date2.equals("") || date2.equals("undefined")){
+                date2 = "9999";
             }
             else{
                 date2 = date2.split("-")[0];
             }
-
             try {
                 System.out.println(keywords);
                 System.out.println(keywordl);
@@ -139,6 +146,9 @@ public class Search2Controller {
                 System.out.println(date2);
                 SqlDealer sqlDealer = new SqlDealer();
                 List<Thesis> result = sqlDealer.advancedSearchThesisAnd(keywords,authorl,keywordl,date1,date2,order,st,st+20);
+                for(Thesis temp:result){
+                    temp.id = temp.id.replace(" ","");
+                }
                 model.addAttribute("productList",result);
             }catch (Exception e){
                 e.printStackTrace();
