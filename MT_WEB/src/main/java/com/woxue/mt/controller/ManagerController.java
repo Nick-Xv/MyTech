@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 @Controller
@@ -33,6 +34,10 @@ public class ManagerController {
         String userData = overviewTool(8,30);
         String professorData = overviewTool(11,44);
         String scienceData = overviewTool(2,29);
+        System.out.println(labels);
+        System.out.println(userData);
+        System.out.println(professorData);
+        System.out.println(scienceData);
         model.addAttribute("labels", labels);
         model.addAttribute("userData", userData);
         model.addAttribute("professorData", professorData);
@@ -47,16 +52,15 @@ public class ManagerController {
 
     @RequestMapping("/professor_list")
     public  String professorManage(Model model){
-        List<Professor> profList = sqlDealer.searchProfessor(0,20);
+        List<Professor> profList = sqlDealer.searchProfessor(0,100);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
 
     @RequestMapping("/science_list")
     public  String scienceManage(Model model) {
-        List<String> key = new ArrayList<>();
         SqlDealer.Order order = SqlDealer.Order.DEFAULT;
-        List<Thesis> sciList= sqlDealer.searchThesisAnd(key,"0000",order,0,100);
+        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, "0000", order,0,100);
         model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
@@ -74,14 +78,14 @@ public class ManagerController {
      */
     @RequestMapping("/viewProfessor")
     public String viewProfessor(Model model) {
-        List<Professor> profList = sqlDealer.searchProfessor(0,10);
+        List<Professor> profList = sqlDealer.searchProfessor(0,100);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
 
     @RequestMapping("/viewUncheckedProfessor")
     public String viewUncheckedProfessor(Model model) {
-        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,10);
+        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,100);
         model.addAttribute("profList", uncheckedProfList);
         return "professorManage";
     }
@@ -107,12 +111,12 @@ public class ManagerController {
      * public String url;
      * public int verifyState;
      */
-//    @RequestMapping("/viewScience")
-//    public String viewScience(Model model) {
-//        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, 0,0);
-//        model.addAttribute("sciList", sciList);
-//        return "scienceManage";
-//    }
+    @RequestMapping("/viewScience")
+    public String viewScience(Model model) {
+        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, "0000", SqlDealer.Order.DEFAULT, 0, 100);
+        model.addAttribute("sciList", sciList);
+        return "scienceManage";
+    }
 
     @RequestMapping("/viewUncheckedScience")
     public String viewUncheckedScience(Model model) {
@@ -215,8 +219,8 @@ public class ManagerController {
         String s = "[";
         int range = upperBound -lowerBound;
         for(int i = 0; i < 30; i++) {
-            long ll = System.currentTimeMillis();
-            int random = (int)( ll % range );
+            Random ra = new Random();
+            int random = ra.nextInt(range);
             random += lowerBound;
             s += random;
             if(i != 29){
