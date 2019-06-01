@@ -47,14 +47,16 @@ public class ManagerController {
 
     @RequestMapping("/professor_list")
     public  String professorManage(Model model){
-        List<Professor> profList = sqlDealer.searchProfessor(300);
+        List<Professor> profList = sqlDealer.searchProfessor(0,20);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
 
     @RequestMapping("/science_list")
     public  String scienceManage(Model model) {
-        List<Thesis> sciList= sqlDealer.searchThesis(300);
+        List<String> key = new ArrayList<>();
+        SqlDealer.Order order = SqlDealer.Order.DEFAULT;
+        List<Thesis> sciList= sqlDealer.searchThesisAnd(key,"0000",order,0,100);
         model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
