@@ -15,9 +15,9 @@ public class HelloController {
         return "hello";
     }
 
-    @RequestMapping("test")
+    @RequestMapping("/123")
     @ResponseBody
     public String test(){
-        return "123";
+        return "456";
     }
 }

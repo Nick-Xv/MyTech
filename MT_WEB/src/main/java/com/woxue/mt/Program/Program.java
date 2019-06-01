@@ -18,13 +18,24 @@ public class Program
                 List<String> keywords = null;   //为null时，代表匹配内容任意
                 String yearStart = "2010";
                 String yearEnd = "2020";
-                Integer limitStart = 0; //从0开始
-                Integer limitEnd = 1;   //此时检索区间为[0,1)
-
-                List<Thesis> theses = sqlDealer.advancedSearchThesisAnd(titles, authors, keywords, yearStart, yearEnd, limitStart, limitEnd);
+                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
+                int limitStart = 0; //从0开始
+                int limitEnd = 5;   //此时检索区间为[0,5)
+                List<Thesis> theses = sqlDealer.advancedSearchThesisAnd(titles, authors, keywords, yearStart, yearEnd, order, limitStart, limitEnd);
                 for (Thesis thesis : theses)
                     thesis.display();
             }
+
+//            //搜索论文
+//            {
+//                List<String> keywords = new ArrayList<>(Arrays.asList("slow", "mag"));
+//                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
+//                int limitStart = 0;
+//                int limitEnd = 20;
+//                List<Thesis> theses = sqlDealer.searchThesisAnd(keywords, "2010", order, limitStart, limitEnd);
+//                for (Thesis thesis : theses)
+//                    thesis.display();
+//            }
         }
         catch (Exception e)
         {

@@ -13,6 +13,8 @@ import java.util.List;
 
 public class SqlDealer
 {
+    public enum Order { DEFAULT, REFERENCE_COUNT, RECENT }
+
     private SqlSession sqlSession;
 
     //构造函数
@@ -42,14 +44,19 @@ public class SqlDealer
     /**
      * 搜索论文，与关系
      * @param keywords 关键词，null代表任意
+     * @param yearStart 起始年份（包括），范围("0000"~"9999")
+     * @param order 排序方式
      * @param limitStart 起始索引（包括）
      * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> searchThesisAnd(List<String> keywords, int limitStart, int limitEnd)
+    public List<Thesis> searchThesisAnd(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
+        args.put("yearStart", yearStart);
+        args.put("yearEnd", "9999");
+        args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchThesisAnd", args);
@@ -58,14 +65,19 @@ public class SqlDealer
     /**
      * 搜索论文，或关系
      * @param keywords 关键词，null代表任意
+     * @param yearStart 起始年份（包括），范围("0000"~"9999")
+     * @param order 排序方式
      * @param limitStart 起始索引（包括）
      * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> searchThesisOr(List<String> keywords, int limitStart, int limitEnd)
+    public List<Thesis> searchThesisOr(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
+        args.put("yearStart", yearStart);
+        args.put("yearEnd", "9999");
+        args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchThesisOr", args);
@@ -76,20 +88,22 @@ public class SqlDealer
      * @param titles 主题，null代表任意
      * @param authors 作者，null代表任意
      * @param keywords 关键词，null代表任意
-     * @param yearStart 起始年份（包括），范围(0000~9999)
-     * @param yearEnd 结束年份（不包括），范围(0000~9999)
+     * @param yearStart 起始年份（包括），范围("0000"~"9999")
+     * @param yearEnd 结束年份（不包括），范围("0000"~"9999")
+     * @param order 排序方式
      * @param limitStart 起始索引（包括）
      * @param limitEnd 结束年份（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> advancedSearchThesisAnd(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, int limitStart, int limitEnd)
+    public List<Thesis> advancedSearchThesisAnd(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("titles", titles != null ? titles : new ArrayList<>(Arrays.asList(".")));
         args.put("authors", authors != null ? authors : new ArrayList<>(Arrays.asList(".")));
         args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
         args.put("yearStart", yearStart);
-        args.put("yearEnd", yearStart);
+        args.put("yearEnd", yearEnd);
+        args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.advancedSearchThesisAnd", args);

@@ -14,15 +14,15 @@
     <script type="text/javascript">
         function aaa(){
             $.ajax({
-                url:"/hello/123",
+                url:"/MyTech/hello/123",
                 type:'get',
                 dataType:'text',
                 success:function(data){
-                    alert("success");
+                    alert("success"+data);
                     console.log(data);
                 },
                 error:function (data) {
-                    alert("error");
+                    alert("error"+data);
                     console.log(data);
                 }
             });
@@ -32,7 +32,7 @@
 </head>
 <body>
 <h2>${messag}</h2>
-<a href="/hello/123">321321</a>
+<a href="javascript:void(0)" onclick="aaa()">321321</a>
 <p>${bbb}</p>
 </body>
 </html>

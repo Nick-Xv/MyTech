@@ -72,15 +72,15 @@ public class ManagerController {
      */
     @RequestMapping("/viewProfessor")
     public String viewProfessor(Model model) {
-        List<Professor> profList = sqlDealer.searchProfessor(300);
+        List<Professor> profList = sqlDealer.searchProfessor(0,10);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
 
     @RequestMapping("/viewUncheckedProfessor")
     public String viewUncheckedProfessor(Model model) {
-        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(100);
-        model.addAttribute("uncheckedProfList", uncheckedProfList);
+        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,10);
+        model.addAttribute("profList", uncheckedProfList);
         return "professorManage";
     }
 
@@ -105,17 +105,17 @@ public class ManagerController {
      * public String url;
      * public int verifyState;
      */
-    @RequestMapping("/viewScience")
-    public String viewScience(Model model) {
-        List<Thesis> sciList= sqlDealer.searchThesis(300);
-        model.addAttribute("sciList", sciList);
-        return "scienceManage";
-    }
+//    @RequestMapping("/viewScience")
+//    public String viewScience(Model model) {
+//        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, 0,0);
+//        model.addAttribute("sciList", sciList);
+//        return "scienceManage";
+//    }
 
     @RequestMapping("/viewUncheckedScience")
     public String viewUncheckedScience(Model model) {
-        List<Thesis> uncheckedSciList = sqlDealer.searchThesisUnverified(100);
-        model.addAttribute("uncheckedSciList", uncheckedSciList);
+        List<Thesis> uncheckedSciList = sqlDealer.searchThesisUnverified(0,100);
+        model.addAttribute("sciList", uncheckedSciList);
         return "scienceManage";
     }
 
@@ -139,7 +139,7 @@ public class ManagerController {
      */
     @RequestMapping("/viewUser")
     public String viewUser(Model model) {
-        List<User> userList = sqlDealer.searchUser();
+        List<User> userList = sqlDealer.searchUser(0, 100);
         model.addAttribute("userList", userList);
         return "userManage";
     }
@@ -179,7 +179,7 @@ public class ManagerController {
                            Model model) {
 
         User user = new User();
-        sqlDealer.searchUserById(id);
+        sqlDealer.searchUserById(id,0,10);
         user.id = id;
         user.score += score;
         return "overview"; // TODO:
@@ -189,19 +189,19 @@ public class ManagerController {
     @RequestMapping("/recommendProf")
     public String recommendProf(@RequestParam(value = "id") String id, Model model) {
 
-        User user = sqlDealer.searchUserById(id);
+        User user = sqlDealer.searchUserById(id,0,10);
         String focusArea = user.focusArea;
         String[] areas = focusArea.split(","); // 所有关注领域
         List<Professor> profList = new ArrayList<Professor>(); // 所有关注领域的相关专家
         for (String area : areas) {
-            List<Professor> profs = sqlDealer.searchProfessorByArea(area);
+            List<Professor> profs = sqlDealer.searchProfessorByArea(area,0,10);
             profList.addAll(profs);
         }
 
         List<Trend> trendList = new ArrayList<Trend>();  // 所有可能感兴趣的专家的动态
         for (Professor prof : profList){
             String profID = prof.id;
-            List<Trend> trends = sqlDealer.searchTrendByProfessorId(profID);
+            List<Trend> trends = sqlDealer.searchTrendByProfessorId(profID,0,10);
             trendList.addAll(trends);
         }
 

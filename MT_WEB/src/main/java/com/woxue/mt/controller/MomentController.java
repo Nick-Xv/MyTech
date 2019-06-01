@@ -1,15 +1,15 @@
 package com.woxue.mt.controller;
+
 import com.woxue.mt.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class SearchController {
-    @RequestMapping("/search")
+public class MomentController {
+    @RequestMapping("/user_moment")
     public String printSearch(ModelMap model, HttpSession session, User user){
         user = (User)session.getAttribute("user");
         if(user != null){
@@ -20,6 +20,6 @@ public class SearchController {
             model.addAttribute("login","登录");
             model.addAttribute("jump","to_login");
         }
-        return "search";
+        return "user_moment";
     }
 }

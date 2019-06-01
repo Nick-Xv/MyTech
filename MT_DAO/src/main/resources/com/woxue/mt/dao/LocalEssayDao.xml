@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woxue.mt.dao.LocalEssayDao">
+
+    <!--注意：id=数据库字段名-->
+    <resultMap id="本站论文" type="LocalEssay">
+        <id property="id" column="ID" javaType="int"/>
+        <result property="professorId" column="专家ID" javaType="int"/>
+        <result property="title" column="标题" javaType="String"/>
+        <result property="author" column="作者" javaType="String"/>
+        <result property="keyword" column="关键字" javaType="String"/>
+        <result property="introduce" column="简介" javaType="String"/>
+        <result property="link" column="链接" javaType="String"/>
+        <result property="credit" column="积分" javaType="int"/>
+    </resultMap>
+
+<!--#后面放的是实体类的属性名，不是数据库表的字段名-->
+    <insert id="insert" parameterType="LocalEssay">
+        insert into 本站论文 values(#{id},#{professorId},#{title},#{author},#{keyword},#{introduce},#{link},#{credit})
+    </insert>
+
+    <update id="update" parameterType="LocalEssay">
+        update 本站论文
+        set 专家ID=#{professorId},标题=#{title},作者=#{author},关键字=#{keyword},简介=#{introduce},链接=#{link},积分=#{credit}
+        where ID =#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from 本站论文 where ID=#{id}
+    </delete>
+
+    <!--resultMap后面跟的竟然是数据库字段名 惊了-->
+    <select id="select" parameterType="int" resultMap="本站论文">
+        select * from 本站论文 where ID=#{id}
+    </select>
+
+    <select id="selectAll" resultMap="本站论文">
+        select * from 本站论文
+    </select>
+
+    <select id="selectByProfessorId" parameterType="int" resultMap="本站论文">
+        select * from 本站论文 where 专家ID=#{professorId}
+    </select>
+
+    <select id="selectByKeyword" parameterType="String" resultMap="本站论文">
+        select * from 本站论文 where
+        <foreach collection="list" index="index" item="item" open="" separator="or" close="">
+            lower(concat_ws(' ', 标题, 作者, 关键字, 简介)) regexp lower(#{item})
+        </foreach>
+    </select>
+
+</mapper>
