@@ -181,7 +181,7 @@ public class ManagerController {
                            Model model) {
 
         User user = new User();
-        sqlDealer.searchUserById(id,0,10);
+        sqlDealer.searchUserById(id);
         user.id = id;
         user.score += score;
         return "overview"; // TODO:
@@ -191,7 +191,7 @@ public class ManagerController {
     @RequestMapping("/recommendProf")
     public String recommendProf(@RequestParam(value = "id") String id, Model model) {
 
-        User user = sqlDealer.searchUserById(id,0,10);
+        User user = sqlDealer.searchUserById(id);
         String focusArea = user.focusArea;
         String[] areas = focusArea.split(","); // 所有关注领域
         List<Professor> profList = new ArrayList<Professor>(); // 所有关注领域的相关专家
