@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/background")
+//@RequestMapping("/background")
 public class ManagerController {
 
     private static SqlDealer sqlDealer = null;
@@ -45,13 +45,17 @@ public class ManagerController {
         return "userManage";
     }
 
-    @RequestMapping("/professor")
-    public  String professorManage(){
+    @RequestMapping("/professor_list")
+    public  String professorManage(Model model){
+        List<Professor> profList = sqlDealer.searchProfessor(300);
+        model.addAttribute("profList", profList);
         return "professorManage";
     }
 
-    @RequestMapping("/science")
-    public  String scienceManage(){
+    @RequestMapping("/science_list")
+    public  String scienceManage(Model model) {
+        List<Thesis> sciList= sqlDealer.searchThesis(300);
+        model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
 
