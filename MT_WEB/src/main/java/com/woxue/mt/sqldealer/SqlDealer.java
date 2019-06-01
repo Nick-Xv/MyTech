@@ -226,7 +226,7 @@ public class SqlDealer
     public User searchUserById(String id)
     {
         HashMap<String, Object> args = new HashMap<>();
-        args.put("Id", id);
+        args.put("id", id);
         return sqlSession.selectOne("mapper.searchUserById", args);
     }
 
