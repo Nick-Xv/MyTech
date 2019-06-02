@@ -1,14 +1,10 @@
 package com.woxue.mt.controller;
 
 import com.woxue.mt.sqldealer.*;
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -92,6 +88,12 @@ public class ManagerController {
         model.addAttribute("profList", profList_json);
         return "professorManage";
     }
+    @RequestMapping(value = "/professorUpdate",params = "id")
+    public String professorUpdate(String id,Map<String,Object> map) {
+        Professor professor = sqlDealer.searchProfessorById(id);
+        map.put("professor",professor);
+        return "professorUpdate";
+    }
 
     @RequestMapping("/professorSearch")
     public  String professorSearch(HttpServletRequest request, Model model){
@@ -116,25 +118,9 @@ public class ManagerController {
     }
 
     @RequestMapping("/professorChange")
-    public String professorChange(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String organization = request.getParameter("organization");
-        String area = request.getParameter("area");
-        int referenceCount = Integer.parseInt(request.getParameter("referenceCount"));
-        int workNumber = Integer.parseInt(request.getParameter("workNumber"));
-        int verifyState = Integer.parseInt(request.getParameter("workNumber"));
-
-        Professor prof = new Professor();
-        prof.id = id;
-        prof.name = name;
-        prof.organization = organization;
-        prof.area = area;
-        prof.referenceCount = referenceCount;
-        prof.workNumber = workNumber;
-        prof.verifyState = verifyState;
-        sqlDealer.updateProfessor(prof);
-        return professorManage(model);
+    public String professorChange(Professor professor) {
+        sqlDealer.updateProfessor(professor);
+        return "redirect:professorManage";
     }
 
 //    @RequestMapping("/viewUncheckedProfessor")
@@ -173,6 +159,13 @@ public class ManagerController {
         return "scienceManage";
     }
 
+    @RequestMapping(value = "/scienceUpdate",params = "id")
+    public String scienceUpdate(String id,Map<String,Object> map) {
+        Thesis science = sqlDealer.searchThesisById(id);
+        map.put("science",science);
+        return "scienceUpdate";
+    }
+
     @RequestMapping("/scienceSearch")
     public  String scienceSearch(HttpServletRequest request, Model model){
         String title = request.getParameter("title");
@@ -198,29 +191,9 @@ public class ManagerController {
     }
 
     @RequestMapping("/scienceChange")
-    public String scienceChange(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        String title = request.getParameter("title");
-        String author = request.getParameter("author");
-        String publishTime = request.getParameter("publishTime");
-        String keyword = request.getParameter("keyword");
-        String summary = request.getParameter("summary");
-        String url = request.getParameter("url");
-        int referenceCount = Integer.parseInt(request.getParameter("referenceCount"));
-        int verifyState = Integer.parseInt(request.getParameter("workNumber"));
-
-        Thesis thesis = new Thesis();
-        thesis.id = id;
-        thesis.title = title;
-        thesis.author = author;
-        thesis.publishTime = publishTime;
-        thesis.keyword = keyword;
-        thesis.summary = summary;
-        thesis.url = url;
-        thesis.referenceCount = referenceCount;
-        thesis.verifyState = verifyState;
-        sqlDealer.updateThesis(thesis);
-        return scienceManage(model);
+    public String scienceChange(Thesis science) {
+        sqlDealer.updateThesis(science);
+        return "redirect:scienceManage";
     }
 
 //    @RequestMapping("/viewUncheckedScience")

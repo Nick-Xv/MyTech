@@ -68,19 +68,21 @@
             sidePagination: "client",         //分页方式：client客户端分页，server服务端分页（*）
             striped: true,                    //是否显示行间隔色
             cache: false,
-            uniqueId: "id",               //每一行的唯一标识，一般为主键列
+            //uniqueId: "id",               //每一行的唯一标识，一般为主键列
             height:500,
             paginationPreText: "上一页",
             paginationNextText: "下一页",
             columns: [
                 { checkbox: true },
                 { title: '序号', width: 50, align: "center", formatter: function (value, row, index) { return index + 1; } },
-                { title: '姓名', field: 'name' ,editable:true},
-                { title: '所属组织', field: 'organization',editable:true },
-                { title: '研究领域', field: 'area',editable:true },
+                { title: '姓名', field: 'name' },
+                { title: '所属组织', field: 'organization' },
+                { title: '研究领域', field: 'area' },
                 { title: '被引数', field: 'referenceCount' },
-                { title: '状态', field: 'verifyState' ,editable:true},
-                { title: '操作', field: 'id ', formatter: option }
+                { title: '状态', field: 'verifyState' },
+                { title: '操作', field: 'id', formatter: function (value,row,index) {
+                        return '<button id="deleteBtn" onclick="deleteBtn(`' + value + '`)">删除</button><button id="updateBtn" onclick="updateBtn(`' + value + '`)">修改</button>';
+                    } }
             ]
         });
     });
@@ -103,27 +105,19 @@
         var area = $.trim($("#txtArea").val());
         window.location.href='/MyTech/professorSearch?name='+name+'&organization='+organization+'&area='+area;
     }
-    
-    //操作
-    function option(value, row, index) {
-        var optionBtn = '<button id="delete" userId=' +
-            value +
-            ' onclick="deleteBtn(this)">删除</button><button id="updateBtn" onclick="update(' +
-            value + ')">修改</button>'
-        return optionBtn;
-    }
+
 
     // 删除操作
-    function deleteBtn(dom){
+    function deleteBtn(id){
         var mymessage = confirm("确认删除嘛？");
         if(mymessage == true) {
-            window.location.href='';
+            window.location.href='/MyTech/professorDelete?id='+id;
         }
     }
 
     // 编辑操作
     function updateBtn(id) {
-
+        window.location.href='/MyTech/professorUpdate?id='+id;
     }
 
     //批量删除
