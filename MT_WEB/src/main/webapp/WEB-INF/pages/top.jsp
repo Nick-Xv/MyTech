@@ -39,6 +39,14 @@
 <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 
+<style>
+    .nav>li>a {
+        padding: 0;
+    }
+    .nav>li>a:hover span {
+        color:#000;
+    }
+</style>
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
