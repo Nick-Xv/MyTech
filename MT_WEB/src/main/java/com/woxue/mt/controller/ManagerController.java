@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 @Controller
@@ -37,6 +38,10 @@ public class ManagerController {
         String userData = overviewTool(8,30);
         String professorData = overviewTool(11,44);
         String scienceData = overviewTool(2,29);
+        System.out.println(labels);
+        System.out.println(userData);
+        System.out.println(professorData);
+        System.out.println(scienceData);
         model.addAttribute("labels", labels);
         model.addAttribute("userData", userData);
         model.addAttribute("professorData", professorData);
@@ -48,7 +53,7 @@ public class ManagerController {
     public  String userManage(){
         return "userManage";
     }
-//,method = RequestMethod.POST
+
     @RequestMapping("/professor_list")
     @ResponseBody
     public JSONArray professorList(Model model){
@@ -67,12 +72,10 @@ public class ManagerController {
         return "professorManage";
     }
 
-
-    @RequestMapping("/scienceManage")
-    public  String scienceManage(Model model){
-        List<String> key = new ArrayList<>();
+    @RequestMapping("/science_list")
+    public  String scienceManage(Model model) {
         SqlDealer.Order order = SqlDealer.Order.DEFAULT;
-        List<Thesis> sciList= sqlDealer.searchThesisAnd(key,"0000",order,0,100);
+        List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", order,0,100);
         model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
@@ -90,16 +93,15 @@ public class ManagerController {
      */
     @RequestMapping("/viewProfessor")
     public String viewProfessor(Model model) {
-        List<Professor> profList = sqlDealer.searchProfessor(0,10);
+        List<Professor> profList = sqlDealer.searchProfessor(null,0,100);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
 
     @RequestMapping("/viewUncheckedProfessor")
     public String viewUncheckedProfessor(Model model) {
-        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,20);
-        net.sf.json.JSONArray json = net.sf.json.JSONArray.fromObject(uncheckedProfList);
-        model.addAttribute("profList", json);
+        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,100);
+        model.addAttribute("profList", uncheckedProfList);
         return "professorManage";
     }
 
@@ -124,12 +126,12 @@ public class ManagerController {
      * public String url;
      * public int verifyState;
      */
-//    @RequestMapping("/viewScience")
-//    public String viewScience(Model model) {
-//        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, 0,0);
-//        model.addAttribute("sciList", sciList);
-//        return "scienceManage";
-//    }
+    @RequestMapping("/viewScience")
+    public String viewScience(Model model) {
+        List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", SqlDealer.Order.DEFAULT, 0, 100);
+        model.addAttribute("sciList", sciList);
+        return "scienceManage";
+    }
 
     @RequestMapping("/viewUncheckedScience")
     public String viewUncheckedScience(Model model) {
@@ -198,7 +200,7 @@ public class ManagerController {
                            Model model) {
 
         User user = new User();
-        sqlDealer.searchUserById(id,0,10);
+        sqlDealer.searchUserById(id);
         user.id = id;
         user.score += score;
         return "overview"; // TODO:
@@ -208,7 +210,7 @@ public class ManagerController {
     @RequestMapping("/recommendProf")
     public String recommendProf(@RequestParam(value = "id") String id, Model model) {
 
-        User user = sqlDealer.searchUserById(id,0,10);
+        User user = sqlDealer.searchUserById(id);
         String focusArea = user.focusArea;
         String[] areas = focusArea.split(","); // 所有关注领域
         List<Professor> profList = new ArrayList<Professor>(); // 所有关注领域的相关专家
@@ -232,8 +234,8 @@ public class ManagerController {
         String s = "[";
         int range = upperBound -lowerBound;
         for(int i = 0; i < 30; i++) {
-            long ll = System.currentTimeMillis();
-            int random = (int)( ll % range );
+            Random ra = new Random();
+            int random = ra.nextInt(range);
             random += lowerBound;
             s += random;
             if(i != 29){

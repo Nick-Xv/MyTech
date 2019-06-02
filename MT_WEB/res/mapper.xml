@@ -3,29 +3,14 @@
 <mapper namespace="mapper">
 
     <select id="searchThesisUnverified" resultType="com.woxue.mt.sqldealer.Thesis">
-        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keyword, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
         from 论文表
         where 审核状态 = 0
         limit #{limit1}, #{limit2}
     </select>
 
-    <select id="searchThesisOr" resultType="com.woxue.mt.sqldealer.Thesis">
-        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
-        from 论文表
-        where
-        <foreach collection="keywords" index="index" item="item" open="" separator="or" close="">
-            lower(concat_ws(' ', 论文名字, 作者, 关键词)) regexp lower(#{item})
-        </foreach>
-        and 发表时间 &gt;= #{yearStart} and 发表时间 &lt; #{yearEnd}
-        order by
-        <if test='order == "REFERENCE_COUNT"'> cast(被引次数 as signed integer) desc, </if>
-        <if test='order == "RECENT"'> 发表时间 desc, </if>
-        论文DOI asc
-        limit #{limit1}, #{limit2}
-    </select>
-
-    <select id="searchThesisAnd" resultType="com.woxue.mt.sqldealer.Thesis">
-        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+    <select id="searchThesis" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keyword, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
         from 论文表
         where
         <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
@@ -39,8 +24,14 @@
         limit #{limit1}, #{limit2}
     </select>
 
-    <select id="advancedSearchThesisAnd" parameterType="hashMap" resultType="com.woxue.mt.sqldealer.Thesis">
-        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keywords, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+    <select id="searchThesisById" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keyword, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
+        from 论文表
+        where 论文DOI = #{id}
+    </select>
+
+    <select id="advancedSearchThesis" parameterType="hashMap" resultType="com.woxue.mt.sqldealer.Thesis">
+        select 论文名字 as title, 作者 as author, 被引次数 as referenceCount, 发表时间 as publishTime, 关键词 as keyword, 摘要 as summary, 论文DOI as id, 链接 as url, 审核状态 as verifyState
         from 论文表
         where
         <foreach collection="titles" index="index" item="item" open="" separator="and" close="">
@@ -80,7 +71,23 @@
     <select id="searchProfessor" resultType="com.woxue.mt.sqldealer.Professor">
         select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
         from xuezhebiao
+        where
+        <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
+            lower(concat_ws(' ', name, org)) regexp lower(#{item})
+        </foreach>
         limit #{limit1}, #{limit2}
+    </select>
+
+    <select id="searchProfessorById" resultType="com.woxue.mt.sqldealer.Professor">
+        select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+        from xuezhebiao
+        where scholar_id = #{id}
+    </select>
+
+    <select id="searchProfessorByNameAndOrganization" resultType="com.woxue.mt.sqldealer.Professor">
+        select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+        from xuezhebiao
+        where name regexp #{name} and org regexp ${organization}
     </select>
 
     <select id="searchProfessorUnverified" resultType="com.woxue.mt.sqldealer.Professor">
@@ -123,8 +130,7 @@
     <select id="searchUserById" resultType="com.woxue.mt.sqldealer.User">
         select ID as id, 关注领域 as focusArea, 积分值 as score, 密码 as password, 昵称 as nickname, 手机号 as phoneNumber, 邮箱 as email
         from 用户
-        where ID = #{Id}
-        limit #{limit1}, #{limit2}
+        where ID = #{id}
     </select>
 
     <update id="updateUser">
@@ -141,18 +147,44 @@
     </update>
 
     <insert id="insertUser">
-        insert into 用户 values(#{id}, #{focusArea}, #{score}, #{password}, #{nickname}, #{phoneNumber}, #{email})
+        insert into 用户
+        values(#{id}, #{focusArea}, #{score}, #{password}, #{nickname}, #{phoneNumber}, #{email})
     </insert>
 
     <delete id="deleteUserById">
         delete from 用户
-        where ID = #{Id}
+        where ID = #{id}
     </delete>
 
     <select id="searchTrendByProfessorId" resultType="com.woxue.mt.sqldealer.Trend">
         select ID as id, 专家ID as professorId, 内容 as content, 时间 as publishTime
         from 动态
-        where 专家ID = #{Id}
+        where 专家ID = #{id}
+        limit #{limit1}, #{limit2}
+    </select>
+
+    <select id="searchCommentByThesisId" resultType="com.woxue.mt.sqldealer.Comment">
+        select ID as id, 发起者ID as userId, 论文ID as thesisId, 内容 as content, 评分 as score, 发表时间 as publishTime
+        from 评论
+        where 论文ID = #{thesisId}
+    </select>
+
+    <insert id="insertComment">
+        insert into 评论(发起者ID, 论文ID, 内容, 评分, 发表时间)
+        values(#{userId}, #{thesisId}, #{content}, #{score}, #{publishTime})
+    </insert>
+
+    <select id="searchRelationshipByProfessorId" resultType="com.woxue.mt.sqldealer.Relationship">
+        select 主专家ID as masterProfessorId, 主专家名字 as masterProfessorName, 从专家名字 as slaveProfessorName, 从专家链接 as slaveProfessorUrl
+        from 关系网络
+        where 主专家ID = #{professorId}
+        limit #{limit1}, #{limit2}
+    </select>
+
+    <select id="searchProfessorOwnThesisByProfessorId" resultType="com.woxue.mt.sqldealer.ProfessorOwnThesis">
+        select 专家ID as professorId, 论文DOI as thesisId, 专家名字 as professorName
+        from 专家拥有论文
+        where 专家ID = #{professorId}
         limit #{limit1}, #{limit2}
     </select>
 </mapper>

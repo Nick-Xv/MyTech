@@ -42,7 +42,7 @@ public class SqlDealer
     }
 
     /**
-     * 搜索论文，与关系
+     * 搜索论文
      * @param keywords 关键词，null代表任意
      * @param yearStart 起始年份（包括），范围("0000"~"9999")
      * @param order 排序方式
@@ -50,7 +50,7 @@ public class SqlDealer
      * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> searchThesisAnd(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
+    public List<Thesis> searchThesis(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
@@ -59,32 +59,21 @@ public class SqlDealer
         args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.searchThesisAnd", args);
+        return sqlSession.selectList("mapper.searchThesis", args);
     }
 
     /**
-     * 搜索论文，或关系
-     * @param keywords 关键词，null代表任意
-     * @param yearStart 起始年份（包括），范围("0000"~"9999")
-     * @param order 排序方式
-     * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束索引（不包括）
-     * @return 搜索结果
+     * 根据ID搜索论文
      */
-    public List<Thesis> searchThesisOr(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
+    public Thesis searchThesisById(String id)
     {
         HashMap<String, Object> args = new HashMap<>();
-        args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
-        args.put("yearStart", yearStart);
-        args.put("yearEnd", "9999");
-        args.put("order", order.toString());
-        args.put("limit1", limitStart);
-        args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.searchThesisOr", args);
+        args.put("id", id);
+        return sqlSession.selectOne("mapper.searchThesisById", args);
     }
 
     /**
-     * 高级搜索论文，与关系
+     * 高级搜索论文
      * @param titles 主题，null代表任意
      * @param authors 作者，null代表任意
      * @param keywords 关键词，null代表任意
@@ -95,7 +84,7 @@ public class SqlDealer
      * @param limitEnd 结束年份（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> advancedSearchThesisAnd(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, Order order, int limitStart, int limitEnd)
+    public List<Thesis> advancedSearchThesis(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("titles", titles != null ? titles : new ArrayList<>(Arrays.asList(".")));
@@ -106,7 +95,7 @@ public class SqlDealer
         args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.advancedSearchThesisAnd", args);
+        return sqlSession.selectList("mapper.advancedSearchThesis", args);
     }
 
     /**
@@ -121,16 +110,30 @@ public class SqlDealer
 
     /**
      * 搜索科技专家
+     * @param keywords 关键词，null代表任意
      * @param limitStart 起始索引（包括）
      * @param limitEnd 结束年份（不包括）
      * @return 搜索结果
      */
-    public List<Professor> searchProfessor(int limitStart, int limitEnd)
+    public List<Professor> searchProfessor(List<String> keywords, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
+        args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchProfessor", args);
+    }
+
+    /**
+     * 根据ID搜索科技专家
+     * @param id 科技专家ID
+     * @return 搜索结果
+     */
+    public Professor searchProfessorById(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectOne("mapper.searchProfessorById", id);
     }
 
     /**
@@ -157,9 +160,9 @@ public class SqlDealer
     public List<Professor> searchProfessorByArea(String area, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
+        args.put("area", area);
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
-        args.put("area", area);
         return sqlSession.selectList("mapper.searchProfessor", args);
     }
 
@@ -198,18 +201,14 @@ public class SqlDealer
 
     /**
      * 根据ID搜索用户
-     * @param Id 用户ID
-     * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param id 用户ID
      * @return 搜索结果
      */
-    public User searchUserById(String Id, int limitStart, int limitEnd)
+    public User searchUserById(String id)
     {
         HashMap<String, Object> args = new HashMap<>();
-        args.put("Id", Id);
-        args.put("limit1", limitStart);
-        args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectOne("mapper.searchUser", args);
+        args.put("id", id);
+        return sqlSession.selectOne("mapper.searchUserById", args);
     }
 
     /**
@@ -234,28 +233,82 @@ public class SqlDealer
 
     /**
      * 根据ID删除用户
-     * @param Id 删除的ID
+     * @param id 删除的ID
      */
-    public void deleteUserById(String Id)
+    public void deleteUserById(String id)
     {
-        sqlSession.delete("mapper.deleteUserById", Id);
+        sqlSession.delete("mapper.deleteUserById", id);
         sqlSession.commit();
     }
 
     /**
-     * 根据ID搜索动态
-     * @param Id 动态ID
+     * 根据科技专家ID搜索动态
+     * @param id 动态ID
      * @param limitStart 起始索引（包括）
      * @param limitEnd 结束年份（不包括）
      * @return 搜索结果
      */
-    public List<Trend> searchTrendByProfessorId(String Id, int limitStart, int limitEnd)
+    public List<Trend> searchTrendByProfessorId(String id, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
-        args.put("Id", Id);
+        args.put("id", id);
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchTrendByProfessorId", args);
+    }
+
+    /**
+     * 根据论文ID搜索评论
+     * @param thesisId 论文ID
+     * @return 搜索结果
+     */
+    public List<Comment> searchCommentByThesisId(String thesisId)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("thesisId", thesisId);
+        return sqlSession.selectList("mapper.searchCommentByThesisId", args);
+    }
+
+    /**
+     * 插入评论
+     * @param comment 插入的评论
+     */
+    public void insertComment(Comment comment)
+    {
+        sqlSession.insert("mapper.insertComment", comment);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据科技专家ID搜索关系网络
+     * @param professorId 科技专家ID
+     * @param limitStart 起始索引（包括）
+     * @param limitEnd 结束年份（不包括）
+     * @return 搜索结果
+     */
+    public List<Relationship> searchRelationshipByProfessorId(String professorId, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("professorId", professorId);
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.searchRelationshipByProfessorId", args);
+    }
+
+    /**
+     * 根据科技专家ID搜索专家拥有论文
+     * @param professorId 科技专家ID
+     * @param limitStart 起始索引（包括）
+     * @param limitEnd 结束年份（不包括）
+     * @return 搜索结果
+     */
+    public List<ProfessorOwnThesis> searchProfessorOwnThesisByProfessorId(String professorId, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("professorId", professorId);
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.searchProfessorOwnThesisByProfessorId", args);
     }
 
     //析构函数
@@ -263,5 +316,4 @@ public class SqlDealer
     {
         sqlSession.close();
     }
-
 }
