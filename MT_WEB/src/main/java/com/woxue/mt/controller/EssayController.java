@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,6 +36,9 @@ public class EssayController {
         Timestamp time1 = new Timestamp(new Date().getTime());
         String time = df.format(time1);
 
+        model.addAttribute("id1","a123");
+        model.addAttribute("id2","a-321");
+
         String id = request.getParameter("id");
         String comment = request.getParameter("comment");
         String rating = request.getParameter("rating");
@@ -54,6 +58,7 @@ public class EssayController {
                     model.addAttribute("authors",thesis.getAuthor());
                     model.addAttribute("info",thesis.getSummary());
                     model.addAttribute("keywords",thesis.getKeyword());
+                    model.addAttribute("url",thesis.getUrl());
                 }
 
                 List<Comment> commentList = sqlDealer.searchCommentByThesisId(id);
@@ -66,9 +71,6 @@ public class EssayController {
                         rating = "0";
                     }
                     Comment commentIns = new Comment();
-//                    String str=new String(comment.getBytes("ISO-8859-1"),"UTF-8");
-//                    System.out.println(comment);
-//                    System.out.println(str);
                     commentIns.setContent(comment);
                     commentIns.setScore(Integer.parseInt(rating));
                     commentIns.setPublishTime(time);
@@ -99,5 +101,21 @@ public class EssayController {
         }
 
         return "essay";
+    }
+
+    @ResponseBody
+    @RequestMapping("/purchase")
+    public String purchase(HttpServletRequest request){
+        String id1 = request.getParameter("id1");
+        String id2 = request.getParameter("id2");
+        return "true";
+    }
+
+    @ResponseBody
+    @RequestMapping("/confirm")
+    public String confirm(HttpServletRequest request){
+        String id1 = request.getParameter("id1");
+        String id2 = request.getParameter("id2");
+        return "true";
     }
 }

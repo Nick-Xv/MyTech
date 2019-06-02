@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: xuyun
-  Date: 2019/5/31
-  Time: 23:48
+  Date: 2019/5/21
+  Time: 15:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
-
 </head>
 <body onload="GetRequest()">
 <nav id="navbar" class="navbar-inverse">
@@ -38,55 +37,32 @@
 </nav>
 <div id="searchjumbotronsmall" class="jumbotron">
     <div class="container">
-        <form class="form-inline" action="/MyTech/search3" method="get">
+        <form class="form-inline" action="/MyTech/search4" method="get">
             <div>
-                <input type="" class="form-controlctm form-control" id="title" name="title" placeholder="专利名" value=""/>
+                <input type="" class="form-controlctm form-control" id="title" name="title" placeholder="主题" value=""/>
                 <button type="submit" class="btn btnctm" style="width: 70px; margin-left: 4px;">检索</button>
-                <button type="button" class="btn btnctm" style="margin-left: 4px;" id="btn" onclick="aaa()" data-toggle="collapse" data-target="#advsearch">高级检索</button>
-                <div class="collapse" id="advsearch">
-                    <input type="" class="form-controlctm form-control" id="author" name="author" placeholder="申请人" value=""/>
-                    <input type="" class="form-controlctm form-control" id="author2" name="author2" placeholder="发明人" value=""/>
-                    <input type="" class="form-controlctm form-control" id="number" name="number" placeholder="申请号" value=""/>
-                    <div class="dategroup">
-                        <label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">起始日期</label>
-                        <input type="date" class="form-controlctm form-control" id="date1" name="date1" placeholder="日期" value=""/>
-                    </div>
-                    <div class="dategroup">
-                        <label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">截止日期</label>
-                        <input type="date" class="form-controlctm form-control" id="date2" name="date2" placeholder="日期" value=""/>
-                    </div>
-                </div>
             </div>
-            <input type="hidden" id="mode" name="mode" value="false"/>
         </form>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <c:forEach items="${patentList}" var="patent">
+            <c:forEach items="${professorList}" var="professor">
                 <div class="resultlist">
-                    <h4><a href="/MyTech/patent?id=${patent.id}">${patent.title}</a></h4>
-                    <p>发明人: ${patent.author}</p>
-                    <p>申请人: ${patent.author1}</p>
-                    <p>申请日：${patent.date}</p>
-                    <p>申请号：${patent.id}</p>
+                    <h4><a href="/MyTech/professor?id=${professor.id}">${professor.name}</a></h4>
+                    <p>机构: ${professor.organization}</p>
+                    <p>领域：${professor.area}</p>
+                    <p>被引频次：${professor.referenceCount}</p>
+                    <p>作品数量：${professor.workNumber}</p>
                 </div>
             </c:forEach>
         </div>
         <div id="fil-sor" class="col-md-4" hidden>
-            <h3 style="margin-top: 20px;margin-bottom: 10px;">结果筛选</h3>
-            <h4 style="margin-top: 20px;margin-bottom: 10px;">发表时间</h4>
-            <ul class="list-group list-unstyled">
-                <li id="filter1" class="filter"><a href="javascript:void(0);" onclick="filter(1)">2019年</a></li>
-                <li id="filter2" class="filter"><a href="javascript:void(0);" onclick="filter(2)">2018年起</a></li>
-                <li id="filter3" class="filter"><a href="javascript:void(0);" onclick="filter(3)">2017年起</a></li>
-                <li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">2016年起</a></li>
-                <li id="filter5" class="filter"><a href="javascript:void(0);" onclick="filter(5)">2015年起</a></li>
-            </ul>
             <h4 style="margin-top: 20px;margin-bottom: 10px;">排序方式</h4>
             <ul class="list-group list-unstyled">
-                <li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按申请日期排序</a></li>
+                <li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按被引次数排序</a></li>
+                <li id="sorter2" class="filter"><a href="javascript:void(0);" onclick="sorter(2)">按作品数量排序</a></li>
             </ul>
         </div>
     </div>
