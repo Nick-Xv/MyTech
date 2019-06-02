@@ -1,9 +1,12 @@
 package com.woxue.mt.controller;
 
+import com.woxue.mt.dao.LocalEssayDao;
+import com.woxue.mt.entity.LocalEssay;
 import com.woxue.mt.sqldealer.SqlDealer;
 import com.woxue.mt.sqldealer.Thesis;
 import com.woxue.mt.sqldealer.User;
 import com.woxue.mt.sqldealer.UserBuyThesis;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,12 +28,17 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 /**
  * ftp上传下载工具类
  */
+@Controller("fileController")
 public class FileController {
 
+    @Autowired
+    private LocalEssayDao localEssayDao;
     private static SqlDealer sqlDealer = null;
 
     static {
@@ -40,29 +49,37 @@ public class FileController {
         }
     }
 
+    //没搞定
     @RequestMapping("/upload")
-    public String upload(HttpServletRequest request, Model model) throws Exception{
-        String localPath = request.getParameter("localPath");
-        String professorID = request.getParameter("professorID");
-        File file = new File(localPath.trim());
-        String fileName = file.getName();
+    public String upload(MultipartFile uploadFile, HttpSession session) throws Exception{
 
-        Thesis thesis = new Thesis();
+        com.woxue.mt.entity.User user = (com.woxue.mt.entity.User)session.getAttribute("user");
+        String professorID = user.getId();
+        //File file = new File(localPath.trim());
+
+        String fileName = uploadFile.getName();
+        System.out.println(fileName);
+        /*Thesis thesis = new Thesis();
         thesis.title = request.getParameter("title");
         thesis.author = request.getParameter("author");
         thesis.publishTime = request.getParameter("publishTime");
         thesis.keyword = request.getParameter("keyword");
         thesis.summary = request.getParameter("summary");
-        thesis.url = request.getParameter("/" + professorID + "/" + fileName);
+        thesis.url = request.getParameter("/" + professorID + "/" + fileName);*/
+
+        /*localEssay.setProfessorId(user.getId());
+        localEssay.setLink("/" + professorID + "/" + fileName);
+        localEssayDao.insert(localEssay);*/
 
         FileInputStream in = new FileInputStream(new File("localPath"));
         uploadFile(
                 "94.191.112.232", 21, "ftpuser", "1234",
                 "/ftpfile", "/" + professorID, fileName, in);
 
-        thesis.professorId = professorID;
-        sqlDealer.insertThesis(thesis);
-        return "上传成功";
+        /*thesis.professorId = professorID;
+        sqlDealer.insertThesis(thesis);*/
+        session.setAttribute("essayLink","/" + professorID + "/" + fileName);
+        return "redirect:local_essay_add";
     }
 
     @RequestMapping("/download")

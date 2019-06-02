@@ -15,6 +15,6 @@ public interface LocalEssayDao {
     void delete(int id);
     LocalEssay select(int id);
     List<LocalEssay> selectAll();
-    List<LocalEssay> selectByProfessorId(int professorId);//找出某专家名下的所有论文
+    List<LocalEssay> selectByProfessorId(String professorId);//找出某专家名下的所有论文
     List<LocalEssay> selectByKeyword(List<String> keywords);//找出包含某关键字的所有论文
 }
