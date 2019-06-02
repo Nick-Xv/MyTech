@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @Controller
@@ -34,7 +34,7 @@ public class ManagerController {
     public String overview(Model model){
         //长度 30
         //labels表示日期
-        String labels = overviewTool(5,30);
+        String labels = overviewTime();
         String userData = overviewTool(8,30);
         String professorData = overviewTool(11,44);
         String scienceData = overviewTool(2,29);
@@ -54,31 +54,24 @@ public class ManagerController {
         return "userManage";
     }
 
-    @RequestMapping("/professor_list")
-    @ResponseBody
-    public JSONArray professorList(Model model){
-        List<Professor> profList = sqlDealer.searchProfessor(0,20);
-        net.sf.json.JSONArray profList_json = net.sf.json.JSONArray.fromObject(profList);
-        //model.addAttribute("profList", profList_json);
-        System.out.println(profList_json);
-        return profList_json;
-    }
+//    @RequestMapping("/professor_list")
+//    @ResponseBody
+//    public JSONArray professorList(Model model){
+//        List<Professor> profList = sqlDealer.searchProfessor(0,20);
+//        net.sf.json.JSONArray profList_json = net.sf.json.JSONArray.fromObject(profList);
+//        //model.addAttribute("profList", profList_json);
+//        System.out.println(profList_json);
+//        return profList_json;
+//    }
 
-    @RequestMapping("/professorManage")
-    public  String professorManage(Model model){
-        List<Professor> profList = sqlDealer.searchProfessor(0,50);
-        net.sf.json.JSONArray profList_json = net.sf.json.JSONArray.fromObject(profList);
-        model.addAttribute("profList", profList_json);
-        return "professorManage";
-    }
 
-    @RequestMapping("/science_list")
-    public  String scienceManage(Model model) {
-        SqlDealer.Order order = SqlDealer.Order.DEFAULT;
-        List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", order,0,100);
-        model.addAttribute("sciList", sciList);
-        return "scienceManage";
-    }
+//    @RequestMapping("/science_list")
+//    public  String scienceManage(Model model) {
+//        SqlDealer.Order order = SqlDealer.Order.DEFAULT;
+//        List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", order,0,100);
+//        model.addAttribute("sciList", sciList);
+//        return "scienceManage";
+//    }
 
 
     /**
@@ -91,10 +84,25 @@ public class ManagerController {
      * public int workNumber;
      * public int verifyState;
      */
-    @RequestMapping("/viewProfessor")
-    public String viewProfessor(Model model) {
-        List<Professor> profList = sqlDealer.searchProfessor(null,0,100);
-        model.addAttribute("profList", profList);
+    @RequestMapping("/professorManage")
+    public  String professorManage(Model model){
+        List<Professor> profList = sqlDealer.searchProfessor(null, 0,100);
+        net.sf.json.JSONArray profList_json = net.sf.json.JSONArray.fromObject(profList);
+        model.addAttribute("profList", profList_json);
+        return "professorManage";
+    }
+
+    @RequestMapping("/professorSearch")
+    public  String professorSearch(HttpServletRequest request, Model model){
+        String name = request.getParameter("name");
+        String organization = request.getParameter("organization");
+        String area = request.getParameter("area");
+        List<String> keywords = new ArrayList<>();
+        keywords.add(name); keywords.add(organization); keywords.add(area);
+
+        List<Professor> profList = sqlDealer.searchProfessor(keywords, 0,100);
+        net.sf.json.JSONArray profList_json = net.sf.json.JSONArray.fromObject(profList);
+        model.addAttribute("profList", profList_json);
         return "professorManage";
     }
 
@@ -228,6 +236,23 @@ public class ManagerController {
 
         model.addAttribute("trendList", trendList);
         return "overview"; // TODO:
+    }
+
+    private static String overviewTime(){
+        String s = "[";
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
+        for(int i = -29; i<=0; i++){
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(new Date());
+            calendar.add(calendar.DATE,i); // 向前多少天
+            String date= sdf.format(calendar.getTime());
+            s += date;
+            if(i != 0){
+                s += ",";
+            }
+        }
+        s+="]";
+        return s;
     }
 
     private static String overviewTool(int lowerBound, int upperBound){
