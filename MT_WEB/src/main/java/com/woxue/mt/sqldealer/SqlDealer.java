@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SqlDealer
 {
-    public enum Order { DEFAULT, REFERENCE_COUNT, RECENT }
+    public enum Order { DEFAULT, REFERENCE_COUNT, RECENT, WORK_NUM }
 
     private SqlSession sqlSession;
 
