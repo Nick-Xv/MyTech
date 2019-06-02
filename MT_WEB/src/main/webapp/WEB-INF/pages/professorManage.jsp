@@ -2,6 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="top.jsp"/>
+<!-- jquery -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-table.min.js -->
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<!-- 引入中文语言包 -->
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
 <section id="content" class="table-layout animated fadeIn">
     <div class="tray tray-center">
@@ -48,30 +55,32 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#table').bootstrapTable({
-            url: '/MyTech/professor_list',
-            queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
-            queryParams: queryParams,
-            method: "post",
+            data: ${profList},
+            url:'/mytech/jdisjai',
+            //queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+            //queryParams: queryParams,
+            //method: 'post',
+            //contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             pagination: true,
             pageNumber: 1,
-            pageSize: 2,
+            pageSize: 10,
             pageList: [10, 20, 50, 100],
-            sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
+            sidePagination: "client",         //分页方式：client客户端分页，server服务端分页（*）
             striped: true,                    //是否显示行间隔色
             cache: false,
             uniqueId: "id",               //每一行的唯一标识，一般为主键列
-            height:300,
+            height:500,
             paginationPreText: "上一页",
             paginationNextText: "下一页",
             columns: [
                 { checkbox: true },
                 { title: '序号', width: 50, align: "center", formatter: function (value, row, index) { return index + 1; } },
-                { title: '姓名', field: 'name' },
-                { title: '所属组织', field: 'organization' },
-                { title: '研究领域', field: 'area' },
+                { title: '姓名', field: 'name' ,editable:true},
+                { title: '所属组织', field: 'organization',editable:true },
+                { title: '研究领域', field: 'area',editable:true },
                 { title: '被引数', field: 'referenceCount' },
-                { title: '状态', field: 'verifyState' },
-                { title: '操作', field: 'BookId', formatter: option }
+                { title: '状态', field: 'verifyState' ,editable:true},
+                { title: '操作', field: 'id ', formatter: option }
             ]
         });
     });
@@ -89,7 +98,10 @@
 
     //查询事件
     function SearchData() {
-        $('#table').bootstrapTable('refresh', { pageNumber: 1 });
+        var name = $.trim($("#txtName").val());
+        var organization =$.trim($("#txtOrganization").val());
+        var area = $.trim($("#txtArea").val());
+        window.location.href='/MyTech/viewUncheckedProfessor';
     }
     
     //操作

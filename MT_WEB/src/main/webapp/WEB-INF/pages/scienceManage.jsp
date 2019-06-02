@@ -6,7 +6,7 @@
 <section id="content" class="table-layout animated fadeIn">
   <div class="tray tray-center">
     <div class="content-header">
-      <h2> 专家列表 </h2>
+      <h2> 科技成果列表 </h2>
       <p class="lead"></p>
     </div>
     <div class="container body-content" style="padding-top:20px;">
@@ -16,16 +16,16 @@
           <form class="form-inline">
             <div class="row">
               <div class="col-sm-4">
-                <label class="control-label">专家姓名：</label>
-                <input id="txtName" type="text" class="form-control">
+                <label class="control-label">标题：</label>
+                <input id="txtTitle" type="text" class="form-control">
               </div>
               <div class="col-sm-4">
-                <label class="control-label">所属组织：</label>
-                <input id="txtOrganization" type="text" class="form-control">
+                <label class="control-label">作者：</label>
+                <input id="txtAuthor" type="text" class="form-control">
               </div>
               <div class="col-sm-4">
-                <label class="control-label">研究领域：</label>
-                <input id="txtArea" type="text" class="form-control">
+                <label class="control-label">关键词：</label>
+                <input id="txtKeyword" type="text" class="form-control">
               </div>
             </div>
 
@@ -48,13 +48,13 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $('#table').bootstrapTable({
-      url: '/MyTech/professor_list',
+      url:${sciList},
       queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
       queryParams: queryParams,
       method: "post",
       pagination: true,
       pageNumber: 1,
-      pageSize: 2,
+      pageSize: 20,
       pageList: [10, 20, 50, 100],
       sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
       striped: true,                    //是否显示行间隔色
@@ -66,12 +66,13 @@
       columns: [
         { checkbox: true },
         { title: '序号', width: 50, align: "center", formatter: function (value, row, index) { return index + 1; } },
-        { title: '姓名', field: 'name' },
-        { title: '所属组织', field: 'organization' },
-        { title: '研究领域', field: 'area' },
+        { title: '标题', field: 'title' },
+        { title: '作者', field: 'author' },
+        { title: '关键字', field: 'keyword' },
         { title: '被引数', field: 'referenceCount' },
         { title: '状态', field: 'verifyState' },
-        { title: '操作', field: 'BookId', formatter: option }
+          { title: '链接', field: 'url',href:'url' },
+        { title: '操作', field: 'id', formatter: option }
       ]
     });
   });
@@ -81,9 +82,9 @@
     return {
       pageSize: params.pageSize,
       pageIndex: params.pageNumber,
-      name: $.trim($("#txtName").val()),
-      organization: $.trim($("#txtOrganization").val()),
-      area: $.trim($("#txtArea").val()),
+      title: $.trim($("#txtTitle").val()),
+      author: $.trim($("#txtAuthor").val()),
+      keyword: $.trim($("#txtKeyword").val()),
     };
   }
 
