@@ -415,6 +415,22 @@ public class SqlDealer
     }
 
     /**
+     * 根据用户ID搜索用户购买论文
+     * @param userId 科技专家ID
+     * @param limitStart 起始索引（包括）
+     * @param limitEnd 结束索引（不包括）
+     * @return 搜索结果
+     */
+    public List<UserBuyThesis> selectUserBuyThesisByUserId(String userId, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("userId", userId);
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.selectUserBuyThesisByUserId", args);
+    }
+
+    /**
      * 插入用户购买论文
      * @param userBuyThesis 插入的用户购买论文
      */

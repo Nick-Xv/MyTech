@@ -350,6 +350,13 @@
         limit #{limit1}, #{limit2}
     </select>
 
+    <select id="selectUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
+        select 用户ID as userId, 论文ID as thesisId
+        from 购买
+        where 用户ID = #{userId}
+        limit #{limit1}, #{limit2}
+    </select>
+
     <insert id="insertUserBuyThesis">
         insert into 购买(用户ID, 论文ID)
         values(#{userId}, #{thesisId})
