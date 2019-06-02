@@ -73,7 +73,7 @@
         from xuezhebiao
         where
         <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
-            lower(concat_ws(' ', name, org)) regexp lower(#{item})
+            lower(concat_ws(' ', name, org, area)) regexp lower(#{item})
         </foreach>
         limit #{limit1}, #{limit2}
     </select>

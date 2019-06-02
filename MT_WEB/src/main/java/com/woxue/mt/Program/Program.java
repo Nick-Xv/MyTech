@@ -12,29 +12,29 @@ public class Program
             SqlDealer sqlDealer = new SqlDealer();
 
             //高级搜索专利（专利名、申请人、发明人、申请号），显示区间 [limitStart, limitEnd)
-            {
-                List<String> names = new ArrayList<>(Arrays.asList("花生"));
-                List<String> applicants = null;   //为null时，代表匹配内容任意
-                List<String> inventors = null;   //为null时，代表匹配内容任意
-                List<String> ids = null;   //为null时，代表匹配内容任意
-                String dateStart = "2013-07-01";    //必须有前导0
-                String dateEnd = "2013-08-01";
-                int limitStart = 0;
-                int limitEnd = 3;
-                List<Patent> patents = sqlDealer.advancedSearchPatent(names, applicants, inventors, ids, dateStart, dateEnd, limitStart, limitEnd);
-                for (Patent patent : patents)
-                    patent.display();
-            }
+//            {
+//                List<String> names = new ArrayList<>(Arrays.asList("花生"));
+//                List<String> applicants = null;   //为null时，代表匹配内容任意
+//                List<String> inventors = null;   //为null时，代表匹配内容任意
+//                List<String> ids = null;   //为null时，代表匹配内容任意
+//                String dateStart = "2013-07-01";    //必须有前导0
+//                String dateEnd = "2013-08-01";
+//                int limitStart = 0;
+//                int limitEnd = 3;
+//                List<Patent> patents = sqlDealer.advancedSearchPatent(names, applicants, inventors, ids, dateStart, dateEnd, limitStart, limitEnd);
+//                for (Patent patent : patents)
+//                    patent.display();
+//            }
 
             //搜索专利
-            {
-                List<String> keywords = new ArrayList<>(Arrays.asList("毛豆"));
-                int limitStart = 0;
-                int limitEnd = 3;
-                List<Patent> patents = sqlDealer.searchPatent(keywords, limitStart, limitEnd);
-                for (Patent patent : patents)
-                    patent.display();
-            }
+//            {
+//                List<String> keywords = new ArrayList<>(Arrays.asList("毛豆"));
+//                int limitStart = 0;
+//                int limitEnd = 3;
+//                List<Patent> patents = sqlDealer.searchPatent(keywords, limitStart, limitEnd);
+//                for (Patent patent : patents)
+//                    patent.display();
+//            }
 
             //搜索科技专家
             {
