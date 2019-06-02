@@ -82,7 +82,9 @@
                       '<a href="'+value+'">查看论文</a>'
                   ].join("")
               } },
-        { title: '操作', field: 'id', formatter: option }
+          { title: '操作', field: 'id', formatter: function (value,row,index) {
+                  return '<button id="deleteBtn" onclick="deleteBtn(`' + value + '`)">删除</button><button id="updateBtn" onclick="updateBtn(`' + value + '`)">修改</button>';
+              } }
       ]
     });
   });
@@ -103,29 +105,20 @@
       var title = $.trim($("#txtTitle").val());
       var author =$.trim($("#txtAuthor").val());
       var keyword = $.trim($("#txtKeyword").val());
-      window.location.href='/MyTech/searchTh?title='+title+'author='+author+'keyword='+keyword;
-  }
-
-  //操作
-  function option(value, row, index) {
-    var optionBtn = '<button id="delete" userId=' +
-            value +
-            ' onclick="deleteBtn(this)">删除</button><button id="updateBtn" onclick="update(' +
-            value + ')">修改</button>'
-    return optionBtn;
+      window.location.href='/MyTech/scienceSearch?title='+title+'author='+author+'keyword='+keyword;
   }
 
   // 删除操作
-  function deleteBtn(dom){
+  function deleteBtn(id){
       var mymessage = confirm("确认删除嘛？");
       if(mymessage == true) {
-          window.location.href='';
+          window.location.href='/MyTech/scienceDelete?id='+id;
       }
   }
 
   // 编辑操作
   function updateBtn(id) {
-
+      window.location.href='/MyTech/scienceUpdate?id='+id;
   }
 
   //批量删除
