@@ -67,6 +67,7 @@ public class FileController {
 
     @RequestMapping("/download")
     public String download(HttpServletRequest request, Model model) {
+        String localPath = request.getParameter("localPath");
         String userID = request.getParameter("userID");
         String professorID = request.getParameter("professorID");
         String thesisID = request.getParameter("thesisID");
@@ -97,7 +98,7 @@ public class FileController {
                 String thesisName = url.substring(professorID.length() + 2, url.length()); // 去掉两个斜杠
                 downloadFile("94.191.112.232", 21, "ftpuser", "1234",
                         "/ftpfile/" + professorID,
-                        thesisName, "C:\\Users\\asus\\Downloads\\");
+                        thesisName, localPath);
                 // 插入购买信息
                 UserBuyThesis userBuyThesis = new UserBuyThesis();
                 userBuyThesis.userId = userID;
