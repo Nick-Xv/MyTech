@@ -37,16 +37,16 @@ public class Program
 //            }
 
             //高级搜索科技专家（专家姓名、机构、领域），显示区间 [limitStart, limitEnd)
-            {
-                List<String> names = new ArrayList<>(Arrays.asList("钟"));
-                List<String> organizations = new ArrayList<>(Arrays.asList("广州"));
-                List<String> areas = null;   //为null时，代表匹配内容任意
-                int limitStart = 0;
-                int limitEnd = 3;
-                List<Professor> professors = sqlDealer.advancedSearchProfessor(names, organizations, areas, limitStart, limitEnd);
-                for (Professor professor : professors)
-                    professor.display();
-            }
+//            {
+//                List<String> names = new ArrayList<>(Arrays.asList("钟"));
+//                List<String> organizations = new ArrayList<>(Arrays.asList("广州"));
+//                List<String> areas = null;   //为null时，代表匹配内容任意
+//                int limitStart = 0;
+//                int limitEnd = 3;
+//                List<Professor> professors = sqlDealer.advancedSearchProfessor(names, organizations, areas, limitStart, limitEnd);
+//                for (Professor professor : professors)
+//                    professor.display();
+//            }
 
             //搜索科技专家
 //            {
@@ -96,27 +96,40 @@ public class Program
 //                    relationship.display();
 //            }
 
-            //高级搜索论文（标旗、作者、关键词、年份），显示区间 [limitStart, limitEnd)
+            //插入论文
 //            {
-//                List<String> titles = new ArrayList<>(Arrays.asList("slow"));
-//                List<String> authors = new ArrayList<>(Arrays.asList("Lei", "Chen"));
-//                List<String> keywords = null;   //为null时，代表匹配内容任意
-//                String yearStart = "2010";
-//                String yearEnd = "2020";
-//                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
-//                int limitStart = 0;
-//                int limitEnd = 5;
-//                List<Thesis> theses = sqlDealer.advancedSearchThesis(titles, authors, keywords, yearStart, yearEnd, order, limitStart, limitEnd);
-//                for (Thesis thesis : theses)
-//                    thesis.display();
+//                Thesis thesis = new Thesis();
+//                thesis.title = "test";
+//                thesis.author = "me";
+//                thesis.keyword = "ppp";
+//                thesis.url = "www.baidu.com";
+//                thesis.summary = "try";
+//                thesis.professorId = "123";
+//                thesis.score = 9;
+//                sqlDealer.insertThesis(thesis);
 //            }
+
+            //高级搜索论文（标旗、作者、关键词、年份），显示区间 [limitStart, limitEnd)
+            {
+                List<String> titles = new ArrayList<>(Arrays.asList("slow"));
+                List<String> authors = new ArrayList<>(Arrays.asList("Lei", "Chen"));
+                List<String> keywords = null;   //为null时，代表匹配内容任意
+                String yearStart = "2010";
+                String yearEnd = "2020";
+                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
+                int limitStart = 0;
+                int limitEnd = 5;
+                List<Thesis> theses = sqlDealer.advancedSearchThesis(titles, authors, keywords, yearStart, yearEnd, order, limitStart, limitEnd);
+                for (Thesis thesis : theses)
+                    thesis.display();
+            }
 
             //搜索论文
 //            {
-//                List<String> keywords = new ArrayList<>(Arrays.asList("slow", "mag"));
+//                List<String> keywords = new ArrayList<>(Arrays.asList("test"));
 //                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
 //                int limitStart = 0;
-//                int limitEnd = 20;
+//                int limitEnd = 5;
 //                List<Thesis> theses = sqlDealer.searchThesis(keywords, "2010", order, limitStart, limitEnd);
 //                for (Thesis thesis : theses)
 //                    thesis.display();
