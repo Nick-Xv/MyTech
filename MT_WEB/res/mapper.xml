@@ -173,6 +173,10 @@
         where 论文ID = #{thesisId}
     </select>
 
+    <insert id="insertComment">
+        insert into 评论(发起者ID,论文ID,内容,评分,发表时间) values(#{userId}, #{thesisId}, #{content}, #{score}, #{publishTime})
+    </insert>
+
     <select id="searchRelationshipByProfessorId" resultType="com.woxue.mt.sqldealer.Relationship">
         select 主专家ID as masterProfessorId, 主专家名字 as masterProfessorName, 从专家名字 as slaveProfessorName, 从专家链接 as slaveProfessorUrl
         from 关系网络

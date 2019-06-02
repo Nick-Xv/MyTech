@@ -53,7 +53,6 @@
             <div class="col-md-9">
                 <h2>${title}</h2>
                 <p>作者: ${authors}</p>
-                <p>领域：${field}</p>
                 <h3>摘要</h3>
                 <p>${info}</p>
                 <h3>关键词</h3>
@@ -67,7 +66,7 @@
                 <h4 style="margin-top: 20px;">查看次数</h4>
                 <p style="font-size: 40px;">${clickcount}</p>
                 <h4 style="margin-top: 20px;">网友评分</h4>
-                <p style="font-size: 20px;">${grade}/5</p>
+                <p style="font-size: 20px;">${grade}</p>
             </div>
         </div>
     </div>
@@ -80,6 +79,7 @@
     		<div class="col-md-9">
     			<h4>评论评分</h4>
     			<form action="/MyTech/essay" method="get">
+                    <input type="hidden" id="theisid" name="id" value=${id}></input>
     			    <textarea class="form-control" id="textareactm" name="comment" rows="3"></textarea>
 					<div class="star-rating"> 
 					  <fieldset> 
@@ -102,8 +102,8 @@
     				<h4>评论</h4>
     				<c:forEach items="${commentList}" var="comment">
     				    <div class="commentlist">
-    				        <h5>${comment.ID2} <small>${comment.发表时间}</small></h5>
-    				        <p>${comment.评论内容}啊啊啊啊</p>
+    				        <h5>${comment.userId} <small>${comment.publishTime}</small></h5>
+    				        <p>${comment.content}</p>
     				    </div>
     				</c:forEach>
     			</div>

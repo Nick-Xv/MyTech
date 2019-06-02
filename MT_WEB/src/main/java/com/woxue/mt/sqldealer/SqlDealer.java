@@ -281,11 +281,21 @@ public class SqlDealer
      * @param thesisId 论文ID
      * @return 搜索结果
      */
-    public Comment searchCommentByThesisId(String thesisId)
+    public List<Comment> searchCommentByThesisId(String thesisId)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("thesisId", thesisId);
-        return sqlSession.selectOne("mapper.searchCommentByThesisId", args);
+        return sqlSession.selectList("mapper.searchCommentByThesisId", args);
+    }
+
+    /**
+     * 插入评论
+     * @param comment 插入的评论
+     */
+    public void insertComment(Comment comment)
+    {
+        sqlSession.insert("mapper.insertComment", comment);
+        sqlSession.commit();
     }
 
     /**

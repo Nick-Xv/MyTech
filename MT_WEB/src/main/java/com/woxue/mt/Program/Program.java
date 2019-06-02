@@ -13,9 +13,9 @@ public class Program
 
             //根据论文ID搜索评论
             {
-                String thesisId = "10.1002/ejic.201402964";
-                Comment comment = sqlDealer.searchCommentByThesisId(thesisId);
-                comment.display();
+                String thesisId = "10.1002/ejic.2014029";
+                List<Comment> l = sqlDealer.searchCommentByThesisId(thesisId);
+                System.out.println(l.size());
             }
 
             //根据科技专家ID搜索论文
