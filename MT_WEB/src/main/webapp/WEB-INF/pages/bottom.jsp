@@ -35,7 +35,7 @@
         -webkit-appearance: none; /*Optionally disable dropdown arrow*/
     }
 </style>
-<script src="vendor/jquery/jquery-1.11.1.min.js"></script>
+
 <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
 <script src="assets/admin-tools/admin-forms/js/jquery.validate.min.js"></script>
 <script src="assets/admin-tools/admin-forms/js/additional-methods.min.js"></script>
@@ -46,14 +46,6 @@
 <script type="text/javascript" src="js/pages.js"></script>
 <script type="text/javascript" src="js/items.js"></script>
 
-<!-- jquery -->
-<script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<!-- bootstrap-table.min.js -->
-<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-<!-- 引入中文语言包 -->
-<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 </body>
 </html>
 

@@ -37,15 +37,13 @@
 <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <!-- 引入bootstrap-table样式 -->
 <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 
-<!-- Mirrored from admindesigns.com/demos/absolute/1.1/admin_forms-validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Aug 2015 02:56:15 GMT -->
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <script src="//cdn.bootcss.com/Chart.js/2.1.6/Chart.bundle.js"></script>
     <title> MyTech--欢迎使用科技专家资源共享平台 </title>
-
-
 </head>
 
 <body class="admin-validation-page" data-spy="scroll" data-target="#nav-spy" data-offset="200">
@@ -232,14 +230,14 @@
                     </li>
 
                     <li>
-                        <a href="/MyTech/professor_list">
+                        <a href="/MyTech/professorManage">
                             <span class="glyphicon glyphicon-sort"></span>
                             <span class="sidebar-title">专家列表</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="/MyTech/science_list">
+                        <a href="/MyTech/scienceManage">
                             <span class="glyphicon glyphicon-folder-close"></span>
                             <span class="sidebar-title">科技成果列表</span>
                         </a>
