@@ -86,15 +86,15 @@
     });
 
     //查询条件
-    function queryParams(params) {
-        return {
-            pageSize: params.pageSize,
-            pageIndex: params.pageNumber,
-            name: $.trim($("#txtName").val()),
-            organization: $.trim($("#txtOrganization").val()),
-            area: $.trim($("#txtArea").val()),
-        };
-    }
+    // function queryParams(params) {
+    //     return {
+    //         pageSize: params.pageSize,
+    //         pageIndex: params.pageNumber,
+    //         name: $.trim($("#txtName").val()),
+    //         organization: $.trim($("#txtOrganization").val()),
+    //         area: $.trim($("#txtArea").val()),
+    //     };
+    // }
 
     //查询事件
     function SearchData() {
@@ -117,33 +117,13 @@
     function deleteBtn(dom){
         var mymessage = confirm("确认删除嘛？");
         if(mymessage == true) {
-            $.ajax({
-                url: path + '/user/' + $(dom).attr("userId"),
-                type: 'delete',
-                success: function(data) {
-                    $(dom).parent().parent().hide();
-                },
-                error: function(data) {
-                    alert("服务器繁忙")
-                }
-            });
+            window.location.href='';
         }
     }
 
     // 编辑操作
     function updateBtn(id) {
-        layer.open({
-            type: 2,
-            title: '编辑用户',
-            area: ['500px', '440px'],
-            fix: false,
-            content: path + '/xxx/xxxxUpd/' + id,
-            end: function() {
-                $("#mytab").bootstrapTable('refresh', {
-                    url: path + "/xx/list"
-                });
-            }
-        });
+
     }
 
     //批量删除

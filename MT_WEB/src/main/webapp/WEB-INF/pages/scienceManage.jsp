@@ -2,7 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="top.jsp"/>
+<!-- jquery -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<!-- bootstrap-table.min.js -->
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<!-- 引入中文语言包 -->
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 <section id="content" class="table-layout animated fadeIn">
   <div class="tray tray-center">
     <div class="content-header">
@@ -48,19 +54,19 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $('#table').bootstrapTable({
-      url:${sciList},
-      queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
-      queryParams: queryParams,
-      method: "post",
-      pagination: true,
-      pageNumber: 1,
-      pageSize: 20,
-      pageList: [10, 20, 50, 100],
-      sidePagination: "server",         //分页方式：client客户端分页，server服务端分页（*）
+      data:${sciList},
+      //queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+      //queryParams: queryParams,
+      //method: "post",
+        pagination: true,
+        pageNumber: 1,
+        pageSize: 10,
+        pageList: [10, 20, 50, 100],
+        sidePagination: "client",         //分页方式：client客户端分页，server服务端分页（*）
       striped: true,                    //是否显示行间隔色
       cache: false,
       uniqueId: "id",               //每一行的唯一标识，一般为主键列
-      height:300,
+      height:500,
       paginationPreText: "上一页",
       paginationNextText: "下一页",
       columns: [
@@ -71,7 +77,11 @@
         { title: '关键字', field: 'keyword' },
         { title: '被引数', field: 'referenceCount' },
         { title: '状态', field: 'verifyState' },
-          { title: '链接', field: 'url',href:'url' },
+          { title: '链接', field: 'url',formatter: function (value, row, index) {
+                  return [
+                      '<a href="'+value+'">查看论文</a>'
+                  ].join("")
+              } },
         { title: '操作', field: 'id', formatter: option }
       ]
     });
@@ -107,35 +117,15 @@
 
   // 删除操作
   function deleteBtn(dom){
-    var mymessage = confirm("确认删除嘛？");
-    if(mymessage == true) {
-      $.ajax({
-        url: path + '/user/' + $(dom).attr("userId"),
-        type: 'delete',
-        success: function(data) {
-          $(dom).parent().parent().hide();
-        },
-        error: function(data) {
-          alert("服务器繁忙")
-        }
-      });
-    }
+      var mymessage = confirm("确认删除嘛？");
+      if(mymessage == true) {
+          window.location.href='';
+      }
   }
 
   // 编辑操作
   function updateBtn(id) {
-    layer.open({
-      type: 2,
-      title: '编辑用户',
-      area: ['500px', '440px'],
-      fix: false,
-      content: path + '/xxx/xxxxUpd/' + id,
-      end: function() {
-        $("#mytab").bootstrapTable('refresh', {
-          url: path + "/xx/list"
-        });
-      }
-    });
+
   }
 
   //批量删除
