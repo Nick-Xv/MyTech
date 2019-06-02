@@ -193,7 +193,7 @@ public class ManagerController {
     @RequestMapping("/scienceDelete")
     public String scienceDelete(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
-        sqlDealer.deleteScienceById(id);
+        sqlDealer.deleteThesisById(id);
         return scienceManage(model); // 更新页面
     }
 

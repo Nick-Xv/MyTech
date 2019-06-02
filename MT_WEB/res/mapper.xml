@@ -68,6 +68,11 @@
         where 论文DOI = #{id}
     </update>
 
+    <delete id="deleteThesisById">
+        delete from 论文表
+        where ID = #{id}
+    </delete>
+
     <select id="searchProfessor" resultType="com.woxue.mt.sqldealer.Professor">
         select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
         from xuezhebiao
@@ -134,6 +139,11 @@
         </set>
         where scholar_id = #{id}
     </update>
+
+    <delete id="deleteProfessorById">
+        delete from xuezhebiao
+        where ID = #{id}
+    </delete>
 
     <select id="countProfessor" resultType="int">
         select count(*) from xuezhebiao

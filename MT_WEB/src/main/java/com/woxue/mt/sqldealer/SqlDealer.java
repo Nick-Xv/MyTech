@@ -109,6 +109,16 @@ public class SqlDealer
     }
 
     /**
+     * 根据ID删除论文
+     * @param id 删除的ID
+     */
+    public void deleteThesisById(String id)
+    {
+        sqlSession.delete("mapper.deleteThesisById", id);
+        sqlSession.commit();
+    }
+
+    /**
      * 搜索科技专家
      * @param keywords 关键词，null代表任意
      * @param limitStart 起始索引（包括）
@@ -202,6 +212,16 @@ public class SqlDealer
     public void updateProfessor(Professor professor)
     {
         sqlSession.update("mapper.updateProfessor", professor);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID删除科技专家
+     * @param id 删除的ID
+     */
+    public void deleteProfessorById(String id)
+    {
+        sqlSession.delete("mapper.deleteProfessorById", id);
         sqlSession.commit();
     }
 
