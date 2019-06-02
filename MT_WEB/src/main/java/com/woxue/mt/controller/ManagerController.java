@@ -98,30 +98,60 @@ public class ManagerController {
         String name = request.getParameter("name");
         String organization = request.getParameter("organization");
         String area = request.getParameter("area");
-        List<String> keywords = new ArrayList<>();
-        keywords.add(name); keywords.add(organization); keywords.add(area);
+        List<String> nameList = string2List(name);
+        List<String> orgList = string2List(organization);
+        List<String> areaList = string2List(area);
 
-        List<Professor> profList = sqlDealer.searchProfessor(keywords, 0,100);
+        List<Professor> profList = sqlDealer.advancedSearchProfessor(nameList, orgList, areaList, 0, 100);
         net.sf.json.JSONArray profList_json = net.sf.json.JSONArray.fromObject(profList);
         model.addAttribute("profList", profList_json);
         return "professorManage";
     }
 
-    @RequestMapping("/viewUncheckedProfessor")
-    public String viewUncheckedProfessor(Model model) {
-        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,100);
-        model.addAttribute("profList", uncheckedProfList);
-        return "professorManage";
+    @RequestMapping("/professorDelete")
+    public String professorDelete(HttpServletRequest request, Model model) {
+        String id = request.getParameter("id");
+        sqlDealer.deleteProfessorById(id);
+        return professorManage(model); // 更新页面
     }
 
-    @RequestMapping("/admitProfessor")
-    public String admitProfessor(@RequestParam(value = "id") String id, Model model) {
+    @RequestMapping("/professorChange")
+    public String professorChange(HttpServletRequest request, Model model) {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String organization = request.getParameter("organization");
+        String area = request.getParameter("area");
+        int referenceCount = Integer.parseInt(request.getParameter("referenceCount"));
+        int workNumber = Integer.parseInt(request.getParameter("workNumber"));
+        int verifyState = Integer.parseInt(request.getParameter("workNumber"));
+
         Professor prof = new Professor();
         prof.id = id;
-        prof.verifyState = 1;
+        prof.name = name;
+        prof.organization = organization;
+        prof.area = area;
+        prof.referenceCount = referenceCount;
+        prof.workNumber = workNumber;
+        prof.verifyState = verifyState;
         sqlDealer.updateProfessor(prof);
-        return viewUncheckedProfessor(model); // 每次更新返回unchecked页面
+        return professorManage(model);
     }
+
+//    @RequestMapping("/viewUncheckedProfessor")
+//    public String viewUncheckedProfessor(Model model) {
+//        List<Professor> uncheckedProfList = sqlDealer.searchProfessorUnverified(0,100);
+//        model.addAttribute("profList", uncheckedProfList);
+//        return "professorManage";
+//    }
+
+//    @RequestMapping("/admitProfessor")
+//    public String admitProfessor(@RequestParam(value = "id") String id, Model model) {
+//        Professor prof = new Professor();
+//        prof.id = id;
+//        prof.verifyState = 1;
+//        sqlDealer.updateProfessor(prof);
+//        return viewUncheckedProfessor(model); // 每次更新返回unchecked页面
+//    }
 
     /**
      * 查看并审核已经上传的科技成果
@@ -135,28 +165,79 @@ public class ManagerController {
      * public String url;
      * public int verifyState;
      */
-    @RequestMapping("/viewScience")
-    public String viewScience(Model model) {
+    @RequestMapping("/scienceManage")
+    public String scienceManage(Model model) {
         List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", SqlDealer.Order.DEFAULT, 0, 100);
-        model.addAttribute("sciList", sciList);
+        net.sf.json.JSONArray sciList_json = net.sf.json.JSONArray.fromObject(sciList);
+        model.addAttribute("sciList", sciList_json);
         return "scienceManage";
     }
 
-    @RequestMapping("/viewUncheckedScience")
-    public String viewUncheckedScience(Model model) {
-        List<Thesis> uncheckedSciList = sqlDealer.searchThesisUnverified(0,100);
-        model.addAttribute("sciList", uncheckedSciList);
+    @RequestMapping("/scienceSearch")
+    public  String scienceSearch(HttpServletRequest request, Model model){
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String keyword = request.getParameter("keyword");
+        List<String> titleList = string2List(title);
+        List<String> authorList = string2List(author);
+        List<String> keywordList = string2List(keyword);
+
+        SqlDealer.Order order = SqlDealer.Order.DEFAULT;
+        List<Thesis> sciList = sqlDealer.advancedSearchThesis(titleList, authorList, keywordList,
+                "0000", "9999", order, 0, 100);
+        net.sf.json.JSONArray sciList_json = net.sf.json.JSONArray.fromObject(sciList);
+        model.addAttribute("sciList", sciList_json);
         return "scienceManage";
     }
 
-    @RequestMapping("/admitScience")
-    public String admitScience(@RequestParam(value = "id") String id, Model model) {
+    @RequestMapping("/scienceDelete")
+    public String scienceDelete(HttpServletRequest request, Model model) {
+        String id = request.getParameter("id");
+        sqlDealer.deleteScienceById(id);
+        return scienceManage(model); // 更新页面
+    }
+
+    @RequestMapping("/scienceChange")
+    public String scienceChange(HttpServletRequest request, Model model) {
+        String id = request.getParameter("id");
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String publishTime = request.getParameter("publishTime");
+        String keyword = request.getParameter("keyword");
+        String summary = request.getParameter("summary");
+        String url = request.getParameter("url");
+        int referenceCount = Integer.parseInt(request.getParameter("referenceCount"));
+        int verifyState = Integer.parseInt(request.getParameter("workNumber"));
+
         Thesis thesis = new Thesis();
         thesis.id = id;
-        thesis.verifyState = 1;
+        thesis.title = title;
+        thesis.author = author;
+        thesis.publishTime = publishTime;
+        thesis.keyword = keyword;
+        thesis.summary = summary;
+        thesis.url = url;
+        thesis.referenceCount = referenceCount;
+        thesis.verifyState = verifyState;
         sqlDealer.updateThesis(thesis);
-        return viewUncheckedScience(model);
+        return scienceManage(model);
     }
+
+//    @RequestMapping("/viewUncheckedScience")
+//    public String viewUncheckedScience(Model model) {
+//        List<Thesis> uncheckedSciList = sqlDealer.searchThesisUnverified(0,100);
+//        model.addAttribute("sciList", uncheckedSciList);
+//        return "scienceManage";
+//    }
+
+//    @RequestMapping("/admitScience")
+//    public String admitScience(@RequestParam(value = "id") String id, Model model) {
+//        Thesis thesis = new Thesis();
+//        thesis.id = id;
+//        thesis.verifyState = 1;
+//        sqlDealer.updateThesis(thesis);
+//        return viewUncheckedScience(model);
+//    }
 
     /**
      * public String id;
@@ -167,40 +248,40 @@ public class ManagerController {
      * public String email;
      * public int score;
      */
-    @RequestMapping("/viewUser")
-    public String viewUser(Model model) {
-        List<User> userList = sqlDealer.searchUser(0, 100);
-        model.addAttribute("userList", userList);
-        return "userManage";
-    }
-
-    @RequestMapping("/changeUser")
-    public String changeUser(@RequestParam(value = "id") String id,
-            @RequestParam(value = "focusArea") String focusArea,
-            @RequestParam(value = "nickname") String nickname,
-            @RequestParam(value = "password") String password,
-            @RequestParam(value = "phoneNumber") String phoneNumber,
-            @RequestParam(value = "email") String email,
-            @RequestParam(value = "score") int score,
-            Model model) {
-
-        User user = new User();
-        user.id = id;
-        user.focusArea = focusArea;
-        user.nickname = nickname;
-        user.password = password;
-        user.phoneNumber = phoneNumber;
-        user.email = email;
-        user.score = score;
-        sqlDealer.updateUser(user);
-        return viewUser(model);
-    }
-
-    @RequestMapping("/deleteUser")
-    public String deleteUser(@RequestParam(value = "id") String id, Model model) {
-        sqlDealer.deleteUserById(id);
-        return viewUser(model);
-    }
+//    @RequestMapping("/viewUser")
+//    public String viewUser(Model model) {
+//        List<User> userList = sqlDealer.searchUser(0, 100);
+//        model.addAttribute("userList", userList);
+//        return "userManage";
+//    }
+//
+//    @RequestMapping("/changeUser")
+//    public String changeUser(@RequestParam(value = "id") String id,
+//            @RequestParam(value = "focusArea") String focusArea,
+//            @RequestParam(value = "nickname") String nickname,
+//            @RequestParam(value = "password") String password,
+//            @RequestParam(value = "phoneNumber") String phoneNumber,
+//            @RequestParam(value = "email") String email,
+//            @RequestParam(value = "score") int score,
+//            Model model) {
+//
+//        User user = new User();
+//        user.id = id;
+//        user.focusArea = focusArea;
+//        user.nickname = nickname;
+//        user.password = password;
+//        user.phoneNumber = phoneNumber;
+//        user.email = email;
+//        user.score = score;
+//        sqlDealer.updateUser(user);
+//        return viewUser(model);
+//    }
+//
+//    @RequestMapping("/deleteUser")
+//    public String deleteUser(@RequestParam(value = "id") String id, Model model) {
+//        sqlDealer.deleteUserById(id);
+//        return viewUser(model);
+//    }
 
     /** 用户购买积分 */
     @RequestMapping("/buyScore")
@@ -270,5 +351,17 @@ public class ManagerController {
         }
         s+="]";
         return s;
+    }
+
+    // "zzx pyq 123" -> ["zzx", "pyq", "123"]
+    private static List<String> string2List(String s){
+        List<String> list;
+        if(!s.equals("")) {
+            String[] strings = s.split(" "); // 所有关注领域\
+            list = Arrays.asList(strings);
+        }else{
+            list = null;
+        }
+        return list;
     }
 }
