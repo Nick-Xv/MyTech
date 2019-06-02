@@ -90,7 +90,10 @@
 
   //查询事件
   function SearchData() {
-    $('#table').bootstrapTable('refresh', { pageNumber: 1 });
+      var title = $.trim($("#txtTitle").val());
+      var author =$.trim($("#txtAuthor").val());
+      var keyword = $.trim($("#txtKeyword").val());
+      window.location.href='/MyTech/searchTh?title='+title+'author='+author+'keyword='+keyword;
   }
 
   //操作

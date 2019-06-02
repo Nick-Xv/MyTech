@@ -101,7 +101,7 @@
         var name = $.trim($("#txtName").val());
         var organization =$.trim($("#txtOrganization").val());
         var area = $.trim($("#txtArea").val());
-        window.location.href='/MyTech/viewUncheckedProfessor';
+        window.location.href='/MyTech/professorSearch?name='+name+'&organization='+organization+'&area='+area;
     }
     
     //操作

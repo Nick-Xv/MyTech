@@ -239,7 +239,7 @@
                     <li>
                         <a href="/MyTech/scienceManage">
                             <span class="glyphicon glyphicon-folder-close"></span>
-                            <span class="sidebar-title">科技成果列表</span>
+                            <span class="sidebar-title">管理科技成果</span>
                         </a>
                     </li>
 
@@ -254,13 +254,6 @@
                         <a href="/claim_voucher/to_add">
                             <span class="fa fa-cubes"></span>
                             <span class="sidebar-title">科技成果审核</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/claim_voucher/to_add">
-                            <span class="fa fa-calendar"></span>
-                            <span class="sidebar-title">管理科技成果</span>
                         </a>
                     </li>
                 </c:if>

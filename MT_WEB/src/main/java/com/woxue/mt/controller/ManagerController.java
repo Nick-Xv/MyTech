@@ -42,7 +42,8 @@ public class ManagerController {
         System.out.println(userData);
         System.out.println(professorData);
         System.out.println(scienceData);
-        model.addAttribute("labels", labels);
+        net.sf.json.JSONArray labels_json = net.sf.json.JSONArray.fromObject(labels);
+        model.addAttribute("labels", labels_json);
         model.addAttribute("userData", userData);
         model.addAttribute("professorData", professorData);
         model.addAttribute("scienceData", scienceData);
