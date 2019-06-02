@@ -81,7 +81,7 @@ public class SqlDealer
      * @param yearEnd 结束年份（不包括），范围("0000"~"9999")
      * @param order 排序方式
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Thesis> advancedSearchThesis(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, Order order, int limitStart, int limitEnd)
@@ -112,7 +112,7 @@ public class SqlDealer
      * 搜索科技专家
      * @param keywords 关键词，null代表任意
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Professor> searchProfessor(List<String> keywords, int limitStart, int limitEnd)
@@ -122,6 +122,26 @@ public class SqlDealer
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchProfessor", args);
+    }
+
+    /**
+     * 高级搜索科技专家
+     * @param names 专家姓名，null代表任意
+     * @param organizations 所属机构，null代表任意
+     * @param areas 领域，null代表任意
+     * @param limitStart 起始索引（包括）
+     * @param limitEnd 结束索引（不包括）
+     * @return 搜索结果
+     */
+    public List<Professor> advancedSearchProfessor(List<String> names, List<String> organizations, List<String> areas, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("names", names != null ? names : new ArrayList<>(Arrays.asList(".")));
+        args.put("organizations", organizations != null ? organizations : new ArrayList<>(Arrays.asList(".")));
+        args.put("areas", areas != null ? areas : new ArrayList<>(Arrays.asList(".")));
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.advancedSearchProfessor", args);
     }
 
     /**
@@ -139,7 +159,7 @@ public class SqlDealer
     /**
      * 搜索未审核科技专家
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Professor> searchProfessorUnverified(int limitStart, int limitEnd)
@@ -154,7 +174,7 @@ public class SqlDealer
      * 根据领域搜索专家
      * @param area 领域
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Professor> searchProfessorByArea(String area, int limitStart, int limitEnd)
@@ -188,7 +208,7 @@ public class SqlDealer
     /**
      * 搜索用户
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<User> searchUser(int limitStart, int limitEnd)
@@ -245,7 +265,7 @@ public class SqlDealer
      * 根据科技专家ID搜索动态
      * @param id 动态ID
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Trend> searchTrendByProfessorId(String id, int limitStart, int limitEnd)
@@ -283,7 +303,7 @@ public class SqlDealer
      * 根据科技专家ID搜索关系网络
      * @param professorId 科技专家ID
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Relationship> searchRelationshipByProfessorId(String professorId, int limitStart, int limitEnd)
@@ -299,7 +319,7 @@ public class SqlDealer
      * 根据科技专家ID搜索专家拥有论文
      * @param professorId 科技专家ID
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<ProfessorOwnThesis> searchProfessorOwnThesisByProfessorId(String professorId, int limitStart, int limitEnd)
@@ -315,7 +335,7 @@ public class SqlDealer
      * 搜索专利
      * @param keywords 关键词，null代表任意
      * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束年份（不包括）
+     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
     public List<Patent> searchPatent(List<String> keywords, int limitStart, int limitEnd)
@@ -327,6 +347,18 @@ public class SqlDealer
         return sqlSession.selectList("mapper.searchPatent", args);
     }
 
+    /**
+     * 高级搜索专利
+     * @param names 专利名字，null代表任意
+     * @param applicants 申请人，null代表任意
+     * @param inventors 发明人，null代表任意
+     * @param ids 申请号，null代表任意
+     * @param dateStart 起始日期（包括），范围（"0000-00-00"~"9999-99-99"）
+     * @param dateEnd 结束日期（不包括），范围（"0000-00-00"~"9999-99-99"）
+     * @param limitStart 起始索引
+     * @param limitEnd 结束索引
+     * @return 搜索结果
+     */
     public List<Patent> advancedSearchPatent(List<String> names, List<String> applicants, List<String> inventors, List<String> ids, String dateStart, String dateEnd, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();

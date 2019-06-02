@@ -78,6 +78,24 @@
         limit #{limit1}, #{limit2}
     </select>
 
+    <select id="advancedSearchProfessor" resultType="com.woxue.mt.sqldealer.Professor">
+        select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+        from xuezhebiao
+        where
+        <foreach collection="names" index="index" item="item" open="" separator="and" close="">
+            lower(name) regexp lower(#{item})
+        </foreach>
+        and
+        <foreach collection="organizations" index="index" item="item" open="" separator="and" close="">
+            lower(org) regexp lower(#{item})
+        </foreach>
+        and
+        <foreach collection="areas" index="index" item="item" open="" separator="and" close="">
+            lower(area) regexp lower(#{item})
+        </foreach>
+        limit #{limit1}, #{limit2}
+    </select>
+
     <select id="searchProfessorById" resultType="com.woxue.mt.sqldealer.Professor">
         select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
         from xuezhebiao

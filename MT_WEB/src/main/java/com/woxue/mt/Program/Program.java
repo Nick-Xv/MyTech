@@ -36,15 +36,27 @@ public class Program
 //                    patent.display();
 //            }
 
-            //搜索科技专家
+            //高级搜索科技专家（专家姓名、机构、领域），显示区间 [limitStart, limitEnd)
             {
-                List<String> keywords = new ArrayList<>(Arrays.asList("钟", "广州"));
+                List<String> names = new ArrayList<>(Arrays.asList("钟"));
+                List<String> organizations = new ArrayList<>(Arrays.asList("广州"));
+                List<String> areas = null;   //为null时，代表匹配内容任意
                 int limitStart = 0;
-                int limitEnd = 5;
-                List<Professor> professors = sqlDealer.searchProfessor(keywords, limitStart, limitEnd);
+                int limitEnd = 3;
+                List<Professor> professors = sqlDealer.advancedSearchProfessor(names, organizations, areas, limitStart, limitEnd);
                 for (Professor professor : professors)
                     professor.display();
             }
+
+            //搜索科技专家
+//            {
+//                List<String> keywords = new ArrayList<>(Arrays.asList("钟", "广州"));
+//                int limitStart = 0;
+//                int limitEnd = 5;
+//                List<Professor> professors = sqlDealer.searchProfessor(keywords, limitStart, limitEnd);
+//                for (Professor professor : professors)
+//                    professor.display();
+//            }
 
             //根据论文ID搜索评论
 //            {
