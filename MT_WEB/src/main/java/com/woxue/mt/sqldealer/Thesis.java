@@ -5,15 +5,21 @@ import java.sql.Date;
 //论文
 public class Thesis
 {
+    public String id;
     public String title;
     public String author;
-    public int referenceCount;
-    public String publishTime;
     public String keyword;
-    public String summary;
-    public String id;
     public String url;
+    public String summary;
+
+    //原始数据
+    public String publishTime;
     public int verifyState;
+    public int referenceCount;
+
+    //本站数据
+    public String professorId;
+    public int score;
 
     public void display()
     {
@@ -21,13 +27,17 @@ public class Thesis
             "--论文--\n" +
             "论文名字：" + title + '\n' +
             "作者：" + author + '\n' +
-            "被引次数：" + referenceCount + '\n' +
-            "发表时间：" + publishTime + '\n' +
             "关键词：" + keyword + '\n' +
             "摘要：" + summary + '\n' +
             "论文DOI：" + id + '\n' +
             "链接：" + url + '\n' +
+            " -原始数据-\n" +
+            "被引次数：" + referenceCount + '\n' +
+            "发表时间：" + publishTime + '\n' +
             "审核状态：" + verifyState + '\n' +
+            " -本站数据-\n" +
+            "科技专家ID：" + professorId + '\n' +
+            "积分：" + score + '\n' +
             "-------------------------------------------\n");
     }
 
@@ -101,5 +111,21 @@ public class Thesis
 
     public void setVerifyState(int verifyState) {
         this.verifyState = verifyState;
+    }
+
+    public String getProfessorId() {
+        return professorId;
+    }
+
+    public void setProfessorId(String professorId) {
+        this.professorId = professorId;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

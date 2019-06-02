@@ -109,6 +109,16 @@ public class SqlDealer
     }
 
     /**
+     * 插入论文
+     * @param thesis 插入的论文
+     */
+    public void insertThesis(Thesis thesis)
+    {
+        sqlSession.insert("mapper.insertThesis", thesis);
+        sqlSession.commit();
+    }
+
+    /**
      * 根据ID删除论文
      * @param id 删除的ID
      */
@@ -194,15 +204,6 @@ public class SqlDealer
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchProfessor", args);
-    }
-
-    /**
-     * 专家数量
-     * @return 专家数量
-     */
-    public int countProfessor()
-    {
-        return sqlSession.selectOne("mapper.countProfessor");
     }
 
     /**
@@ -295,6 +296,26 @@ public class SqlDealer
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchTrendByProfessorId", args);
+    }
+
+    /**
+     * 插入动态
+     * @param trend 插入的动态
+     */
+    public void insertTrend(Trend trend)
+    {
+        sqlSession.insert("mapper.insertTrend", trend);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID删除动态
+     * @param id 删除的ID
+     */
+    public void deleteTrendById(String id)
+    {
+        sqlSession.delete("mapper.deleteTrendById", id);
+        sqlSession.commit();
     }
 
     /**

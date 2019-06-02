@@ -31,9 +31,9 @@ public class Professor
             "成果数量：" + workNumber + '\n' +
             "审核状态：" + verifyState + '\n' +
             " -本站数据-\n" +
-            "被引次数：" + referenceCount + '\n' +
-            "成果数量：" + workNumber + '\n' +
-            "审核状态：" + verifyState + '\n' +
+            "出生日期：" + birthday + '\n' +
+            "简介：" + summary + '\n' +
+            "职称：" + title + '\n' +
             "-------------------------------------------\n");
     }
 

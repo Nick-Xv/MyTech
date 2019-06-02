@@ -13,6 +13,7 @@ public class Trend
             "--动态--\n" +
             "ID：" + id + '\n' +
             "科技专家ID：" + professorId + '\n' +
+            "内容：" + content + '\n' +
             "发表时间：" + publishTime + '\n' +
             "-------------------------------------------\n");
     }
