@@ -72,8 +72,10 @@ function aaa() {
 	}
 }
 function filter(num) {
+	url=url.replace(/&start=[0-9]*/,"&start=20");
 	if(theRequest['filter'] == undefined) {
-		window.location.href=location+"&filter="+num;
+		window.location.href=location.pathname
+							+url+"&filter="+num;
 	}
 	else if(theRequest['filter'] == num) {
 		window.location.href=location.pathname
@@ -85,8 +87,10 @@ function filter(num) {
 	}
 }
 function sorter(num) {
+	url=url.replace(/&start=[0-9]*/,"&start=20");
 	if(theRequest['sorter'] == undefined) {
-		window.location.href=location+"&sorter="+num;
+		window.location.href=location.pathname
+							+url+"&sorter="+num;
 	}
 	else if(theRequest['sorter'] == num){
 		window.location.href=location.pathname

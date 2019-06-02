@@ -14,7 +14,7 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
 </head>
-<body>
+<body onload="checkwatch()">
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
@@ -41,27 +41,88 @@
 </div> -->
 <div id="professorjumbotron" class="jumbotron">
     <div class="container">
-        <h2 style="margin-top: 30px;">${name}</h2>
-        <h3 style="margin-top: 20px;">${ins} ${prof}</h3>
-        <p style="margin-top: 20px;">${birth}</p>
-        <p>${area}</p>
+		<div style="display: inline-block;">
+			<h2 style="margin-top: 30px;">${name}</h2>
+			<h3 style="margin-top: 20px;">${ins} ${prof}</h3>
+			<p style="margin-top: 20px;">${birth}</p>
+			<p style="margin-bottom: 20px;">${area}</p>
+		</div>
+        <div style="display: inline-block; float: right; padding: 22px 30px 0 0">
+        	<button id="watch" class="btn btnctm" type="button" onclick="watch()" value="false">关注</button>
+        </div>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
-            <h3>简介</h3>
-            <p style="padding-bottom: 20px;">老师很好</p>
-            <h3>关系网络</h3>
-            <c:forEach items="${profList}" var="professor">
-                <div class="professorlist">
-                    <h4>${professor.name}</h4>
-                    <p><a href="${professor.url}">外部链接</a></p>
-                </div>
-            </c:forEach>
+        <div class="col-md-8">
+            <h3 style="padding-bottom: 20px;">论文</h3>
+			<c:forEach items="${productList}" var="product">
+			    <div class="essaylist">
+			        <p><a href="${product.id}">${product.title},${product.author},${product.publishTime}</a></p>
+			    </div>
+			</c:forEach>
+				<div class="essaylist">
+				    <p><a href="${product.id}">${product.title},${product.author},${product.publishTime}</a></p>
+				</div>
+				<div class="essaylist">
+				    <p><a href="${product.id}">${product.title},${product.author},${product.publishTime}</a></p>
+				</div>
+				
+			<div class="essaylist">
+			    <p><a href="${product.id}?start=20">>>查看该专家的所有论文</a></p>
+			</div>
         </div>
+		<div class="col-md-4">
+		    <h3>关系网络</h3>
+		    <c:forEach items="${profList}" var="professor">
+		        <div class="professorlist">
+		            <h4>${professor.name}</h4>
+		            <p><a href="${professor.url}">外部链接</a></p>
+		        </div>
+		    </c:forEach>
+				<div class="professorlist">
+				    <h4>${professor.name}</h4>
+				    <p><a href="${professor.url}">外部链接</a></p>
+				</div>
+				<div class="professorlist">
+				    <h4>${professor.name}</h4>
+				    <p><a href="${professor.url}">外部链接</a></p>
+				</div>
+		</div>
     </div>
+	<div class="row">
+	    <div class="col-md-8">
+			<h3 style="padding-top:30px;padding-bottom: 5px;">发布的动态</h3>
+			<c:forEach items="${momentList}" var="moment">
+				<div class="momentlist">
+					<p>${moment.content}</p>
+					<p>发布于${moment.time}</p>
+				</div>
+			</c:forEach>
+				<div class="momentlist">
+					<p>今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					今天晚上吃春饼
+					</h4>
+					<p>发布于1998-09-20</p>
+				</div>
+				<div class="momentlist">
+					<p>${moment.content}</p>
+					<p>发布于${moment.time}</p>
+				</div>
+				<div class="momentlist">
+				    <p><a href="${product.id}?start=20">>>查看该专家的所有动态</a></p>
+				</div>
+		</div>
+	</div>
 </div>
 
 
@@ -69,5 +130,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+<script type="text/javascript" src="js/part4.js"></script>
 </body>
 </html>

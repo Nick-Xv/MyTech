@@ -14,13 +14,6 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <style>
-
-    </style>
-
-    <script>
-
-    </script>
 </head>
 <body style="background-color: #EEE;">
 <nav id="navbar" class="navbar-inverse">
@@ -59,8 +52,9 @@
                 <p>${keywords}</p>
             </div>
             <div class="col-md-3">
+				<div hidden id="essaytype" value="0"></div>
                 <h4 style="margin-top: 30px;">查看文献</h4>
-                <p><a href=${url}>外部链接</a></p>
+                <p id="link"><a href="javascript:aaa();">外部链接</a></p>
                 <h4 style="margin-top: 20px;">被引次数</h4>
                 <p style="font-size: 40px;">${refcount}</p>
                 <h4 style="margin-top: 20px;">查看次数</h4>
@@ -83,11 +77,11 @@
     			    <textarea class="form-control" id="textareactm" name="comment" rows="3"></textarea>
 					<div class="star-rating"> 
 					  <fieldset> 
-						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="卓越">五星</label> 
-						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="优秀">四星</label> 
-						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="良好">三星</label> 
-						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="中等">二星</label> 
-						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="很差">一星</label> 
+						<input hidden type="radio" id="star5" name="rating" value="5" /><label for="star5" title="卓越">五星</label> 
+						<input hidden type="radio" id="star4" name="rating" value="4" /><label for="star4" title="优秀">四星</label> 
+						<input hidden type="radio" id="star3" name="rating" value="3" /><label for="star3" title="良好">三星</label> 
+						<input hidden type="radio" id="star2" name="rating" value="2" /><label for="star2" title="中等">二星</label> 
+						<input hidden type="radio" id="star1" name="rating" value="1" /><label for="star1" title="很差">一星</label> 
 					  </fieldset> 
 					  <button type="submit" id="btn2" class="btn btnctm">提交</button>
 					</div> 
@@ -116,5 +110,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+<script type="text/javascript" src="js/part4.js"></script>
 </body>
 </html>
