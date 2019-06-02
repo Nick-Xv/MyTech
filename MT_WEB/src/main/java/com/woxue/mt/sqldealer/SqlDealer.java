@@ -311,6 +311,36 @@ public class SqlDealer
         return sqlSession.selectList("mapper.searchProfessorOwnThesisByProfessorId", args);
     }
 
+    /**
+     * 搜索专利
+     * @param keywords 关键词，null代表任意
+     * @param limitStart 起始索引（包括）
+     * @param limitEnd 结束年份（不包括）
+     * @return 搜索结果
+     */
+    public List<Patent> searchPatent(List<String> keywords, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("keywords", keywords);
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.searchPatent", args);
+    }
+
+    public List<Patent> advancedSearchPatent(List<String> names, List<String> applicants, List<String> inventors, List<String> ids, String dateStart, String dateEnd, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("names", names != null ? names : new ArrayList<>(Arrays.asList(".")));
+        args.put("applicants", applicants != null ? applicants : new ArrayList<>(Arrays.asList(".")));
+        args.put("inventors", inventors != null ? inventors : new ArrayList<>(Arrays.asList(".")));
+        args.put("ids", ids != null ? ids : new ArrayList<>(Arrays.asList(".")));
+        args.put("dateStart", dateStart);
+        args.put("dateEnd", dateEnd);
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.advancedSearchPatent", args);
+    }
+
     //析构函数
     protected void finalize()
     {
