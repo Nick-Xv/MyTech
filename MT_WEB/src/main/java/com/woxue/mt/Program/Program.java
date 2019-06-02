@@ -11,11 +11,22 @@ public class Program
         {
             SqlDealer sqlDealer = new SqlDealer();
 
+            //搜索科技专家
+            {
+                List<String> keywords = new ArrayList<>(Arrays.asList("钟", "广州"));
+                int limitStart = 0;
+                int limitEnd = 5;
+                List<Professor> professors = sqlDealer.searchProfessor(keywords, limitStart, limitEnd);
+                for (Professor professor : professors)
+                    professor.display();
+            }
+
             //根据论文ID搜索评论
             {
                 String thesisId = "10.1002/ejic.2014029";
-                List<Comment> l = sqlDealer.searchCommentByThesisId(thesisId);
-                System.out.println(l.size());
+                List<Comment> comments = sqlDealer.searchCommentByThesisId(thesisId);
+                for (Comment comment : comments)
+                    comment.display();
             }
 
             //根据科技专家ID搜索论文
@@ -58,18 +69,18 @@ public class Program
 //                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
 //                int limitStart = 0;
 //                int limitEnd = 5;
-//                List<Thesis> theses = sqlDealer.advancedSearchThesisAnd(titles, authors, keywords, yearStart, yearEnd, order, limitStart, limitEnd);
+//                List<Thesis> theses = sqlDealer.advancedSearchThesis(titles, authors, keywords, yearStart, yearEnd, order, limitStart, limitEnd);
 //                for (Thesis thesis : theses)
 //                    thesis.display();
 //            }
 
-//            //搜索论文
+            //搜索论文
 //            {
 //                List<String> keywords = new ArrayList<>(Arrays.asList("slow", "mag"));
 //                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
 //                int limitStart = 0;
 //                int limitEnd = 20;
-//                List<Thesis> theses = sqlDealer.searchThesisAnd(keywords, "2010", order, limitStart, limitEnd);
+//                List<Thesis> theses = sqlDealer.searchThesis(keywords, "2010", order, limitStart, limitEnd);
 //                for (Thesis thesis : theses)
 //                    thesis.display();
 //            }

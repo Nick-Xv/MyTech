@@ -42,7 +42,7 @@ public class SqlDealer
     }
 
     /**
-     * 搜索论文，与关系
+     * 搜索论文
      * @param keywords 关键词，null代表任意
      * @param yearStart 起始年份（包括），范围("0000"~"9999")
      * @param order 排序方式
@@ -50,7 +50,7 @@ public class SqlDealer
      * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> searchThesisAnd(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
+    public List<Thesis> searchThesis(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
@@ -59,28 +59,7 @@ public class SqlDealer
         args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.searchThesisAnd", args);
-    }
-
-    /**
-     * 搜索论文，或关系
-     * @param keywords 关键词，null代表任意
-     * @param yearStart 起始年份（包括），范围("0000"~"9999")
-     * @param order 排序方式
-     * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束索引（不包括）
-     * @return 搜索结果
-     */
-    public List<Thesis> searchThesisOr(List<String> keywords, String yearStart, Order order, int limitStart, int limitEnd)
-    {
-        HashMap<String, Object> args = new HashMap<>();
-        args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
-        args.put("yearStart", yearStart);
-        args.put("yearEnd", "9999");
-        args.put("order", order.toString());
-        args.put("limit1", limitStart);
-        args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.searchThesisOr", args);
+        return sqlSession.selectList("mapper.searchThesis", args);
     }
 
     /**
@@ -94,7 +73,7 @@ public class SqlDealer
     }
 
     /**
-     * 高级搜索论文，与关系
+     * 高级搜索论文
      * @param titles 主题，null代表任意
      * @param authors 作者，null代表任意
      * @param keywords 关键词，null代表任意
@@ -105,7 +84,7 @@ public class SqlDealer
      * @param limitEnd 结束年份（不包括）
      * @return 搜索结果
      */
-    public List<Thesis> advancedSearchThesisAnd(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, Order order, int limitStart, int limitEnd)
+    public List<Thesis> advancedSearchThesis(List<String> titles, List<String> authors, List<String> keywords, String yearStart, String yearEnd, Order order, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("titles", titles != null ? titles : new ArrayList<>(Arrays.asList(".")));
@@ -116,7 +95,7 @@ public class SqlDealer
         args.put("order", order.toString());
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.advancedSearchThesisAnd", args);
+        return sqlSession.selectList("mapper.advancedSearchThesis", args);
     }
 
     /**
@@ -131,13 +110,15 @@ public class SqlDealer
 
     /**
      * 搜索科技专家
+     * @param keywords 关键词，null代表任意
      * @param limitStart 起始索引（包括）
      * @param limitEnd 结束年份（不包括）
      * @return 搜索结果
      */
-    public List<Professor> searchProfessor(int limitStart, int limitEnd)
+    public List<Professor> searchProfessor(List<String> keywords, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
+        args.put("keywords", keywords != null ? keywords : new ArrayList<>(Arrays.asList(".")));
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
         return sqlSession.selectList("mapper.searchProfessor", args);

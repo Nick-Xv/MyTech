@@ -52,7 +52,7 @@ public class ManagerController {
 
     @RequestMapping("/professor_list")
     public  String professorManage(Model model){
-        List<Professor> profList = sqlDealer.searchProfessor(0,100);
+        List<Professor> profList = sqlDealer.searchProfessor(null,0,100);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
@@ -60,7 +60,7 @@ public class ManagerController {
     @RequestMapping("/science_list")
     public  String scienceManage(Model model) {
         SqlDealer.Order order = SqlDealer.Order.DEFAULT;
-        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, "0000", order,0,100);
+        List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", order,0,100);
         model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
@@ -78,7 +78,7 @@ public class ManagerController {
      */
     @RequestMapping("/viewProfessor")
     public String viewProfessor(Model model) {
-        List<Professor> profList = sqlDealer.searchProfessor(0,100);
+        List<Professor> profList = sqlDealer.searchProfessor(null,0,100);
         model.addAttribute("profList", profList);
         return "professorManage";
     }
@@ -113,7 +113,7 @@ public class ManagerController {
      */
     @RequestMapping("/viewScience")
     public String viewScience(Model model) {
-        List<Thesis> sciList= sqlDealer.searchThesisAnd(null, "0000", SqlDealer.Order.DEFAULT, 0, 100);
+        List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", SqlDealer.Order.DEFAULT, 0, 100);
         model.addAttribute("sciList", sciList);
         return "scienceManage";
     }
