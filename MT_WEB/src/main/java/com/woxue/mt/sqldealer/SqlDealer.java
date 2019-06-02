@@ -414,6 +414,16 @@ public class SqlDealer
         return sqlSession.selectList("mapper.advancedSearchPatent", args);
     }
 
+    /**
+     * 插入用户购买论文
+     * @param userBuyThesis 插入的用户购买论文
+     */
+    public void insertUserBuyThesis(UserBuyThesis userBuyThesis)
+    {
+        sqlSession.insert("mapper.insertUserBuyThesis", userBuyThesis);
+        sqlSession.commit();
+    }
+
     //析构函数
     protected void finalize()
     {

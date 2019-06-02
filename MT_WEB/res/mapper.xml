@@ -350,4 +350,9 @@
         limit #{limit1}, #{limit2}
     </select>
 
+    <insert id="insertUserBuyThesis">
+        insert into 购买(用户ID, 论文ID)
+        values(#{userId}, #{thesisId})
+    </insert>
+
 </mapper>
