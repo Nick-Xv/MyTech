@@ -15,19 +15,17 @@
                     <div class="section-divider mt20 mb40">
                         <span> 上传文件 </span>
                     </div>
-
                     <div class="section">
                         <label class="field-label text-muted fs14 mb10">选择一个文件:</label>
                         <form id="form2" name="Form2" action="http://94.191.112.232:8080/UploadTest/UploadServlet?id=${id}" method="post"  enctype="multipart/form-data">
                             <input type="file" name="uploadFile" id="uploadFile" />
                             <br/>
-                            <button type="submit" class="button"> 上传 </button>
+                            <%--<button type="submit" class="button"> 上传 </button>--%>
                         </form>
                     </div>
                 </div>
 
                 <form:form id="admin-form" name="addForm" action="/MyTech/add_local_essay" modelAttribute="localEssay">
-
 
                     <div class="panel-body bg-light">
                         <div class="section-divider mt20 mb40">
@@ -83,38 +81,45 @@
                                 </label>
                             </label>
                         </div>
-                        <div class="panel-footer text-right">
-                            <button class="button"> 确定 </button>
-                            <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
-                        </div>
+
                     </div>
                 </form:form>
-
+                <div class="panel-footer text-right">
+                    <button class="button" onclick="submitTwo()"> 确定 </button>
+                    <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <script type="text/javascript">
-    var form = new FormData(document.getElementById("form2"));
+    // var form = new FormData(document.getElementById("form2"));
     function submitTwo() {
-        alert("!!!!");
-        $.ajax({
-            url:"http://94.191.112.232:8080/UploadTest/UploadServlet?id=${id}",
-            type:"post",
-            data:form,
-            dataType : 'jsonp', // 数据类型配置成jsonp
-            jsonp : "callback",
-            processData:false,
-            contentType:false,
-            success:function(data){
-                window.clearInterval(timer);
-                console.log("over..");
-            },
-            error:function(e){
-                alert("错误！！");
-                window.clearInterval(timer);
-            }
-        });
+        var f = document.getElementById("uploadFile").files;
+        var form = document.getElementById("form2");
+        var title = document.getElementById("title").value.toString().replace(/^\s+|\s+$/g, '+');
+        var author = document.getElementById("author").value.toString().replace(/^\s+|\s+$/g, '+');
+        var keyword = document.getElementById("keyword").value.toString().replace(/^\s+|\s+$/g, '+');
+        var introduce = document.getElementById("introduce").value.toString().replace(/^\s+|\s+$/g, '+');
+        var credit = document.getElementById("credit").value.toString().replace(/^\s+|\s+$/g, '+');
+        var action1 = form.action;
+        try{
+            var filename = f[0].name.toString().replace(/^\s+|\s+$/g, '+');
+            action1+="&title="+title+"&author="+author+"&keyword="+keyword+"&introduce="+introduce+"&credit="+credit+"&filename="+filename;
+            document.getElementById("form2").action = action1;
+            form = document.getElementById("form2");
+            // alert(form.action);
+            form.submit();
+        }catch (e) {
+            alert("请选择上传文件！");
+        }
+        // alert(title.value);
+        // alert(author.value);
+        // alert(keyword.value);
+        // alert(introduce.value);
+        // alert(credit.value);
+
+        //form.submit();
     }
 </script>
 <jsp:include page="bottom.jsp"/>

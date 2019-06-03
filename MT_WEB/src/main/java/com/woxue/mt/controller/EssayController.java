@@ -161,4 +161,12 @@ public class EssayController {
         String id2 = request.getParameter("id2");
         return "true";
     }
+
+    @ResponseBody
+    @RequestMapping("/insEssay")
+    public String insEssay(HttpServletRequest request){
+        String id1 = request.getParameter("id1");
+        String id2 = request.getParameter("id2");
+        return "true";
+    }
 }
