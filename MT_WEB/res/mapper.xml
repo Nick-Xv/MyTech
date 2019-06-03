@@ -49,6 +49,7 @@
             from 论文表 as b
             where 论文DOI = #{id}
         ) as c
+        limit 1
     </select>
 
     <select id="advancedSearchThesis" parameterType="hashMap" resultType="com.woxue.mt.sqldealer.Thesis">

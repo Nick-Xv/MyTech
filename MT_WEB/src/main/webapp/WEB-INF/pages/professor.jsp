@@ -46,8 +46,10 @@
 		<div style="display: inline-block;">
 			<h2 style="margin-top: 30px;">${name}</h2>
 			<h3 style="margin-top: 20px;">${ins} ${prof}</h3>
-			<p style="margin-top: 20px;">${birth}</p>
-			<p style="margin-bottom: 20px;">${area}</p>
+			<p class="info1" ${p1}>${birth}</p>
+			<p class="info1" ${p2}>${area}</p>
+			<p class="info2" ${p1}>${info}</p>
+			<p class="info2" ${p2}>${data}</p>
 		</div>
         <div style="display: inline-block; float: right; padding: 22px 30px 0 0">
         	<button id="watch" class="btn btnctm" type="button" onclick="watch1('${id1}','${id2}')" value="false">关注</button>
@@ -79,7 +81,7 @@
 		    </c:forEach>
 		</div>
     </div>
-	<div class="row">
+	<div class="row" hidden=${dd}>
 	    <div class="col-md-8">
 			<h3 style="padding-top:30px;padding-bottom: 5px;">发布的动态</h3>
 			<c:forEach items="${momentList}" var="moment">

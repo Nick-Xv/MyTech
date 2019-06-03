@@ -53,8 +53,9 @@
             </div>
             <div class="col-md-3">
                 <h4 style="margin-top: 30px; margin-bottom: 20px;">查看文献</h4>
-            	<div id="essaytype" hidden>0</div>
-                <a id="link" class="btn btnctm btnjump" href="javascript:purchase(&quot;${id1}&quot;,&quot;${id2}&quot;);">外部链接</a>
+            	<div id="essaytype" hidden>${type}</div>
+                <a id="link" class="btn btnctm btnjump" href=${href}>外部链接</a>
+                <%--"javascript:purchase(&quot;${id1}&quot;,&quot;${id2}&quot;);"--%>
                 <h4 style="margin-top: 20px;">被引次数</h4>
                 <p style="font-size: 40px;">${refcount}</p>
                 <h4 style="margin-top: 20px;">查看次数</h4>

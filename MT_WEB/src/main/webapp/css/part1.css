@@ -203,9 +203,9 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-right: 15px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	/*white-space: nowrap;*/
+	/*overflow: hidden;*/
+	/*text-overflow: ellipsis;*/
 }
 
 .momentlist {
@@ -232,14 +232,14 @@
 	background-color: #F8F8F8;
 }
 
-a {
-	color: #2149FF;
-}
+/*a {*/
+	/*color: #2149FF;*/
+/*}*/
 
-a:hover {
-	color: #5179FF;
-	text-decoration: none;
-}
+/*a:hover {*/
+	/*color: #5179FF;*/
+	/*text-decoration: none;*/
+/*}*/
 
 .filter {
 	padding-top: 5px;
@@ -266,6 +266,15 @@ a:hover {
 
 .patent p {
 	padding-top:10px;
+}
+
+.info1 {
+	margin-top:20px;
+	margin-bottom:10px;
+}
+
+.info2 {
+	margin-bottom: 20px;
 }
 
 .paginationctm >.active>a,
@@ -306,7 +315,7 @@ a:hover {
   font-size: 200%; 
   color: #661F66; 
 } 
-.star-rating > label:before { 
+.star-rating > label:before {
   content: '\f006  '; 
 } 
 .star-rating > label:hover, 

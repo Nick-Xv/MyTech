@@ -5,6 +5,7 @@ import com.woxue.mt.sqldealer.Comment;
 import com.woxue.mt.sqldealer.SqlDealer;
 import com.woxue.mt.sqldealer.Thesis;
 import com.woxue.mt.sqldealer.UserBuyThesis;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+class responseData{
+    String result;
+    String price;
+}
+
 
 @Controller
 @RequestMapping("/essay")
@@ -141,7 +148,10 @@ public class EssayController {
     public String purchase(HttpServletRequest request){
         String id1 = request.getParameter("id1");
         String id2 = request.getParameter("id2");
-        return "true";
+        responseData res = new responseData();
+        res.price = "123";
+        res.result = "true";
+        return "{\"result\":\"true\",\"price\":\"123\"}";
     }
 
     @ResponseBody
