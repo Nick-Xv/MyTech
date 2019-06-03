@@ -441,7 +441,7 @@ public class SqlDealer
     }
 
     /**
-     * 更新论文点击数
+     * 更新论文平均分
      * @param t 更新后的论文
      */
     public void updateClick1(Thesis t)
@@ -453,6 +453,18 @@ public class SqlDealer
     public void updateClick2(Thesis t)
     {
         sqlSession.update("mapper.updateThesisClick2", t);
+        sqlSession.commit();
+    }
+
+    public void updateGrade1(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisGrade1", t);
+        sqlSession.commit();
+    }
+
+    public void updateGrade2(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisGrade2", t);
         sqlSession.commit();
     }
 

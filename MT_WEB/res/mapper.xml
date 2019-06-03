@@ -374,4 +374,16 @@
         where 论文DOI = #{id}
     </update>
 
+    <update id="updateThesisGrade1">
+        update 本站论文
+            set 平均分 = #{averageGrade}
+        where ID = #{id}
+    </update>
+
+    <update id="updateThesisGrade2">
+        update 论文表
+            set 平均分 = #{averageGrade}
+        where 论文DOI = #{id}
+    </update>
+
 </mapper>

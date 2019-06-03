@@ -99,6 +99,12 @@ public class EssayController {
                     String grade = String.format("%.1f", sum/i);
                     model.addAttribute("grade",grade+"/5");
                     model.addAttribute("commentList",commentList);
+                    thesis.setAverageGrade(grade);
+                    System.out.println(grade);
+                    if(thesis.getPublishTime()==null)
+                        sqlDealer.updateGrade1(thesis);
+                    else
+                        sqlDealer.updateGrade2(thesis);
                 }
                 else{
                     model.addAttribute("grade","暂无");
