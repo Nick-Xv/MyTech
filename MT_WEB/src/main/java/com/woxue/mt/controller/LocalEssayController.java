@@ -31,9 +31,7 @@ public class LocalEssayController {
     @RequestMapping("add_local_essay")
     public String addLocalEssay(HttpSession session,LocalEssay localEssay) {
         User user = (User)session.getAttribute("user");
-        String link = (String)session.getAttribute("essayLink");
         localEssay.setProfessorId(user.getId());
-        localEssay.setLink(link);
         localEssayDao.insert(localEssay);
         return "redirect:local_essay_list";
     }

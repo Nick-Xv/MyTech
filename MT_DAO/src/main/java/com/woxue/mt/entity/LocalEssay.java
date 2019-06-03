@@ -11,6 +11,24 @@ public class LocalEssay {
     private String introduce;//简介
     private String link;//链接
     private int credit;//积分
+//    private int clickCount;
+//    private double averageGrade;
+//
+//    public int getClickCount() {
+//        return clickCount;
+//    }
+//
+//    public void setClickCount(int clickCount) {
+//        this.clickCount = clickCount;
+//    }
+//
+//    public double getAverageGrade() {
+//        return averageGrade;
+//    }
+//
+//    public void setAverageGrade(double averageGrade) {
+//        this.averageGrade = averageGrade;
+//    }
 
     public int getId() {
         return id;

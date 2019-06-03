@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="top.jsp"/>
+
 <%--上传文献界面--%>
 <section id="content" class="table-layout animated fadeIn">
     <div class="tray tray-center">
@@ -17,7 +18,7 @@
 
                     <div class="section">
                         <label class="field-label text-muted fs14 mb10">选择一个文件:</label>
-                        <form name="Form2" action="http://94.191.112.232:8080/UploadTest/UploadServlet?id=${id}" method="post"  enctype="multipart/form-data">
+                        <form id="form2" name="Form2" action="http://94.191.112.232:8080/UploadTest/UploadServlet?id=${id}" method="post"  enctype="multipart/form-data">
                             <input type="file" name="uploadFile" id="uploadFile" />
                             <br/>
                             <button type="submit" class="button"> 上传 </button>
@@ -82,18 +83,39 @@
                                 </label>
                             </label>
                         </div>
-
-
-
                         <div class="panel-footer text-right">
-                            <button type="submit" class="button"> 确定 </button>
+                            <button class="button"> 确定 </button>
                             <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
                         </div>
                     </div>
                 </form:form>
+
             </div>
         </div>
     </div>
 </section>
-
+<script type="text/javascript">
+    var form = new FormData(document.getElementById("form2"));
+    function submitTwo() {
+        alert("!!!!");
+        $.ajax({
+            url:"http://94.191.112.232:8080/UploadTest/UploadServlet?id=${id}",
+            type:"post",
+            data:form,
+            dataType : 'jsonp', // 数据类型配置成jsonp
+            jsonp : "callback",
+            processData:false,
+            contentType:false,
+            success:function(data){
+                window.clearInterval(timer);
+                console.log("over..");
+            },
+            error:function(e){
+                alert("错误！！");
+                window.clearInterval(timer);
+            }
+        });
+    }
+</script>
 <jsp:include page="bottom.jsp"/>
+
