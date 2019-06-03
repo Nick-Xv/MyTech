@@ -5,6 +5,7 @@ import com.woxue.mt.entity.LocalEssay;
 import com.woxue.mt.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -17,8 +18,12 @@ public class LocalEssayController {
 
     //前往添加页面
     @RequestMapping("to_add_local_essay")
-    public String toAddLocalEssay(Map<String, Object> map) {
+    public String toAddLocalEssay(Map<String, Object> map, HttpSession session, ModelMap model) {
         map.put("localEssay", new LocalEssay());
+        User user = (User)session.getAttribute("user");
+        if(user!=null){
+            model.addAttribute("id",user.getId());
+        }
         return "local_essay_add";
     }
 

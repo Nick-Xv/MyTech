@@ -17,7 +17,7 @@
 
                     <div class="section">
                         <label class="field-label text-muted fs14 mb10">选择一个文件:</label>
-                        <form name="Form2" action="upload" method="post"  enctype="multipart/form-data">
+                        <form name="Form2" action="http://94.191.112.232:8080/UploadTest/UploadServlet?id=${id}" method="post"  enctype="multipart/form-data">
                             <input type="file" name="uploadFile" id="uploadFile" />
                             <br/>
                             <button type="submit" class="button"> 上传 </button>

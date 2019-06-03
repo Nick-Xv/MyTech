@@ -59,29 +59,29 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <h3 style="padding-bottom: 20px;">论文</h3>
 			<c:forEach items="${productList}" var="product">
 			    <div class="essaylist">
-			        <p><a href="${product.id}">${product.title},${product.author},${product.publishTime}</a></p>
+			        <p><a href="/MyTech/essay?id=${product.id}">${product.title},${product.author},${product.publishTime}</a></p>
 			    </div>
 			</c:forEach>
 
 			<div class="essaylist">
-			    <p><a href="${url}?start=20">>>查看该专家的所有论文</a></p>
+				<p><a href="${url}?start=20"><strong>>>查看该专家的所有论文</strong></a></p>
 			</div>
         </div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 		    <h3>关系网络</h3>
 		    <c:forEach items="${profList}" var="professor">
 		        <div class="professorlist">
 		            <h4>${professor.name}</h4>
-		            <p><a href="${professor.url}">外部链接</a></p>
+		            <p><a href="${professor.url}">>>查看资料</a></p>
 		        </div>
 		    </c:forEach>
 		</div>
     </div>
-	<div class="row" hidden=${dd}>
+	<div class="row" ${momenthid}>
 	    <div class="col-md-8">
 			<h3 style="padding-top:30px;padding-bottom: 5px;">发布的动态</h3>
 			<c:forEach items="${momentList}" var="moment">

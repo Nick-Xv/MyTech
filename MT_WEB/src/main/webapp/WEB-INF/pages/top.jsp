@@ -156,26 +156,26 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="/claim_voucher/to_add">
-                            <span class="fa fa-at"></span>
-                            <span class="sidebar-title">领域动态</span>
-                        </a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="/claim_voucher/to_add">--%>
+                            <%--<span class="fa fa-at"></span>--%>
+                            <%--<span class="sidebar-title">领域动态</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
 
                     <li>
-                        <a href="/claim_voucher/to_add">
+                        <a href="/MyTech/search">
                             <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="sidebar-title">论文检索</span>
+                            <span class="sidebar-title">检索科技资源</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="/claim_voucher/to_add">
-                            <span class="glyphicon glyphicon-th-large"></span>
-                            <span class="sidebar-title">专家检索</span>
-                        </a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="/claim_voucher/to_add">--%>
+                            <%--<span class="glyphicon glyphicon-th-large"></span>--%>
+                            <%--<span class="sidebar-title">专家检索</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
 
                     <li>
                         <a href="/claim_voucher/to_add">

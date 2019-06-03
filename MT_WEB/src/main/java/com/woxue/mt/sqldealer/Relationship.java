@@ -5,7 +5,7 @@ public class Relationship
     public String masterProfessorId;
     public String masterProfessorName;
     public String slaveProfessorName;
-    public String getSlaveProfessorUrl;
+    public String slaveProfessorUrl;
 
     public void display()
     {
@@ -14,7 +14,7 @@ public class Relationship
             "主专家ID：" + masterProfessorId + '\n' +
             "主专家名字：" + masterProfessorName + '\n' +
             "从专家名字：" + slaveProfessorName + '\n' +
-            "从专家链接：" + getSlaveProfessorUrl + '\n' +
+            "从专家链接：" + slaveProfessorUrl + '\n' +
             "-------------------------------------------\n");
     }
 
@@ -42,11 +42,11 @@ public class Relationship
         this.slaveProfessorName = slaveProfessorName;
     }
 
-    public String getGetSlaveProfessorUrl() {
-        return getSlaveProfessorUrl;
+    public String getSlaveProfessorUrl() {
+        return slaveProfessorUrl;
     }
 
-    public void setGetSlaveProfessorUrl(String getSlaveProfessorUrl) {
-        this.getSlaveProfessorUrl = getSlaveProfessorUrl;
+    public void setSlaveProfessorUrl(String getSlaveProfessorUrl) {
+        this.slaveProfessorUrl = getSlaveProfessorUrl;
     }
 }

@@ -321,7 +321,7 @@
         select 主专家ID as masterProfessorId, 主专家名字 as masterProfessorName, 从专家名字 as slaveProfessorName, 从专家链接 as slaveProfessorUrl
         from 关系网络
         where 主专家ID = #{professorId}
-        limit #{limit1}, #{limit2}
+        limit 1
     </select>
 
     <select id="searchProfessorOwnThesisByProfessorId" resultType="com.woxue.mt.sqldealer.ProfessorOwnThesis">

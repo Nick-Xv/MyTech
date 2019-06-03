@@ -358,17 +358,13 @@ public class SqlDealer
     /**
      * 根据科技专家ID搜索关系网络
      * @param professorId 科技专家ID
-     * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<Relationship> searchRelationshipByProfessorId(String professorId, int limitStart, int limitEnd)
+    public Relationship searchRelationshipByProfessorId(String professorId)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("professorId", professorId);
-        args.put("limit1", limitStart);
-        args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.searchRelationshipByProfessorId", args);
+        return sqlSession.selectOne("mapper.searchRelationshipByProfessorId", args);
     }
 
     /**

@@ -87,14 +87,13 @@ public class Program
 //            }
 
             //根据科技专家ID搜索关系网络
-//            {
-//                String professorId = "CN-BT74TVCJ";
-//                int limitStart = 0;
-//                int limitEnd = 2;
-//                List<Relationship> relationships = sqlDealer.searchRelationshipByProfessorId(professorId, limitStart, limitEnd);
-//                for (Relationship relationship : relationships)
-//                    relationship.display();
-//            }
+            {
+                String professorId = "CN-BT74TVCJ";
+                int limitStart = 0;
+                int limitEnd = 1;
+                Relationship relationships = sqlDealer.searchRelationshipByProfessorId(professorId);
+                relationships.display();
+            }
 
             //插入论文
 //            {
@@ -136,11 +135,11 @@ public class Program
 //            }
 
             //根据被引次数推荐论文
-            {
-                List<Thesis> theses = sqlDealer.searchThesisRecommandedByReferenceCount(1);
-                for (Thesis thesis : theses)
-                    thesis.display();
-            }
+//            {
+//                List<Thesis> theses = sqlDealer.searchThesisRecommandedByReferenceCount(1);
+//                for (Thesis thesis : theses)
+//                    thesis.display();
+//            }
         }
         catch (Exception e)
         {
