@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SqlDealer
 {
-    public enum Order { DEFAULT, REFERENCE_COUNT, RECENT }
+    public enum Order { DEFAULT, REFERENCE_COUNT, RECENT, WORK_NUM }
 
     private SqlSession sqlSession;
 
@@ -452,6 +452,22 @@ public class SqlDealer
     public void insertUserBuyThesis(UserBuyThesis userBuyThesis)
     {
         sqlSession.insert("mapper.insertUserBuyThesis", userBuyThesis);
+        sqlSession.commit();
+    }
+
+    /**
+     * 更新论文点击数
+     * @param t 更新后的论文
+     */
+    public void updateClick1(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisClick1", t);
+        sqlSession.commit();
+    }
+
+    public void updateClick2(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisClick2", t);
         sqlSession.commit();
     }
 

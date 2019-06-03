@@ -12,6 +12,9 @@ public class Thesis
     public String url;
     public String summary;
 
+    public int clickCount;
+    public String averageGrade;
+
     //原始数据
     public String publishTime;
     public int verifyState;
@@ -127,5 +130,21 @@ public class Thesis
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getClickCount() {
+        return clickCount;
+    }
+
+    public void setClickCount(int clickCount) {
+        this.clickCount = clickCount;
+    }
+
+    public String getAverageGrade() {
+        return averageGrade;
+    }
+
+    public void setAverageGrade(String averageGrade) {
+        this.averageGrade = averageGrade;
     }
 }

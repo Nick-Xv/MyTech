@@ -39,6 +39,14 @@
 <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 
+<style>
+    .nav>li>a {
+        padding: 0;
+    }
+    .nav>li>a:hover span {
+        color:#000;
+    }
+</style>
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -81,7 +89,7 @@
                     </c:if>
                     <c:if test="${sessionScope.user.character==Constant.CHAR_USER || sessionScope.user.character==Constant.CHAR_EXPERT}">
                         <li class="list-group-item">
-                            <a href="/MyTech/to_add_application" class="animated animated-short">
+                            <a href="/MyTech/to_charge" class="animated animated-short">
                                 <span class="fa fa-dollar"></span> 购买积分 </a>
                         </li>
                     </c:if>
@@ -157,6 +165,20 @@
 
                     <li>
                         <a href="/claim_voucher/to_add">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="sidebar-title">论文检索</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/claim_voucher/to_add">
+                            <span class="glyphicon glyphicon-th-large"></span>
+                            <span class="sidebar-title">专家检索</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/claim_voucher/to_add">
                             <span class="fa fa-database"></span>
                             <span class="sidebar-title">已购资源</span>
                         </a>
@@ -175,11 +197,11 @@
                         </a>
                         <ul class="nav sub-nav">
                             <li>
-                                <a href="/employee/list">
+                                <a href="/MyTech/local_essay_list">
                                     <span class="glyphicon glyphicon-calendar"></span> 我的文献 </a>
                             </li>
                             <li class="active">
-                                <a href="/employee/to_add">
+                                <a href="/MyTech/to_add_local_essay">
                                     <span class="glyphicon glyphicon-check"></span> 上传文献 </a>
                             </li>
                         </ul>

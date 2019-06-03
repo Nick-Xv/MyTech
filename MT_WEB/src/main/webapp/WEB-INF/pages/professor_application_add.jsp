@@ -61,22 +61,6 @@
                             </label>
                         </div>
 
-
-                        <%--<div class="section row">
-                            <div class="col-md-3">
-                                <label for="organization" class="field prepend-icon">
-                                    <form:input path="organization" cssClass="gui-input" placeholder="机构..." readonly="true"/>
-                                    <label for="organization" class="field-icon">
-                                        <i class="fa fa-user"></i>
-                                    </label>
-                                </label>
-                            </div>
-                            <div class="section" style="text-align:right;">
-                                <div class="col-md-9">
-                                    <button type="button" class="button" id="addItemButton"> + </button>
-                                </div>
-                            </div>
-                        </div>--%>
                         <div class="panel-footer text-right">
                             <button type="submit" class="button"> 保存 </button>
                             <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>

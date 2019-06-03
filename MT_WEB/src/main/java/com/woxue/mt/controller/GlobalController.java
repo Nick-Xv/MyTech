@@ -25,6 +25,21 @@ public class GlobalController implements java.io.Serializable{
     @Autowired
     private UserBiz userBiz;
 
+    //前往充值页面
+    @RequestMapping("/to_charge")
+    public String toCharge(){
+        return "charge";
+    }
+
+    //充值
+    @RequestMapping("/charge")
+    public String charge(HttpSession session,@RequestParam int credit){
+        User user = (User) session.getAttribute("user");
+        user.setCredit(user.getCredit() + credit);
+        userBiz.edit(user);
+        return "self";
+    }
+
     //前往注册页面
     @RequestMapping("/to_register")
     public String toRegister(){
