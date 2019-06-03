@@ -4,6 +4,7 @@ import com.woxue.mt.entity.User;
 import com.woxue.mt.sqldealer.Comment;
 import com.woxue.mt.sqldealer.SqlDealer;
 import com.woxue.mt.sqldealer.Thesis;
+import com.woxue.mt.sqldealer.UserBuyThesis;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,7 @@ public class EssayController {
         String comment = request.getParameter("comment");
         String rating = request.getParameter("rating");
 
+
         if(id == null || id == ""){
             model.addAttribute("title","数据库中没有此论文");
         }
@@ -51,14 +53,31 @@ public class EssayController {
                 SqlDealer sqlDealer = new SqlDealer();
                 Thesis thesis = new Thesis();
                 thesis = sqlDealer.searchThesisById(id);
+                boolean bought = false;
+                if(user != null){
+                    List<UserBuyThesis> userThesis = sqlDealer.searchUserBuyThesisByUserId(user.getId(),0,999);
+                    if(userThesis.size()!=0){
+                        for(UserBuyThesis temp : userThesis){
+                            if(temp.userId.equals(user.getId()) && temp.thesisId.equals(id) ){
+                                bought = true;
+                            }
+                        }
+
+                        //
+                    }
+                }
 
                 if(thesis != null){
                     System.out.println("点击数"+thesis.getClickCount());
                     thesis.clickCount++;
-                    if(thesis.getPublishTime()==null)
+                    if(thesis.getPublishTime()==null){
                         sqlDealer.updateClick1(thesis);
-                    else
+                        //model.addAttribute("buylink","购买");
+                    }
+                    else{
                         sqlDealer.updateClick2(thesis);
+                        //model.addAttribute("buylink","外部链接");
+                    }
                     model.addAttribute("id",thesis.getId());
                     model.addAttribute("title",thesis.getTitle());
                     model.addAttribute("authors",thesis.getAuthor());

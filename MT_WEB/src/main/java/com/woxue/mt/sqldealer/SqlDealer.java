@@ -430,6 +430,16 @@ public class SqlDealer
     }
 
     /**
+     * 根据ID搜索专利
+     */
+    public Patent searchPatentById(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectOne("mapper.searchPatentById", args);
+    }
+
+    /**
      * 根据用户ID搜索用户购买论文
      * @param userId 科技专家ID
      * @param limitStart 起始索引（包括）

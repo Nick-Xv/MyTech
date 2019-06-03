@@ -33,6 +33,10 @@ function watch1(id1, id2) {
 function purchase(id1, id2) {
 	alert(id1);
     alert(id2);
+    if(id1 == " "){
+    	window.location.href("/MyTech/login");
+    	return;
+	}
 	$.ajax({
 	    url:"/MyTech/essay/purchase?id1="+id1+"&id2="+id2,
 	    type:'get',

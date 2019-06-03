@@ -66,9 +66,9 @@
         <div class="col-md-8">
             <c:forEach items="${patentList}" var="patent">
                 <div class="resultlist">
-                    <h4><a href="/MyTech/patent?id=${patent.id}">${patent.title}</a></h4>
-                    <p>发明人: ${patent.author}</p>
-                    <p>申请人: ${patent.author1}</p>
+                    <h4><a href="/MyTech/patent?id=${patent.id}">${patent.name}</a></h4>
+                    <p>发明人: ${patent.inventor}</p>
+                    <p>申请人: ${patent.applicant}</p>
                     <p>申请日：${patent.date}</p>
                     <p>申请号：${patent.id}</p>
                 </div>

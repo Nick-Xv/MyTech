@@ -363,6 +363,12 @@
         limit #{limit1}, #{limit2}
     </select>
 
+    <select id="searchPatentById" resultType="com.woxue.mt.sqldealer.Patent">
+        select 专利名字 as name, 申请号 as id, 申请日 as date, 申请人 as applicant, 地址 as address, 发明人 as inventor, 专利代理机构 as agency, 代理人 as agent, 国省代码 as provinceCode, 摘要 as summary, 主权项 as independentClaim, 主分类号 as mainClass, 专利分类号 as patentClass
+        from 专利表
+        where 申请号 = #{id}
+    </select>
+
     <select id="selectUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
         select 用户ID as userId, 论文ID as thesisId
         from 购买
