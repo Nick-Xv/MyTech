@@ -95,6 +95,19 @@
         limit #{limit1}, #{limit2}
     </select>
 
+    <select id="searchThesisRecommandedByReferenceCount" resultType="com.woxue.mt.sqldealer.Thesis">
+        select id, title, author, keyword, url, summary, publishTime, verifyState, referenceCount, professorId, score
+        from
+        (
+            select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
+            from 论文表 as a
+            order by cast(被引次数 as signed integer) desc, 论文DOI asc
+            limit #{limit}
+        ) as b
+        order by rand()
+        limit #{number}
+    </select>
+
     <update id="updateThesis">
         update 本站论文
         <set>
