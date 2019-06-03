@@ -83,6 +83,11 @@ public class Search2Controller {
                 System.out.println(keywords);
                 SqlDealer sqlDealer = new SqlDealer();
                 List<Thesis> result = sqlDealer.searchThesis(keywords,startYear,order,st,st+20);
+                for(Thesis temp : result){
+                    if(temp.getPublishTime() == null){
+                        temp.setPublishTime("2019");
+                    }
+                }
                 model.addAttribute("productList",result);
             }catch (Exception e){
                 e.printStackTrace();
@@ -143,6 +148,14 @@ public class Search2Controller {
                 System.out.println(date2);
                 SqlDealer sqlDealer = new SqlDealer();
                 List<Thesis> result = sqlDealer.advancedSearchThesis(keywords,authorl,keywordl,date1,date2,order,st,st+20);
+                for(Thesis temp : result){
+                    if(temp.getPublishTime() == null){
+                        temp.setPublishTime("2019");
+                    }
+//                    if(temp.getReferenceCount()==null){
+//
+//                    }
+                }
                 model.addAttribute("productList",result);
             }catch (Exception e){
                 e.printStackTrace();

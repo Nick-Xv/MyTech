@@ -38,14 +38,14 @@
     </select>
 
     <select id="searchThesisById" resultType="com.woxue.mt.sqldealer.Thesis">
-        select id, title, author, keyword, url, summary, publishTime, verifyState, referenceCount, professorId, score
+        select id, title, author, keyword, url, summary, publishTime, verifyState, referenceCount, professorId, score, clickCount
         from
         (
-            select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score
+            select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score, 点击次数 as clickCount
             from 本站论文 as a
             where ID = #{id}
         union
-            select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
+            select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score, 点击次数 as clickCount
             from 论文表 as b
             where 论文DOI = #{id}
         ) as c
@@ -361,5 +361,17 @@
         insert into 购买(用户ID, 论文ID)
         values(#{userId}, #{thesisId})
     </insert>
+
+    <update id="updateThesisClick1">
+        update 本站论文
+            set 点击次数 = #{clickCount}
+        where ID = #{id}
+    </update>
+
+    <update id="updateThesisClick2">
+        update 论文表
+            set 点击次数 = #{clickCount}
+        where 论文DOI = #{id}
+    </update>
 
 </mapper>

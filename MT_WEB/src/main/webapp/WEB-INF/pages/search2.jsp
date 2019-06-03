@@ -48,11 +48,11 @@
 					<input type="" class="form-controlctm form-control" id="keyword" name="keyword" placeholder="关键词" value=""/>
 					<div class="dategroup">
 						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">起始年份</label>
-						<input type="year" class="form-controlctm form-control" id="date1" name="date1" placeholder="年份" value=""/>
+						<input type="month" class="form-controlctm form-control" id="date1" name="date1" placeholder="年份" value=""/>
 					</div>
 					<div class="dategroup">
 						<label style="height: 34px; line-height:34px;vertical-align: center;margin-top: 0; margin-right: 4px;">截止年份</label>
-						<input type="year" class="form-controlctm form-control" id="date2" name="date2" placeholder="年份" value=""/>
+						<input type="month" class="form-controlctm form-control" id="date2" name="date2" placeholder="年份" value=""/>
 					</div>
 				</div>
             </div>
@@ -69,7 +69,8 @@
                     <p>作者: ${product.author}</p>
                     <p>关键字：${product.keyword}</p>
                     <p>年份：${product.publishTime}</p>
-                    <p><a href=${product.url}>#外部链接</a></p>
+                    <p>被引次数：${product.referenceCount}</p>
+                    <%--<p><a href=${product.url}>#外部链接</a></p>--%>
                 </div>
             </c:forEach>
         </div>

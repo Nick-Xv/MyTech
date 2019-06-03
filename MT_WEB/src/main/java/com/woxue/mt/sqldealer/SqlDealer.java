@@ -440,6 +440,22 @@ public class SqlDealer
         sqlSession.commit();
     }
 
+    /**
+     * 更新论文点击数
+     * @param t 更新后的论文
+     */
+    public void updateClick1(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisClick1", t);
+        sqlSession.commit();
+    }
+
+    public void updateClick2(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisClick2", t);
+        sqlSession.commit();
+    }
+
     //析构函数
     protected void finalize()
     {

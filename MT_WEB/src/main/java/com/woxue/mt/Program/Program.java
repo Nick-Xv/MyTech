@@ -111,8 +111,9 @@ public class Program
 
             //高级搜索论文（标旗、作者、关键词、年份），显示区间 [limitStart, limitEnd)
             {
-                List<String> titles = new ArrayList<>(Arrays.asList("slow"));
-                List<String> authors = new ArrayList<>(Arrays.asList("Lei", "Chen"));
+                List<String> titles = new ArrayList<>(Arrays.asList("test"));
+//                List<String> authors = new ArrayList<>(Arrays.asList("Lei", "Chen"));
+                List<String> authors = null;
                 List<String> keywords = null;   //为null时，代表匹配内容任意
                 String yearStart = "2010";
                 String yearEnd = "2020";

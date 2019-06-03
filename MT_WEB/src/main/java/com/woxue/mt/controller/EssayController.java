@@ -53,12 +53,20 @@ public class EssayController {
                 thesis = sqlDealer.searchThesisById(id);
 
                 if(thesis != null){
+                    System.out.println("点击数"+thesis.getClickCount());
+                    thesis.clickCount++;
+                    if(thesis.getPublishTime()==null)
+                        sqlDealer.updateClick1(thesis);
+                    else
+                        sqlDealer.updateClick2(thesis);
                     model.addAttribute("id",thesis.getId());
                     model.addAttribute("title",thesis.getTitle());
                     model.addAttribute("authors",thesis.getAuthor());
                     model.addAttribute("info",thesis.getSummary());
                     model.addAttribute("keywords",thesis.getKeyword());
                     model.addAttribute("url",thesis.getUrl());
+                    model.addAttribute("refcount",thesis.getReferenceCount());
+                    model.addAttribute("clickcount",thesis.getClickCount());
                 }
 
                 List<Comment> commentList = sqlDealer.searchCommentByThesisId(id);
