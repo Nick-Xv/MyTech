@@ -99,6 +99,21 @@ public class SqlDealer
     }
 
     /**
+     * 根据最多引用推荐论文
+     * @param number 推荐论文的数量
+     * @return 搜索结果
+     */
+    public List<Thesis> searchThesisRecommandedByReferenceCount(int number)
+    {
+        if (number <= 0)
+            return null;
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("number", number);
+        args.put("limit", number * 3);
+        return sqlSession.selectList("mapper.searchThesisRecommandedByReferenceCount", args);
+    }
+
+    /**
      * 更新论文
      * @param thesis 更新后的论文，以ID为目标
      */
@@ -421,7 +436,7 @@ public class SqlDealer
      * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<UserBuyThesis> selectUserBuyThesisByUserId(String userId, int limitStart, int limitEnd)
+    public List<UserBuyThesis> searchUserBuyThesisByUserId(String userId, int limitStart, int limitEnd)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("userId", userId);

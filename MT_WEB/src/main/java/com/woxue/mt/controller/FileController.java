@@ -73,7 +73,7 @@ public class FileController {
         String thesisID = request.getParameter("thesisID");
         int score = Integer.parseInt(request.getParameter("score"));
 
-        List<UserBuyThesis> thesises = sqlDealer.selectUserBuyThesisByUserId(userID, 0, 100);
+        List<UserBuyThesis> thesises = sqlDealer.searchUserBuyThesisByUserId(userID, 0, 100);
         boolean contain = false;
         for (UserBuyThesis ubt : thesises) {
             if(ubt.thesisId.equals(thesisID)){
