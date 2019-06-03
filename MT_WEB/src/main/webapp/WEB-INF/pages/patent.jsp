@@ -41,7 +41,7 @@
 <div id="essaybody">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-9 patent">
                 <h2>${title}</h2>
                 <p>发明人: ${author}</p>
                 <p>申请号: ${id} 申请日期: ${date}</p>
