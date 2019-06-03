@@ -50,4 +50,18 @@ public class LocalEssayController {
         localEssayDao.delete(id);
         return "redirect:local_essay_list";
     }
+
+    //修改用户信息（用户自己调用）
+    @RequestMapping(value = "/local_essay_to_update",params = "id")
+    public String toUpdateByUser(int id,Map<String,Object> map) {
+        map.put("localEssay",localEssayDao.select(id));
+        localEssayDao.delete(id);
+        return "local_essay_update";
+    }
+    @RequestMapping("/local_essay_update")
+    public String updateByUser(HttpSession session,LocalEssay localEssay){
+        localEssayDao.update(localEssay);
+        //先保存一下身份信息，在更新session前进行写回防止丢失
+        return "redirect:local_essay_list";
+    }
 }
