@@ -4,7 +4,7 @@ package com.woxue.mt.entity;
 * */
 public class LocalEssay {
     private int id;//ID
-    private int professorId;//专家ID
+    private String professorId;//专家ID
     private String title;//标题
     private String author;//作者
     private String keyword;//关键字
@@ -20,11 +20,11 @@ public class LocalEssay {
         this.id = id;
     }
 
-    public int getProfessorId() {
+    public String getProfessorId() {
         return professorId;
     }
 
-    public void setProfessorId(int professorId) {
+    public void setProfessorId(String professorId) {
         this.professorId = professorId;
     }
 
