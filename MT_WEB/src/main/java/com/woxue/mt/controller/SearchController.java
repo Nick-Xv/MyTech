@@ -1,5 +1,6 @@
 package com.woxue.mt.controller;
 import com.woxue.mt.entity.User;
+import com.woxue.mt.sqldealer.Professor;
 import com.woxue.mt.sqldealer.SqlDealer;
 import com.woxue.mt.sqldealer.Thesis;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,12 @@ public class SearchController {
             List<Thesis> trend =  new ArrayList<>();
             trend = sqlDealer.searchThesisRecommandedByReferenceCount(10);
             model.addAttribute("productList",trend);
+            List<Professor> profList = new ArrayList<>();
+            profList = sqlDealer.searchProfessorRecommandedByReferenceCount(5);
+            for(Professor temp:profList){
+                temp.setUrl("/MyTech/professor?id="+temp.getId());
+            }
+            model.addAttribute("profList",profList);
         }catch (Exception e){
             e.printStackTrace();
         }

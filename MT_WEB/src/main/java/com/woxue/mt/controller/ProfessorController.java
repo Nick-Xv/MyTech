@@ -35,19 +35,18 @@ public class ProfessorController {
 //        model.addAttribute("id1","a123");
 //        model.addAttribute("id2","a-321");
 
-        model.addAttribute("url","/MyTech/professor_essay");
-        model.addAttribute("url1","/MyTech/professor_moment");
-
         String id = request.getParameter("id");
         if(id == null || id == ""){
             model.addAttribute("title","数据库中没有此专家");
         }
         else{
+
             try{
                 SqlDealer sqlDealer = new SqlDealer();
                 Professor professor = new Professor();
                 professor = sqlDealer.searchProfessorById(id);
-
+                model.addAttribute("url","/MyTech/professor_essay?id="+id+"&name="+professor.getName());
+                model.addAttribute("url1","/MyTech/professor_moment?id="+id + "&name="+professor.getName());
                 Relationship relList = sqlDealer.searchRelationshipByProfessorId(id);
                 List<RelationshipDiv> proflist = new ArrayList<>();
                 if(relList != null){
@@ -55,7 +54,7 @@ public class ProfessorController {
                     String urls = relList.getSlaveProfessorUrl();
                     String[] name = names.split(",");
                     String[] url = urls.split(",");
-                    for(int i=0;i<url.length&&i<6;i++){
+                    for(int i=0;i<url.length&&i<5;i++){
                         RelationshipDiv temp = new RelationshipDiv();
                         temp.setName(name[i]);
                         temp.setUrl("http://xueshu.baidu.com"+url[i]);
@@ -65,6 +64,7 @@ public class ProfessorController {
                 }
                 if(professor != null){
                     if(professor.getBirthday()==null){
+                        model.addAttribute("watched","false");
                         model.addAttribute("p1","hidden");
                         model.addAttribute("p2","");
                         model.addAttribute("momenthid","hidden");

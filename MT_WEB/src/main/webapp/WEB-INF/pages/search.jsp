@@ -60,8 +60,9 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <h2>热点推荐</h2>
+        <div class="col-md-10">
+            <h2 style="margin-bottom: 30px;">热点推荐</h2>
+
             <%--<c:forEach items="${productList}" var="product">--%>
                 <%--<div class="resultlist">--%>
                     <%--<h4><a href="/MyTech/essay?id=${product.id}">${product.title}</a></h4>--%>
@@ -73,14 +74,19 @@
                 <%--</div>--%>
             <%--</c:forEach>--%>
             <c:forEach items="${productList}" var="product">
-                <div class="essaylist">
+                <div class="essaylist" style="padding-bottom: 2px;">
                     <p><a href="/MyTech/essay?id=${product.id}">${product.title}    ${product.publishTime}</a></p>
                 </div>
             </c:forEach>
         </div>
-        <div class="col-md-4">
-            <h2>领域排行</h2>
-            <p>正在生成排行信息...</p>
+        <div class="col-md-2">
+            <h2>专家推荐</h2>
+            <c:forEach items="${profList}" var="professor">
+                <div class="professorlist">
+                    <h4>${professor.name}</h4>
+                    <p><a href="${professor.url}">>>查看资料</a></p>
+                </div>
+            </c:forEach>
         </div>
     </div>
 </div>

@@ -18,6 +18,17 @@ public class Professor
     public String summary;
     public String title;
 
+    //附加
+    public String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public void display()
     {
         System.out.println(
