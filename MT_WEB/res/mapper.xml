@@ -377,6 +377,12 @@
         limit #{limit1}, #{limit2}
     </select>
 
+    <select id="searchProfessorOwnThesisCountByProfessorId" resultType="int">
+        select count(*)
+        from 专家拥有论文
+        where 专家ID = #{professorId}
+    </select>
+
     <select id="searchPatent" resultType="com.woxue.mt.sqldealer.Patent">
         select 专利名字 as name, 申请号 as id, 申请日 as date, 申请人 as applicant, 地址 as address, 发明人 as inventor, 专利代理机构 as agency, 代理人 as agent, 国省代码 as provinceCode, 摘要 as summary, 主权项 as independentClaim, 主分类号 as mainClass, 专利分类号 as patentClass
         from 专利表
@@ -487,5 +493,18 @@
             where ID in (
                 select 论文ID as ID from 购买 where 用户ID = #{id}
             )
+    </select>
+
+    <select id="searchProfessorRecommandedByReferenceCount" resultType="com.woxue.mt.sqldealer.Professor">
+        select  name, organization, id, referenceCount, workNumber, area, verifyState
+        from
+        (
+            select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
+            from xuezhebiao as a
+            order by ach_num desc
+            limit #{limit}
+        ) as b
+        order by rand()
+        limit #{number}
     </select>
 </mapper>

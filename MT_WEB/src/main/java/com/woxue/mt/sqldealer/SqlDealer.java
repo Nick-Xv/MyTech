@@ -427,6 +427,16 @@ public class SqlDealer
     }
 
     /**
+     * 根据科技专家ID搜索专家拥有论文数量
+     * @param professorId 科技专家ID
+     * @return 搜索结果
+     */
+    public int searchProfessorOwnThesisCountByProfessorId(String professorId)
+    {
+        return sqlSession.selectOne("mapper.searchProfessorOwnThesisCountByProfessorId", professorId);
+    }
+
+    /**
      * 搜索专利
      * @param keywords 关键词，null代表任意
      * @param limitStart 起始索引（包括）
@@ -607,6 +617,14 @@ public class SqlDealer
         return sqlSession.selectList("mapper.searchBoughtThesisById", id);
     }
 
+    public List<Professor> searchProfessorRecommandedByReferenceCount(int number){
+        if (number <= 0)
+            return null;
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("number", number);
+        args.put("limit", number * 3);
+        return sqlSession.selectList("mapper.searchProfessorRecommandedByReferenceCount", args);
+    }
     //析构函数
     protected void finalize()
     {

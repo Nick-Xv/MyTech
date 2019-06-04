@@ -51,7 +51,7 @@
 			<p class="info2" ${p1}>${info}</p>
 			<p class="info2" ${p2}>${data}</p>
 		</div>
-        <div style="display: inline-block; float: right; padding: 22px 30px 0 0">
+        <div style="display: inline-block; float: right; padding: 22px 30px 0 0" >
         	<button id="watch" class="btn btnctm" type="button" onclick="watch1('${id1}','${id2}')" value="${watched}" ${hidden}>关注</button>
         </div>
     </div>
@@ -68,7 +68,7 @@
 			</c:forEach>
 
 			<div class="essaylist">
-				<p><a href="${url}?start=20"><strong>>>查看该专家的所有论文</strong></a></p>
+				<p><a href="${url}&start=20"><strong>>>查看该专家的所有论文</strong></a></p>
 			</div>
         </div>
 		<div class="col-md-3">
@@ -92,7 +92,7 @@
 			</c:forEach>
 
 			<div class="momentlist">
-				<p><a href="${url1}?start=20"><strong>>>查看该专家的所有动态</strong></a></p>
+				<p><a href="${url1}&start=20"><strong>>>查看该专家的所有动态</strong></a></p>
 			</div>
 
 		</div>

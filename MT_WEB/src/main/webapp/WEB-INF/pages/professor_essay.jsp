@@ -15,7 +15,7 @@
     <link href="css/part1.css" rel="stylesheet">
 </head>
 <body onload="GetRequest()">
-<div id="totalpage" hidden="">10</div>
+<div id="totalpage" hidden="">${totalPage}</div>
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
@@ -59,22 +59,22 @@
                 </div>
             </c:forEach>
         </div>
-        <div id="fil-sor" class="col-md-4">
-            <h3 style="margin-top: 20px;margin-bottom: 10px;">结果筛选</h3>
-            <h4 style="margin-top: 20px;margin-bottom: 10px;">发表时间</h4>
-            <ul class="list-group list-unstyled">
-                <li id="filter1" class="filter"><a href="javascript:void(0);" onclick="filter(1)">2019年</a></li>
-                <li id="filter2" class="filter"><a href="javascript:void(0);" onclick="filter(2)">2018年起</a></li>
-                <li id="filter3" class="filter"><a href="javascript:void(0);" onclick="filter(3)">2017年起</a></li>
-                <li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">2016年起</a></li>
-                <li id="filter5" class="filter"><a href="javascript:void(0);" onclick="filter(5)">2015年起</a></li>
-            </ul>
-            <h4 style="margin-top: 20px;margin-bottom: 10px;">排序方式</h4>
-            <ul class="list-group list-unstyled">
-                <li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按被引次数排序</a></li>
-                <li id="sorter2" class="filter"><a href="javascript:void(0);" onclick="sorter(2)">按发表年份排序</a></li>
-            </ul>
-        </div>
+        <%--<div id="fil-sor" class="col-md-4">--%>
+            <%--<h3 style="margin-top: 20px;margin-bottom: 10px;">结果筛选</h3>--%>
+            <%--<h4 style="margin-top: 20px;margin-bottom: 10px;">发表时间</h4>--%>
+            <%--<ul class="list-group list-unstyled">--%>
+                <%--<li id="filter1" class="filter"><a href="javascript:void(0);" onclick="filter(1)">2019年</a></li>--%>
+                <%--<li id="filter2" class="filter"><a href="javascript:void(0);" onclick="filter(2)">2018年起</a></li>--%>
+                <%--<li id="filter3" class="filter"><a href="javascript:void(0);" onclick="filter(3)">2017年起</a></li>--%>
+                <%--<li id="filter4" class="filter"><a href="javascript:void(0);" onclick="filter(4)">2016年起</a></li>--%>
+                <%--<li id="filter5" class="filter"><a href="javascript:void(0);" onclick="filter(5)">2015年起</a></li>--%>
+            <%--</ul>--%>
+            <%--<h4 style="margin-top: 20px;margin-bottom: 10px;">排序方式</h4>--%>
+            <%--<ul class="list-group list-unstyled">--%>
+                <%--<li id="sorter1" class="filter"><a href="javascript:void(0);" onclick="sorter(1)">按被引次数排序</a></li>--%>
+                <%--<li id="sorter2" class="filter"><a href="javascript:void(0);" onclick="sorter(2)">按发表年份排序</a></li>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
     </div>
     <nav aria-label="Page navigation">
         <ul class="pagination paginationctm" id="pagerlist"></ul>
