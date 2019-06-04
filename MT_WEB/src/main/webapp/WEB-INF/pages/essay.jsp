@@ -15,7 +15,7 @@
     <link href="css/part1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 </head>
-<body style="background-color: #EEE;">
+<body style="background-color: #EEE;" onload="checkEssayType()">
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
