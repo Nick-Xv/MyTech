@@ -55,7 +55,7 @@ public class LocalEssayController {
     @RequestMapping(value = "/local_essay_to_update",params = "id")
     public String toUpdateByUser(int id,Map<String,Object> map) {
         map.put("localEssay",localEssayDao.select(id));
-        localEssayDao.delete(id);
+        localEssayDao.update(localEssayDao.select(id));
         return "local_essay_update";
     }
     @RequestMapping("/local_essay_update")

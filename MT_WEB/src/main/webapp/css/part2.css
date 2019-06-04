@@ -1,0 +1,102 @@
+table.tc-checkbox-1 tbody td:first-child,
+table.tc-checkbox-2 tbody td:nth-child(2),
+table.tc-checkbox-3 tbody td:nth-child(3),
+table.tc-checkbox-last tbody td:last-child {
+    text-align:left;
+}
+
+.nav>li>a {
+    padding: 0;
+}
+.nav>li>a:hover span {
+    color:#000;
+}
+
+.active {
+    width: 200px;
+}
+
+.admin-form .switch-primary > input:checked + label {
+    background: #881f88;
+    border-color: #881f88;
+}
+
+.admin-form .panel {
+    border: 0;
+}
+
+.admin-form .panel-primary.heading-border:before, .admin-form .panel-primary .heading-border:before {
+    background-color: #88185B;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #88185B;
+    border-color: #88185B;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #881f88;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #881f88;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.btn-primary:hover,
+.btn-primary{
+    color: #fff;
+    background-color: #88185B;
+    border-color: #88185B;
+}
+
+.sidebar-menu > li.active > a > span:nth-child(1) {
+    color: #fff;
+}
+
+.navbar .nav > li.dropdown.open .dropdown-menu, .navbar .nav > li.dropdown .open .dropdown-menu {
+    border-top-color: #88185B;
+}
+
+.admin-form.theme-primary .section-divider span {
+    color: #661f66;
+}
+
+.navbar .nav > li.dropdown.open .dropdown-menu:after, .navbar .nav > li.dropdown .open .dropdown-menu:after {
+    border-bottom-color: #88185B;
+}
+
+a {
+    color: #88185B;
+    text-decoration: none;
+}
+.sidebar-menu > li > ul > li.active > a:after, .sidebar-menu > li > ul > li > a.menu-open:after {
+    background: #88185B;
+}
+
+.sidebar-menu > li > ul > li.active > a > span:nth-child(1), .sidebar-menu > li > ul > li > a.menu-open > span:nth-child(1) {
+    color: #fff;
+}
+
+.admin-form .btn-primary:hover,
+.admin-form .btn-primary {
+    background-color: #88185B;
+}

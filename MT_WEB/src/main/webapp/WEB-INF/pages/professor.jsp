@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Bootstrap 模板</title>
+    <title>STUDYIO Professor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
                 <li>
-                    <a href="/MyTech/index">OTHER</a>
+					<a href="/MyTech/index">WELCOME</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">
@@ -87,7 +87,7 @@
 			<c:forEach items="${momentList}" var="moment">
 				<div class="momentlist">
 					<p>${moment.content}</p>
-					<p>发布于${moment.time}</p>
+					<p>发布于${moment.publishTime}</p>
 				</div>
 			</c:forEach>
 

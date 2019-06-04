@@ -113,6 +113,14 @@
 	width: auto;
 }
 
+.btnhold,
+.btnhold:hover,
+.btnhold:active{
+	background-color: #BBB;
+	margin: 0;
+	width: auto;
+}
+
 .btnpurchase {
 	background-color: #EE7621;
 	margin: 0;

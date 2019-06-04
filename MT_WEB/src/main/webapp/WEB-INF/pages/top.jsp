@@ -38,14 +38,9 @@
 <!-- 引入bootstrap-table样式 -->
 <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
-
+<link href="css/part2.css" rel="stylesheet">
 <style>
-    .nav>li>a {
-        padding: 0;
-    }
-    .nav>li>a:hover span {
-        color:#000;
-    }
+
 </style>
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -103,7 +98,7 @@
         </ul>
     </header>
     <aside id="sidebar_left" class="nano nano-light affix">
-        <div class="sidebar-left-content nano-content">
+        <div class="sidebar-left-content nano-content" >
             <header class="sidebar-header">
                 <div class="sidebar-widget author-widget">
                     <div class="media">
@@ -139,29 +134,12 @@
                         </a>
                     </li>
 
-                    <%--<li>--%>
-                        <%--<a href="/claim_voucher/to_add">--%>
-                            <%--<span class="fa fa-coffee"></span>--%>
-                            <%--<span class="sidebar-title">猜你喜欢</span>--%>
-                            <%--<span class="sidebar-title-tray">--%>
-                                <%--<span class="label label-xs bg-primary">New</span>--%>
-                            <%--</span>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
-
-                    <li class="active">
+                    <li>
                         <a href="/MyTech/user_moment">
                             <span class="fa fa-book"></span>
                             <span class="sidebar-title">专家动态</span>
                         </a>
                     </li>
-
-                    <%--<li>--%>
-                        <%--<a href="/claim_voucher/to_add">--%>
-                            <%--<span class="fa fa-at"></span>--%>
-                            <%--<span class="sidebar-title">领域动态</span>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
 
                     <li>
                         <a href="/MyTech/search">
@@ -196,7 +174,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="nav sub-nav">
-                            <li>
+                            <li class="active">
                                 <a href="/MyTech/local_essay_list">
                                     <span class="glyphicon glyphicon-calendar"></span> 我的文献 </a>
                             </li>
@@ -214,7 +192,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="nav sub-nav">
-                            <li>
+                            <li class="active">
                                 <a href="/MyTech/user_my_moment">
                                     <span class="glyphicon glyphicon-calendar"></span> 我的动态 </a>
                             </li>

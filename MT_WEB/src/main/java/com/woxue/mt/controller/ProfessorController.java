@@ -94,6 +94,11 @@ public class ProfessorController {
                         model.addAttribute("momenthid","");
                         model.addAttribute("hidden","");
                         model.addAttribute("id2",professor.getId());
+                        List<Trend> tList = sqlDealer.searchTrendByUserId2(id);
+                        Thesis tempT = new Thesis();
+                        if (tList.size() != 0) {
+                            model.addAttribute("momentList", tList);
+                        }
                         if(user!=null){
                             Watch temp = sqlDealer.searchWatchById(user.getId(),professor.getId());
                             if(temp==null){

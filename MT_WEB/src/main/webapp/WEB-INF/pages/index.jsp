@@ -41,25 +41,25 @@
     <div class="container">
         <h1>StudyIO</h1>
         <h2>科研成果聚集处。</h2>
-        <a class="btn btn-primary btn-sm" href="/MyTech/search" role="button">现在加入</a>
+        <a class="btn btn-primary btn-sm" href="/MyTech/search" role="button" style="margin-top: 20px; margin-bottom: 150px">现在加入</a>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h2>科技热点</h2>
-            <p>这里展示最近访问量较多的科技成果</p>
-        </div>
-        <div class="col-md-4">
-            <h2>科技热点</h2>
-            <p>这里展示最近访问量较多的科技成果</p>
-        </div>
-        <div class="col-md-4">
-            <h2>个性化推荐</h2>
-            <p>这里展示个性化推荐</p>
-        </div>
-    </div>
-</div>
+<%--<div class="container">--%>
+    <%--<div class="row">--%>
+        <%--<div class="col-md-4">--%>
+            <%--<h2>科技热点</h2>--%>
+            <%--<p>这里展示最近访问量较多的科技成果</p>--%>
+        <%--</div>--%>
+        <%--<div class="col-md-4">--%>
+            <%--<h2>科技热点</h2>--%>
+            <%--<p>这里展示最近访问量较多的科技成果</p>--%>
+        <%--</div>--%>
+        <%--<div class="col-md-4">--%>
+            <%--<h2>个性化推荐</h2>--%>
+            <%--<p>这里展示个性化推荐</p>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->

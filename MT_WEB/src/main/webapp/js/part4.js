@@ -14,6 +14,11 @@ function checkEssayType() {
 	}
 }
 
+window.addEventListener("pageshow", myFunction);
+function myFunction(event) {
+    //alert("页面是否从浏览器缓存中加载? " + event.persisted);
+}
+
 function checkwatch() {
 	if(watch.value=="true"){
 		watch.className="btntrue";
@@ -41,11 +46,11 @@ function watch1(id1, id2) {
                 if(watch.value=="false"){
                     watch.className="btntrue";
                     watch.value = "true";
-                    watch.innerHTML="已关注"
+                    watch.innerHTML="已关注";
                 } else if(watch.value=="true") {
                     watch.className="btnfalse";
                     watch.value = "false";
-                    watch.innerHTML="关注"
+                    watch.innerHTML="关注";
                 }
             },
             error:function (data) {
@@ -56,6 +61,10 @@ function watch1(id1, id2) {
 }
 
 function purchase(id1, id2) {
+	var temp = link.href;
+    link.classList.remove("btnpurchase");
+    link.classList.add("btnhold");
+    link.href="javascript:return false;";
 	$.ajax({
 	    url:"/MyTech/essay/purchase?id1="+id1+"&id2="+id2,
 	    type:'get',
@@ -70,7 +79,7 @@ function purchase(id1, id2) {
 					    dataType:'text',
 					    success:function(data){
 					        link.href=data;
-							link.classList.remove("btnjump");
+							link.classList.remove("btnhold");
 							link.classList.add("btndownload");
                             link.innerHTML="下载论文";
 					    },
@@ -79,9 +88,17 @@ function purchase(id1, id2) {
 					    }
 					});
 				}
+				else {
+                    link.classList.remove("btnhold");
+                    link.classList.add("btnpurchase");
+                    link.href=temp;
+				}
 			}
 			else{
 				alert("余额不足，请充值");
+                link.classList.remove("btnhold");
+                link.classList.add("btnpurchase");
+                link.href=temp;
 			}
 	    },
 	    error:function (data) {

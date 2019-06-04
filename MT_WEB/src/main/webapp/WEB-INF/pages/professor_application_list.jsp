@@ -15,12 +15,12 @@
                     <div class="row">
                         <div class="hidden-xs hidden-sm col-md-3">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default light">
-                                    <i class="fa fa-refresh"></i>
-                                </button>
-                                <button type="button" class="btn btn-default light">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                <%--<button type="button" class="btn btn-default light">--%>
+                                    <%--<i class="fa fa-refresh"></i>--%>
+                                <%--</button>--%>
+                                <%--<button type="button" class="btn btn-default light">--%>
+                                    <%--<i class="fa fa-trash"></i>--%>
+                                <%--</button>--%>
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-9 text-right">
@@ -39,7 +39,7 @@
                     <table id="message-table" class="table admin-form theme-warning tc-checkbox-1">
                         <thead>
                         <tr class="">
-                            <th class="text-center hidden-xs">Select</th>
+                            <%--<th class="text-center hidden-xs">Select</th>--%>
                             <th class="hidden-xs">用户ID</th>
                             <th class="hidden-xs">申请状态</th>
                             <th class="hidden-xs">申请时间</th>
@@ -49,12 +49,12 @@
                         <tbody>
                         <c:forEach items="${applications}" var="application">
                             <tr class="message-unread">
-                                <td class="hidden-xs">
-                                    <label class="option block mn">
-                                        <input type="checkbox" name="mobileos" value="FR">
-                                        <span class="checkbox mn"></span>
-                                    </label>
-                                </td>
+                                <%--<td class="hidden-xs">--%>
+                                    <%--<label class="option block mn">--%>
+                                        <%--<input type="checkbox" name="mobileos" value="FR">--%>
+                                        <%--<span class="checkbox mn"></span>--%>
+                                    <%--</label>--%>
+                                <%--</td>--%>
                                 <td>${application.userId}</td>
                                 <td>${application.state}</td>
                                 <td>${application.time}</td>

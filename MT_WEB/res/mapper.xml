@@ -422,7 +422,7 @@
         where 申请号 = #{id}
     </select>
 
-    <select id="selectUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
+    <select id="searchUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
         select 用户ID as userId, 论文ID as thesisId
         from 购买
         where 用户ID = #{userId}
@@ -501,7 +501,7 @@
         (
             select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
             from xuezhebiao as a
-            order by ach_num desc
+            order by cast(ach_num as signed integer) desc
             limit #{limit}
         ) as b
         order by rand()

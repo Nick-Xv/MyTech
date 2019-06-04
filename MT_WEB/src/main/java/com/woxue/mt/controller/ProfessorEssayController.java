@@ -40,10 +40,10 @@ public class ProfessorEssayController {
             try{
                 model.addAttribute("name",name);
                 SqlDealer sqlDealer = new SqlDealer();
-                List<ProfessorOwnThesis> tList = sqlDealer.searchProfessorOwnThesisByProfessorId(id,0,20);
-                int count = sqlDealer.searchProfessorOwnThesisCountByProfessorId(id);
-                System.out.println(count);
-                model.addAttribute("totalPage",count/20 + 1);
+                List<ProfessorOwnThesis> tList = sqlDealer.searchProfessorOwnThesisByProfessorId(id,st,st+20);
+                //int count = sqlDealer.searchProfessorOwnThesisCountByProfessorId(id);
+                //System.out.println(count);
+                //model.addAttribute("totalPage",count/20 + 1);
                 Thesis tempT = new Thesis();
                 List<Thesis> potThesisList = new ArrayList<Thesis>();
                 if(tList.size()!=0){
@@ -54,7 +54,7 @@ public class ProfessorEssayController {
                             potThesisList.add(tempT);
                             i++;
                         }
-                        if(i>=10)break;
+                        if(i>=15)break;
                     }
                     model.addAttribute("productList",potThesisList);
                 }

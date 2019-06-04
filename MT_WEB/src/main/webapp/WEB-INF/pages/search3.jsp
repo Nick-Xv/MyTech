@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
                 <li>
-                    <a href="/MyTech/index">OTHER</a>
+                    <a href="/MyTech/index">WELCOME</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">

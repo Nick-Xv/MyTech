@@ -19,12 +19,12 @@
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
         <div class="navbar-header navbar-hover">
-            <a class="navbar-brand" href="/MyTech/index">STUDYIO</a>
+            <a class="navbar-brand" href="/MyTech/search">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
                 <li>
-                    <a href="/MyTech/index">OTHER</a>
+                    <a href="/MyTech/index">WELCOME</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">

@@ -82,8 +82,8 @@
                       '<a href="'+value+'">查看论文</a>'
                   ].join("")
               } },
-          { title: '操作', field: 'id', formatter: function (value,row,index) {
-                  return '<button id="deleteBtn" onclick="deleteBtn(`' + value + '`)">删除</button><button id="updateBtn" onclick="updateBtn(`' + value + '`)">修改</button>';
+          { title: '操作', field: 'id', width: 120, formatter: function (value,row,index) {
+                  return '<button  id="deleteBtn" onclick="deleteBtn(`' + value + '`)">删除</button><button id="updateBtn" onclick="updateBtn(`' + value + '`)">修改</button>';
               } }
       ]
     });

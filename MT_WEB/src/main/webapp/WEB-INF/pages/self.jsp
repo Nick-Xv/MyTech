@@ -13,7 +13,7 @@
             <div class="panel heading-border">
                 <div class="panel-body bg-light">
                     <div class="section-divider mt20 mb40">
-                        <span> 基本信息 </span>
+                        <span  style="color: #661f66;"> 基本信息 </span>
                     </div>
                     <div class="section row">
                         <div class="col-md-2"><strong>用户身份</strong></div>
@@ -66,9 +66,9 @@
                         </div>
                     </c:if>
                     <div class="panel-footer text-right">
-                        <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
+                        <button type="button" class="button" style="background-color: #88185B;" onclick="javascript:window.history.go(-1);"> 返回 </button>
                         <a href="/MyTech/user_to_update_by_user?id=${sessionScope.user.id}">
-                            <button type="button" class="button btn-default"> 修改 </button>
+                            <button type="button" style="background-color: #88185B;" class="button btn-default"> 修改 </button>
                         </a>
                     </div>
                 </div>

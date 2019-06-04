@@ -24,7 +24,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
                 <li>
-                    <a href="/MyTech/index">OTHER</a>
+                    <a href="/MyTech/index">WELCOME</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">
@@ -52,7 +52,7 @@
             <c:forEach items="${momentList}" var="moment">
                 <div class="momentlist2">
                     <h4>${moment.content}</h4>
-                    <p>发布于${moment.time}</p>
+                    <p>发布于${moment.publishTime}</p>
                 </div>
             </c:forEach>
         </div>

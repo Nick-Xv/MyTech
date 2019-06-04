@@ -13,7 +13,7 @@
                 <form:form action="/MyTech/user_update_by_user" modelAttribute="user"  id="admin-form" name="addForm">
                     <div class="panel-body bg-light">
                         <div class="section-divider mt20 mb40">
-                            <span> 基本信息 </span>
+                            <span  style="color: #661f66;"> 基本信息 </span>
                         </div>
                         <div class="section row">
                             <div class="col-md-6">
@@ -77,8 +77,8 @@
                             </label>
                         </div>
                         <div class="panel-footer text-right">
-                            <button type="submit" class="button"> 保存 </button>
-                            <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
+                            <button type="submit" style="background-color: #88185B;"  class="button"> 保存 </button>
+                            <button type="button" style="background-color: #88185B;" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
                         </div>
                     </div>
                 </form:form>

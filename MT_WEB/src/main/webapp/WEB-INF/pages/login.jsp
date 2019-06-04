@@ -13,21 +13,22 @@
     <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
     <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.css">
     <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/part2.css">
 </head>
-<body class="external-page external-alt sb-l-c sb-r-c">
-<div id="main" class="animated fadeIn">
+<body class="external-page external-alt sb-l-c sb-r-c" style="background-color: #661F66;">
+<div id="main" class="animated fadeIn" style="background-color: #661f66;">
     <section id="content_wrapper">
-        <section id="content">
-            <div class="admin-form theme-info mw500" id="login">
+        <section id="content" style="background-color: #661f66;">
+            <div id="login" class="admin-form theme-info mw500">
                 <div class="content-header">
-                    <h1> MyTech</h1>
-                    <p class="lead">欢迎使用科技专家资源共享平台</p>
+                    <h1 style="color:#fff;"> MyTech</h1>
+                    <p class="lead" style="color:#fff;">欢迎使用科技专家资源共享平台</p>
                 </div>
-                <div class="panel mt30 mb25">
-                    <form method="post" action="login" id="contact">
-                        <div class="panel-body bg-light p25 pb15">
-                            <div class="section">
-                                <label for="id" class="field-label text-muted fs18 mb10">账号</label>
+                <div class="panel mt30 mb25" style="border-radius:0;background-color: #661f66;/* width: 560px; */">
+                    <form method="post" action="http://localhost:8080/MyTech/login" id="contact" style="border-radius=0;">
+                        <div class="panel-body bg-light p25 pb15" style="background-color: #fff;padding: 50px 30px;/* width: 560px; */text-align:center;height:275px;vertical-align:middle;display: table-cell;">
+                            <div class="section" style="width:400px; display:inline-block;padding-bottom:10px;">
+                                <label for="id" class="field-label text-muted fs18 mb10" style="color:#661f66; text-align:left;">账号</label>
                                 <span class="text-info">${success_message}</span>
                                 <label for="id" class="field prepend-icon">
                                     <input type="text" name="id" id="id" class="gui-input" placeholder="请输入账号...">
@@ -36,19 +37,19 @@
                                     </label>
                                 </label>
                             </div>
-                            <div class="section">
-                                <label for="password" class="field-label text-muted fs18 mb10">密码</label>
-                                <label for="password" class="field prepend-icon">
-                                    <input type="password" name="password" id="password" class="gui-input" placeholder="请输入密码...">
+                            <div class="section" style="width:400px; display:inline-block;text-align:left;">
+                                <label for="password" class="field-label text-muted fs18 mb10" style="color:#661f66;">密码</label>
+                                <label for="password" class="field prepend-icon" style="text-align:center;">
+                                    <input placeholder="请输入密码..." class="gui-input" id="password" name="password" type="password">
                                     <label for="password" class="field-icon">
                                         <i class="fa fa-lock"></i>
                                     </label>
                                 </label>
                             </div>
                         </div>
-                        <div class="panel-footer clearfix">
-                            <button type="submit" class="button btn-primary mr10 pull-right">登录</button>
-                            <a href="/MyTech/to_register">
+                        <div class="panel-footer clearfix" style="border-radius:0;">
+                            <button type="submit" class="button btn-primary mr10 pull-right" style="background-color: #661f66;">登录</button>
+                            <a href="http://localhost:8080/MyTech/to_register">
                                 <span class="button btn-default mr10 pull-right">注册</span>
                             </a>
                             <label class="switch ib switch-primary mt10">

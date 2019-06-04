@@ -31,9 +31,9 @@
                     </div>
                 </div>
                 <div class="panel-body pn">
-                    <table id="message-table" class="table admin-form theme-warning tc-checkbox-1">
+                    <table id="message-table" class="table admin-form theme-warning tc-checkbox-1 tbctm">
                         <thead>
-                        <tr class="">
+                        <tr class="message-unread">
                             <th class="hidden-xs">专家</th>
                             <th class="hidden-xs">内容</th>
                             <th class="hidden-xs">时间</th>
