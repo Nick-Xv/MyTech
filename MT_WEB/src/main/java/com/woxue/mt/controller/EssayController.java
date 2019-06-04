@@ -85,11 +85,14 @@ public class EssayController {
                             }
                         }
                         model.addAttribute("href",href);
+                        model.addAttribute("hid","");
+                        model.addAttribute("score",thesis.getScore());
                     }
                     else{
                         sqlDealer.updateClick2(thesis);
                         model.addAttribute("type","0");
                         model.addAttribute("href",thesis.getUrl());
+                        model.addAttribute("hid","hidden");
                     }
                     model.addAttribute("id",thesis.getId());
                     model.addAttribute("title",thesis.getTitle());

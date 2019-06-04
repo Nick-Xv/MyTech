@@ -62,6 +62,8 @@
                 <p style="font-size: 40px;">${clickcount}</p>
                 <h4 style="margin-top: 20px;">网友评分</h4>
                 <p style="font-size: 20px;">${grade}</p>
+                <h4 style="margin-top: 20px;" ${hid}>积分</h4>
+                <p style="font-size: 20px;" ${hid}>${score}</p>
             </div>
         </div>
     </div>
