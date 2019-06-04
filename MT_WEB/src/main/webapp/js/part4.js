@@ -56,10 +56,6 @@ function watch1(id1, id2) {
 }
 
 function purchase(id1, id2) {
-    if(id1 == "null"){
-    	window.location.href("/MyTech/to_login");
-    	return;
-	}
 	$.ajax({
 	    url:"/MyTech/essay/purchase?id1="+id1+"&id2="+id2,
 	    type:'get',
@@ -76,6 +72,7 @@ function purchase(id1, id2) {
 					        link.href=data;
 							link.classList.remove("btnjump");
 							link.classList.add("btndownload");
+                            link.innerHTML="下载论文";
 					    },
 					    error:function (data) {
 					        alert("炸了");

@@ -264,6 +264,7 @@
         select ID as id, 关注领域 as focusArea, 积分值 as score, 密码 as password, 昵称 as nickname, 手机号 as phoneNumber, 邮箱 as email
         from 用户
         where ID = #{id}
+        limit 1
     </select>
 
     <update id="updateUser">

@@ -20,12 +20,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class responseData{
-    String result;
-    String price;
-}
-
-
 @Controller
 @RequestMapping("/essay")
 public class EssayController {
@@ -44,15 +38,12 @@ public class EssayController {
         Timestamp time1 = new Timestamp(new Date().getTime());
         String time = df.format(time1);
 
-        model.addAttribute("id1","a123");
-        model.addAttribute("id2","a-321");
-
         String id = request.getParameter("id");
         String comment = request.getParameter("comment");
         String rating = request.getParameter("rating");
 
 
-        if(id == null || id == ""){
+        if(id == null || id .equals("") ){
             model.addAttribute("title","数据库中没有此论文");
         }
         else{
@@ -61,29 +52,44 @@ public class EssayController {
                 Thesis thesis = new Thesis();
                 thesis = sqlDealer.searchThesisById(id);
                 boolean bought = false;
-                if(user != null){
-                    List<UserBuyThesis> userThesis = sqlDealer.searchUserBuyThesisByUserId(user.getId(),0,999);
-                    if(userThesis.size()!=0){
-                        for(UserBuyThesis temp : userThesis){
-                            if(temp.userId.equals(user.getId()) && temp.thesisId.equals(id) ){
-                                bought = true;
-                            }
-                        }
-
-                        //
-                    }
-                }
 
                 if(thesis != null){
                     System.out.println("点击数"+thesis.getClickCount());
                     thesis.clickCount++;
                     if(thesis.getPublishTime()==null){
                         sqlDealer.updateClick1(thesis);
-                        //model.addAttribute("buylink","购买");
+
+                        String id1,id2,href="";
+                        if(user==null){
+                            href="/MyTech/to_login";
+                            model.addAttribute("type","1");
+                        }
+                        else{
+                            id1 = user.getId();
+                            id2 = thesis.getId();
+                            boolean judge = false;
+                            List<UserBuyThesis> boughtList = sqlDealer.searchUserBuyThesisByUserId(user.getId(),0,99);
+                            for(UserBuyThesis temp : boughtList){
+                                if(thesis.getId() .equals(temp.getThesisId()) ){
+                                    judge = true;
+                                    break;
+                                }
+                            }
+                            if(judge){
+                                model.addAttribute("type","2");
+                                href="http://94.191.112.232:8080/UploadTest/DownloadServlet?id="+thesis.getProfessorId()+"&filename="+thesis.getUrl();
+                            }
+                            else{
+                                model.addAttribute("type","1");
+                                href="javascript:purchase(&quot;"+id1+"&quot;,&quot;"+id2+"&quot;);";
+                            }
+                        }
+                        model.addAttribute("href",href);
                     }
                     else{
                         sqlDealer.updateClick2(thesis);
-                        //model.addAttribute("buylink","外部链接");
+                        model.addAttribute("type","0");
+                        model.addAttribute("href",thesis.getUrl());
                     }
                     model.addAttribute("id",thesis.getId());
                     model.addAttribute("title",thesis.getTitle());
@@ -148,10 +154,23 @@ public class EssayController {
     public String purchase(HttpServletRequest request){
         String id1 = request.getParameter("id1");
         String id2 = request.getParameter("id2");
-        responseData res = new responseData();
-        res.price = "123";
-        res.result = "true";
-        return "{\"result\":\"true\",\"price\":\"123\"}";
+        try{
+            SqlDealer sqlDealer = new SqlDealer();
+            com.woxue.mt.sqldealer.User user = sqlDealer.searchUserById(id1);
+            int score = user.getScore();
+            Thesis temp = sqlDealer.searchThesisById(id2);
+            if(score>=temp.getScore()){
+                //user.setScore(score-temp.getScore());
+                //sqlDealer.updateUser(user);
+                return "{\"result\":\"true\",\"price\":\""+temp.getScore()+"\"}";
+            }
+            else{
+                return "{\"result\":\"false\"}";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @ResponseBody
@@ -159,14 +178,21 @@ public class EssayController {
     public String confirm(HttpServletRequest request){
         String id1 = request.getParameter("id1");
         String id2 = request.getParameter("id2");
-        return "true";
-    }
-
-    @ResponseBody
-    @RequestMapping("/insEssay")
-    public String insEssay(HttpServletRequest request){
-        String id1 = request.getParameter("id1");
-        String id2 = request.getParameter("id2");
-        return "true";
+        try{
+            SqlDealer sqlDealer = new SqlDealer();
+            com.woxue.mt.sqldealer.User user = sqlDealer.searchUserById(id1);
+            int score = user.getScore();
+            Thesis temp = sqlDealer.searchThesisById(id2);
+                user.setScore(score-temp.getScore());
+                sqlDealer.updateUser(user);
+                UserBuyThesis buyInfo = new UserBuyThesis();
+                buyInfo.setUserId(user.getId());
+                buyInfo.setThesisId(temp.getId());
+                sqlDealer.insertUserBuyThesis(buyInfo);
+                return "http://94.191.112.232:8080/UploadTest/DownloadServlet?id="+temp.getProfessorId()+"&filename="+temp.getUrl();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
     }
 }
