@@ -22,7 +22,7 @@ public class ProfessorController {
         if(user != null){
             model.addAttribute("login","欢迎！ "+ user.getName());
             model.addAttribute("jump","self");
-            model.addAttribute("id1",user.getName());
+            model.addAttribute("id1",user.getId());
             model.addAttribute("id2","null");
         }
         else{
