@@ -24,32 +24,40 @@ function checkwatch() {
 	}
 }
 function watch1(id1, id2) {
-    alert(id1);
-    alert(id2);
-	$.ajax({
-	    url:"/MyTech/professor/watch?id1="+id1+"&id2="+id2,
-	    type:'get',
-	    dataType:'text',
-	    success:function(data){
-	        if(watch.value=="false"){
-	        	watch.className="btntrue";
-	        	watch.innerHTML="已关注"
-	        } else if(watch.value=="true") {
-	        	watch.className="btnfalse";
-	        	watch.innerHTML="关注"
-	        }
-	    },
-	    error:function (data) {
-	        alert("炸了");
-	    }
-	});
+    if(id1=="null"){
+    	// alert("!!!");
+    	window.location.href="/MyTech/to_login";
+	}
+	else if(id2=="null"){
+		return;
+	}
+	else{
+        // alert("???");
+        $.ajax({
+            url:"/MyTech/professor/watch?id1="+id1+"&id2="+id2,
+            type:'get',
+            dataType:'text',
+            success:function(data){
+                if(watch.value=="false"){
+                    watch.className="btntrue";
+                    watch.value = "true";
+                    watch.innerHTML="已关注"
+                } else if(watch.value=="true") {
+                    watch.className="btnfalse";
+                    watch.value = "false";
+                    watch.innerHTML="关注"
+                }
+            },
+            error:function (data) {
+                alert("炸了");
+            }
+        });
+	}
 }
 
 function purchase(id1, id2) {
-	alert(id1);
-    alert(id2);
-    if(id1 == " "){
-    	window.location.href("/MyTech/login");
+    if(id1 == "null"){
+    	window.location.href("/MyTech/to_login");
     	return;
 	}
 	$.ajax({

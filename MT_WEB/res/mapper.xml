@@ -406,4 +406,32 @@
         where 论文DOI = #{id}
     </update>
 
+    <select id="searchWatchById" resultType="com.woxue.mt.sqldealer.Watch">
+        select ID1 as id1, ID2 as id2
+        from 关注
+        where ID1 = #{id1} and ID2 = #{id2}
+        limit 1
+    </select>
+
+    <select id="searchWatchAllById" resultType="com.woxue.mt.sqldealer.Watch">
+        select ID1 as id1, ID2 as id2
+        from 关注
+        where ID1 = #{id1}
+    </select>
+
+    <insert id="insertWatch">
+        insert into 关注(ID1, ID2)
+        values(#{id1}, #{id2})
+    </insert>
+
+    <delete id="deleteWatchById">
+        delete from 关注
+        where ID1 = #{id1} and ID2 = #{id2}
+    </delete>
+
+    <select id="searchLocalThesisById" resultType="com.woxue.mt.sqldealer.Thesis">
+        select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score, 点击次数 as clickCount
+            from 本站论文
+            where 专家ID = #{id}
+    </select>
 </mapper>

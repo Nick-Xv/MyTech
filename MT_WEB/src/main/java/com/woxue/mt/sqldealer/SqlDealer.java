@@ -489,6 +489,71 @@ public class SqlDealer
         sqlSession.commit();
     }
 
+    /**
+     * 根据ID搜索关注关系
+     * @param id1 用户ID
+     * @param id2 专家ID
+     * @return 搜索结果
+     */
+    public Watch searchWatchById(String id1, String id2)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        args.put("id2", id2);
+        return sqlSession.selectOne("mapper.searchWatchById", args);
+    }
+
+    /**
+     * 根据ID搜索全部关注关系
+     * @param id1 用户ID
+     * @return 搜索结果
+     */
+    public List<Watch> searchWatchAllById(String id1)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        return sqlSession.selectList("mapper.searchWatchAllById", args);
+    }
+
+    /**
+     * 插入关注表
+     * @param id1 用户ID
+     * @param id2 专家ID
+     * @return 搜索结果
+     */
+    public void insertWatch(String id1, String id2)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        args.put("id2", id2);
+        sqlSession.insert("mapper.insertWatch", args);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID删除关注
+     * @param id1 删除的ID1
+     * @param id2 删除的ID2
+     */
+    public void deleteWatchById(String id1,String id2)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        args.put("id2", id2);
+        sqlSession.delete("mapper.deleteWatchById", args);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据专家ID搜索本站论文
+     * @param id 用户ID
+     * @return 搜索结果
+     */
+    public List<Thesis> searchLocalThesisById(String id)
+    {
+        return sqlSession.selectList("mapper.searchLocalThesisById", id);
+    }
+
     //析构函数
     protected void finalize()
     {
