@@ -171,6 +171,9 @@ public class ManagerController {
         String title = request.getParameter("title");
         String author = request.getParameter("author");
         String keyword = request.getParameter("keyword");
+        if (title == null) title = "";
+        if (author == null) author = "";
+        if (keyword == null) keyword = "";
         List<String> titleList = string2List(title);
         List<String> authorList = string2List(author);
         List<String> keywordList = string2List(keyword);

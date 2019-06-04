@@ -68,7 +68,6 @@ public class Program
 
             //根据科技专家ID搜索论文
             {
-                //根据科技专家ID搜索专家拥有论文
                 String professorId = "CN-BF73U50J";
                 int limitStart = 0;
                 int limitEnd = 5;
@@ -131,7 +130,7 @@ public class Program
 //                for (Thesis thesis : theses)
 //                    thesis.display();
 //            }
-            
+
             //搜索科技专家
             {
                 String id="xyh";
