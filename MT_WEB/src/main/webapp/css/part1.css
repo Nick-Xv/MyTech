@@ -99,6 +99,31 @@
 	width: 90px;
 }
 
+.btnctm:focus,
+.btnctm.focus
+ {
+  outline: 20px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  color: #FFF;
+}
+
+.btnjump {
+	background-color: #661F66;
+	margin: 0;
+	width: auto;
+}
+
+.btnpurchase {
+	background-color: #EE7621;
+	margin: 0;
+	width: auto;
+}
+
+.btndownload {
+	margin: 0;
+	width: auto;
+}
+
 .btnfalse {
 	margin-top: 8px;
 	border: 0;
@@ -143,7 +168,8 @@
 	float:right;
 	background-color: #661F66;
 	display: inline-block;
-	margin-top: 0;
+	margin-top: 10px;
+	width: auto;
 }
 
 #btn2:hover {
@@ -177,9 +203,9 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-right: 15px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	/*white-space: nowrap;*/
+	/*overflow: hidden;*/
+	/*text-overflow: ellipsis;*/
 }
 
 .momentlist {
@@ -206,14 +232,14 @@
 	background-color: #F8F8F8;
 }
 
-a {
-	color: #2149FF;
-}
+/*a {*/
+	/*color: #2149FF;*/
+/*}*/
 
-a:hover {
-	color: #5179FF;
-	text-decoration: none;
-}
+/*a:hover {*/
+	/*color: #5179FF;*/
+	/*text-decoration: none;*/
+/*}*/
 
 .filter {
 	padding-top: 5px;
@@ -231,6 +257,24 @@ a:hover {
 
 .filterselected a {
 	color: #661F66;
+}
+
+.patent h2,
+.patent h3 {
+	padding-top: 30px;
+}
+
+.patent p {
+	padding-top:10px;
+}
+
+.info1 {
+	margin-top:20px;
+	margin-bottom:10px;
+}
+
+.info2 {
+	margin-bottom: 20px;
 }
 
 .paginationctm >.active>a,
@@ -252,16 +296,16 @@ a:hover {
   font-family: 'FontAwesome'; 
   margin-top: 10px;
 } 
-.star-rating > fieldset { 
+.star-rating { 
   border: none; 
   display: inline-block; 
 } 
-.star-rating > fieldset > input { 
+.star-rating > input { 
   position: absolute; 
   top: -9999px; 
   clip: rect(0, 0, 0, 0); 
 } 
-.star-rating > fieldset > label { 
+.star-rating > label { 
   float: right; 
   width: 1em; 
   padding: 0 .05em; 
@@ -271,21 +315,21 @@ a:hover {
   font-size: 200%; 
   color: #661F66; 
 } 
-.star-rating > fieldset > label:before { 
+.star-rating > label:before {
   content: '\f006  '; 
 } 
-.star-rating > fieldset > label:hover, 
-.star-rating > fieldset > label:hover ~ label { 
+.star-rating > label:hover, 
+.star-rating > label:hover ~ label { 
   color: #661F66;  
 } 
-.star-rating > fieldset > label:hover:before, 
-.star-rating > fieldset > label:hover ~ label:before { 
+.star-rating > label:hover:before, 
+.star-rating > label:hover ~ label:before { 
   content: '\f005  '; 
 } 
-.star-rating > fieldset > input:checked ~ label:before { 
+.star-rating > input:checked ~ label:before { 
   content: '\f005  '; 
 } 
-.star-rating > fieldset > label:active { 
+.star-rating > label:active { 
   position: relative; 
   top: 2px; 
 }

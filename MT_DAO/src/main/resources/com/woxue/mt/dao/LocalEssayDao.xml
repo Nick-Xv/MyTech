@@ -16,7 +16,7 @@
 
 <!--#后面放的是实体类的属性名，不是数据库表的字段名-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="LocalEssay">
-        insert into 本站论文 values(#{id},#{professorId},#{title},#{author},#{keyword},#{introduce},#{link},#{credit})
+        insert into 本站论文 (专家ID,标题,作者,关键字,简介,链接,积分) values(#{professorId},#{title},#{author},#{keyword},#{introduce},#{link},#{credit})
     </insert>
 
     <update id="update" parameterType="LocalEssay">

@@ -329,6 +329,20 @@ public class SqlDealer
         return sqlSession.selectList("mapper.searchTrendByProfessorId", args);
     }
 
+    public List<Trend> searchTrendByUserId(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectList("mapper.searchTrendByUserId", args);
+    }
+
+    public List<Trend> searchTrendByUserId2(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectList("mapper.searchTrendByUserId2", args);
+    }
+
     /**
      * 插入动态
      * @param trend 插入的动态
@@ -346,6 +360,19 @@ public class SqlDealer
     public void deleteTrendById(String id)
     {
         sqlSession.delete("mapper.deleteTrendById", id);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID更新动态
+     * @param id 更新的ID
+     */
+    public void updateTrendById(String id,String content)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        args.put("content",content);
+        sqlSession.update("mapper.updateTrendById", args);
         sqlSession.commit();
     }
 
@@ -374,17 +401,13 @@ public class SqlDealer
     /**
      * 根据科技专家ID搜索关系网络
      * @param professorId 科技专家ID
-     * @param limitStart 起始索引（包括）
-     * @param limitEnd 结束索引（不包括）
      * @return 搜索结果
      */
-    public List<Relationship> searchRelationshipByProfessorId(String professorId, int limitStart, int limitEnd)
+    public Relationship searchRelationshipByProfessorId(String professorId)
     {
         HashMap<String, Object> args = new HashMap<>();
         args.put("professorId", professorId);
-        args.put("limit1", limitStart);
-        args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.searchRelationshipByProfessorId", args);
+        return sqlSession.selectOne("mapper.searchRelationshipByProfessorId", args);
     }
 
     /**
@@ -446,6 +469,16 @@ public class SqlDealer
     }
 
     /**
+     * 根据ID搜索专利
+     */
+    public Patent searchPatentById(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectOne("mapper.searchPatentById", args);
+    }
+
+    /**
      * 根据用户ID搜索用户购买论文
      * @param userId 科技专家ID
      * @param limitStart 起始索引（包括）
@@ -472,7 +505,7 @@ public class SqlDealer
     }
 
     /**
-     * 更新论文点击数
+     * 更新论文平均分
      * @param t 更新后的论文
      */
     public void updateClick1(Thesis t)
@@ -485,6 +518,93 @@ public class SqlDealer
     {
         sqlSession.update("mapper.updateThesisClick2", t);
         sqlSession.commit();
+    }
+
+    public void updateGrade1(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisGrade1", t);
+        sqlSession.commit();
+    }
+
+    public void updateGrade2(Thesis t)
+    {
+        sqlSession.update("mapper.updateThesisGrade2", t);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID搜索关注关系
+     * @param id1 用户ID
+     * @param id2 专家ID
+     * @return 搜索结果
+     */
+    public Watch searchWatchById(String id1, String id2)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        args.put("id2", id2);
+        return sqlSession.selectOne("mapper.searchWatchById", args);
+    }
+
+    /**
+     * 根据ID搜索全部关注关系
+     * @param id1 用户ID
+     * @return 搜索结果
+     */
+    public List<Watch> searchWatchAllById(String id1)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        return sqlSession.selectList("mapper.searchWatchAllById", args);
+    }
+
+    /**
+     * 插入关注表
+     * @param id1 用户ID
+     * @param id2 专家ID
+     * @return 搜索结果
+     */
+    public void insertWatch(String id1, String id2)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        args.put("id2", id2);
+        sqlSession.insert("mapper.insertWatch", args);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID删除关注
+     * @param id1 删除的ID1
+     * @param id2 删除的ID2
+     */
+    public void deleteWatchById(String id1,String id2)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id1", id1);
+        args.put("id2", id2);
+        sqlSession.delete("mapper.deleteWatchById", args);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据专家ID搜索本站论文
+     * @param id 用户ID
+     * @return 搜索结果
+     */
+    public List<Thesis> searchLocalThesisById(String id)
+    {
+        return sqlSession.selectList("mapper.searchLocalThesisById", id);
+    }
+
+    /**
+     * 根据用户ID搜索已购资源
+     * @param id 用户ID
+     * @return 搜索结果
+     */
+    public List<Thesis> searchBoughtThesisById(String id)
+    {
+        return sqlSession.selectList("mapper.searchBoughtThesisById", id);
     }
 
     //析构函数

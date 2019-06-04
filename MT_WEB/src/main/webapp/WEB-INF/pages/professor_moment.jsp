@@ -55,18 +55,6 @@
                     <p>发布于${moment.time}</p>
                 </div>
             </c:forEach>
-            <div class="momentlist2">
-                <h4>${moment.content}</h4>
-                <p>发布于${moment.time}</p>
-            </div>
-            <div class="momentlist2">
-                <h4>${moment.content}</h4>
-                <p>发布于${moment.time}</p>
-            </div>
-            <div class="momentlist2">
-                <h4>${moment.content}</h4>
-                <p>发布于${moment.time}</p>
-            </div>
         </div>
     </div>
     <nav aria-label="Page navigation">

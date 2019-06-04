@@ -62,8 +62,8 @@
                                 <td>${localEssay.author}</td>
                                 <td>${localEssay.introduce}</td>
                                 <td>
-                                    <a href="/MyTech/user_to_update?id=${localEssay.id}">编辑</a>
-                                    <a href="/MyTech/user_remove?id=${localEssay.id}">删除</a>
+                                    <a href="/MyTech/local_essay_to_update?id=${localEssay.id}">编辑</a>
+                                    <a href="/MyTech/local_essay_remove?id=${localEssay.id}">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>

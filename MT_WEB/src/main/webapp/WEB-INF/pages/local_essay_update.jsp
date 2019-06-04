@@ -1,11 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="top.jsp"/>
-<%--上传文献界面--%>
+<%--修改文献界面--%>
 <section id="content" class="table-layout animated fadeIn">
     <div class="tray tray-center">
         <div class="content-header">
-            <h2> 上传文献 </h2>
+            <h2> 修改文献信息 </h2>
             <p class="lead"></p>
         </div>
         <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
@@ -15,7 +15,9 @@
                         <div class="section-divider mt20 mb40">
                             <span> 基本信息 </span>
                         </div>
-
+                        <div style="display: none">
+                        <form:input path="id" cssClass="gui-input"/>
+                        </div>
                         <div class="section">
                             <label class="field-label text-muted fs14 mb10">标题</label>
                             <label for="title" class="field prepend-icon">
@@ -69,15 +71,6 @@
                         <div class="section-divider mt20 mb40">
                             <span> 上传文件 </span>
                         </div>
-
-                        <%--改这里！！！--%>
-                        <form method="post" action="/TomcatTest/UploadServlet" enctype="multipart/form-data">
-                            选择一个文件:
-                            <input type="file" name="uploadFile" />
-                            <br/><br/>
-                            <button type="submit" class="button"> 上传 </button>
-                        </form>
-                        <%--改这里！！！--%>
 
                         <div class="panel-footer text-right">
                             <button type="submit" class="button"> 确定 </button>
