@@ -102,6 +102,7 @@
         (
             select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
             from 论文表 as a
+            where 发表时间 in ("2019","2018")
             order by cast(被引次数 as signed integer) desc, 论文DOI asc
             limit #{limit}
         ) as b
@@ -291,21 +292,43 @@
     </delete>
 
     <select id="searchTrendByProfessorId" resultType="com.woxue.mt.sqldealer.Trend">
-        select ID as id, 专家ID as professorId, 内容 as content, 时间 as publishTime
+        select ID as id, 专家ID as professorId, 内容 as content, 时间 as publishTime, 专家名 as profName
         from 动态
         where 专家ID = #{id}
         limit #{limit1}, #{limit2}
     </select>
 
+    <select id="searchTrendByUserId" resultType="com.woxue.mt.sqldealer.Trend">
+        select ID as id, 专家ID as professorId, 内容 as content, 时间 as publishTime, 专家名 as profName
+        from 动态
+        where 专家ID in (
+          select ID2 as 专家ID from 关注 where ID1 = #{id}
+        ) or 专家ID = #{id}
+        order by publishTime desc
+    </select>
+
+    <select id="searchTrendByUserId2" resultType="com.woxue.mt.sqldealer.Trend">
+        select ID as id, 专家ID as professorId, 内容 as content, 时间 as publishTime, 专家名 as profName
+        from 动态
+        where 专家ID = #{id}
+        order by publishTime desc
+    </select>
+
     <insert id="insertTrend">
-        insert into 动态(专家ID, 内容, 时间)
-        values(#{professorId}, #{content}, #{publishTime})
+        insert into 动态(专家ID, 内容, 时间, 专家名)
+        values(#{professorId}, #{content}, #{publishTime},#{profName})
     </insert>
 
     <delete id="deleteTrendById">
         delete from 动态
         where ID = #{id}
     </delete>
+
+    <update id="updateTrendById">
+        update 动态
+            set 内容 = #{content}
+        where ID = #{id}
+    </update>
 
     <select id="searchCommentByThesisId" resultType="com.woxue.mt.sqldealer.Comment">
         select ID as id, 发起者ID as userId, 论文ID as thesisId, 内容 as content, 评分 as score, 发表时间 as publishTime
@@ -434,5 +457,13 @@
         select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score, 点击次数 as clickCount
             from 本站论文
             where 专家ID = #{id}
+    </select>
+
+    <select id="searchBoughtThesisById" resultType="com.woxue.mt.sqldealer.Thesis">
+        select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score, 点击次数 as clickCount
+            from 本站论文
+            where ID in (
+                select 论文ID as ID from 购买 where 用户ID = #{id}
+            )
     </select>
 </mapper>

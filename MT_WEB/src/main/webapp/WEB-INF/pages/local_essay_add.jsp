@@ -93,7 +93,6 @@
     </div>
 </section>
 <script type="text/javascript">
-    // var form = new FormData(document.getElementById("form2"));
     function submitTwo() {
         var f = document.getElementById("uploadFile").files;
         var form = document.getElementById("form2");
@@ -113,13 +112,6 @@
         }catch (e) {
             alert("请选择上传文件！");
         }
-        // alert(title.value);
-        // alert(author.value);
-        // alert(keyword.value);
-        // alert(introduce.value);
-        // alert(credit.value);
-
-        //form.submit();
     }
 </script>
 <jsp:include page="bottom.jsp"/>

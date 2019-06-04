@@ -1,4 +1,5 @@
 package com.woxue.mt.controller;
+
 import com.woxue.mt.entity.User;
 import com.woxue.mt.sqldealer.SqlDealer;
 import com.woxue.mt.sqldealer.Thesis;
@@ -12,26 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class SearchController {
-    @RequestMapping("/search")
-    public String printSearch(ModelMap model, HttpSession session, User user){
+@RequestMapping("/purchasePage")
+public class PurchasePageController {
+    @RequestMapping(method = RequestMethod.GET)
+    public String printPage(ModelMap model, HttpSession session, User user){
         user = (User)session.getAttribute("user");
-        if(user != null){
-            model.addAttribute("login","欢迎！ "+ user.getName());
-            model.addAttribute("jump","self");
-        }
-        else{
-            model.addAttribute("login","登录");
-            model.addAttribute("jump","to_login");
-        }
         try{
             SqlDealer sqlDealer = new SqlDealer();
-            List<Thesis> trend =  new ArrayList<>();
-            trend = sqlDealer.searchThesisRecommandedByReferenceCount(10);
-            model.addAttribute("productList",trend);
+            List<Thesis> bought = sqlDealer.searchBoughtThesisById(user.getId());
+            for(Thesis t: bought){
+                t.setUrl("http://94.191.112.232:8080/UploadTest/DownloadServlet?id="+t.getProfessorId()+"&filename="+t.getUrl());
+            }
+            model.addAttribute("list",bought);
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "search";
+        return "purchasePage";
     }
 }

@@ -178,15 +178,19 @@ public class EssayController {
 
     @ResponseBody
     @RequestMapping("/confirm")
-    public String confirm(HttpServletRequest request){
+    public String confirm(HttpServletRequest request ,HttpSession session){
         String id1 = request.getParameter("id1");
         String id2 = request.getParameter("id2");
+        User user1 = (User)session.getAttribute("user");
+
         try{
             SqlDealer sqlDealer = new SqlDealer();
             com.woxue.mt.sqldealer.User user = sqlDealer.searchUserById(id1);
             int score = user.getScore();
             Thesis temp = sqlDealer.searchThesisById(id2);
                 user.setScore(score-temp.getScore());
+                user1.setCredit(score-temp.getScore());
+                session.setAttribute("user",user1);
                 sqlDealer.updateUser(user);
                 UserBuyThesis buyInfo = new UserBuyThesis();
                 buyInfo.setUserId(user.getId());

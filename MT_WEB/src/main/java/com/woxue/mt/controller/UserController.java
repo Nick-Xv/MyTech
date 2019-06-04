@@ -70,4 +70,11 @@ public class UserController {
         userBiz.remove(id);
         return "redirect:user_list";
     }
+
+//    //转到动态页面
+//    @RequestMapping(value = "/user_to_moment",params = "id")
+//    public String listMoments(String id,Map<String,Object> map) {
+//        map.put("user",userBiz.get(id));
+//        return "user_moment";
+//    }
 }

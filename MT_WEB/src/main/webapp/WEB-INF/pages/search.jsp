@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>STUDYIO Search</title>
@@ -61,7 +62,21 @@
     <div class="row">
         <div class="col-md-8">
             <h2>热点推荐</h2>
-            <p>正在生成热点推荐信息...</p>
+            <%--<c:forEach items="${productList}" var="product">--%>
+                <%--<div class="resultlist">--%>
+                    <%--<h4><a href="/MyTech/essay?id=${product.id}">${product.title}</a></h4>--%>
+                    <%--<p>作者: ${product.author}</p>--%>
+                    <%--<p>关键字：${product.keyword}</p>--%>
+                    <%--<p>年份：${product.publishTime}</p>--%>
+                    <%--<p>被引次数：${product.referenceCount}</p>--%>
+                    <%--<p><a href=${product.url}>#外部链接</a></p>--%>
+                <%--</div>--%>
+            <%--</c:forEach>--%>
+            <c:forEach items="${productList}" var="product">
+                <div class="essaylist">
+                    <p><a href="/MyTech/essay?id=${product.id}">${product.title}    ${product.publishTime}</a></p>
+                </div>
+            </c:forEach>
         </div>
         <div class="col-md-4">
             <h2>领域排行</h2>

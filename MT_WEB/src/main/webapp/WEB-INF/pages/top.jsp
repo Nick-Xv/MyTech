@@ -139,18 +139,18 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="/claim_voucher/to_add">
-                            <span class="fa fa-coffee"></span>
-                            <span class="sidebar-title">猜你喜欢</span>
-                            <span class="sidebar-title-tray">
-                                <span class="label label-xs bg-primary">New</span>
-                            </span>
-                        </a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="/claim_voucher/to_add">--%>
+                            <%--<span class="fa fa-coffee"></span>--%>
+                            <%--<span class="sidebar-title">猜你喜欢</span>--%>
+                            <%--<span class="sidebar-title-tray">--%>
+                                <%--<span class="label label-xs bg-primary">New</span>--%>
+                            <%--</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
 
                     <li class="active">
-                        <a href="/claim_voucher/self">
+                        <a href="/MyTech/user_moment">
                             <span class="fa fa-book"></span>
                             <span class="sidebar-title">专家动态</span>
                         </a>
@@ -178,7 +178,7 @@
                     <%--</li>--%>
 
                     <li>
-                        <a href="/claim_voucher/to_add">
+                        <a href="/MyTech/purchasePage">
                             <span class="fa fa-database"></span>
                             <span class="sidebar-title">已购资源</span>
                         </a>
@@ -215,11 +215,11 @@
                         </a>
                         <ul class="nav sub-nav">
                             <li>
-                                <a href="/department/list">
+                                <a href="/MyTech/user_my_moment">
                                     <span class="glyphicon glyphicon-calendar"></span> 我的动态 </a>
                             </li>
                             <li class="active">
-                                <a href="/department/to_add">
+                                <a href="/MyTech/user_add_moment">
                                     <span class="glyphicon glyphicon-check"></span> 新增动态 </a>
                             </li>
                         </ul>
@@ -272,12 +272,12 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="/claim_voucher/to_add">
-                            <span class="fa fa-cubes"></span>
-                            <span class="sidebar-title">科技成果审核</span>
-                        </a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="/claim_voucher/to_add">--%>
+                            <%--<span class="fa fa-cubes"></span>--%>
+                            <%--<span class="sidebar-title">科技成果审核</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
                 </c:if>
             </ul>
             <div class="sidebar-toggle-mini">

@@ -22,6 +22,7 @@ public class ProfessorEssayController {
             model.addAttribute("login", "登录");
             model.addAttribute("jump", "to_login");
         }
+
         return "professor_essay";
     }
 }

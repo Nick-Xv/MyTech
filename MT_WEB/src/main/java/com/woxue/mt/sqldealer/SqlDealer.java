@@ -313,6 +313,20 @@ public class SqlDealer
         return sqlSession.selectList("mapper.searchTrendByProfessorId", args);
     }
 
+    public List<Trend> searchTrendByUserId(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectList("mapper.searchTrendByUserId", args);
+    }
+
+    public List<Trend> searchTrendByUserId2(String id)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        return sqlSession.selectList("mapper.searchTrendByUserId2", args);
+    }
+
     /**
      * 插入动态
      * @param trend 插入的动态
@@ -330,6 +344,19 @@ public class SqlDealer
     public void deleteTrendById(String id)
     {
         sqlSession.delete("mapper.deleteTrendById", id);
+        sqlSession.commit();
+    }
+
+    /**
+     * 根据ID更新动态
+     * @param id 更新的ID
+     */
+    public void updateTrendById(String id,String content)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("id", id);
+        args.put("content",content);
+        sqlSession.update("mapper.updateTrendById", args);
         sqlSession.commit();
     }
 
@@ -552,6 +579,16 @@ public class SqlDealer
     public List<Thesis> searchLocalThesisById(String id)
     {
         return sqlSession.selectList("mapper.searchLocalThesisById", id);
+    }
+
+    /**
+     * 根据用户ID搜索已购资源
+     * @param id 用户ID
+     * @return 搜索结果
+     */
+    public List<Thesis> searchBoughtThesisById(String id)
+    {
+        return sqlSession.selectList("mapper.searchBoughtThesisById", id);
     }
 
     //析构函数

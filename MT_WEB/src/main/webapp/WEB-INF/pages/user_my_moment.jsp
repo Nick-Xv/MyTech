@@ -4,14 +4,14 @@
 <section id="content" class="table-layout animated fadeIn">
     <div class="tray tray-center">
         <div class="content-header">
-            <h2> 动态 </h2>
+            <h2> 我的动态 </h2>
             <p class="lead"></p>
         </div>
         <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
             <div class="panel  heading-border">
                 <div class="panel-menu">
                     <div class="row">
-                        <div class="hidden-xs hidden-sm col-md-3" ${hidden}>
+                        <div class="hidden-xs hidden-sm col-md-3">
                             <div class="btn-group" >
                                 <button type="button" class="btn btn-default light">
                                     <i class="fa fa-plus" onclick="javascript:window.location.href='/MyTech/user_add_moment';"></i>
@@ -37,6 +37,7 @@
                             <th class="hidden-xs">专家</th>
                             <th class="hidden-xs">内容</th>
                             <th class="hidden-xs">时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,10 +46,10 @@
                                 <td>${prof.profName}</td>
                                 <td>${prof.content}</td>
                                 <td>${prof.publishTime}</td>
-                                <%--<td>--%>
-                                    <%--<a href="/MyTech/user_to_update?id=${user.id}">编辑</a>--%>
-                                    <%--<a href="/MyTech/user_remove?id=${user.id}">删除</a>--%>
-                                <%--</td>--%>
+                                    <td>
+                                    <a href="/MyTech/user_add_moment?tid=${prof.id}&content=${prof.content}&type=0">编辑</a>
+                                    <a href="/MyTech/delete_moment?tid=${prof.id}">删除</a>
+                                    </td>
                             </tr>
                         </c:forEach>
                         </tbody>

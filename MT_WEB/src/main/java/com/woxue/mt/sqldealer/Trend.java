@@ -6,6 +6,15 @@ public class Trend
     public String professorId;
     public String content;
     public String publishTime;
+    public String profName;
+
+    public String getProfName() {
+        return profName;
+    }
+
+    public void setProfName(String profName) {
+        this.profName = profName;
+    }
 
     public void display()
     {
