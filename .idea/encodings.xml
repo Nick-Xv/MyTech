@@ -2,6 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/MT_WEB" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/项目结构说明.md" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/MT_WEB/src/main/java/com/woxue/mt/Program/Program.java" charset="UTF-8" />
   </component>
 </project>

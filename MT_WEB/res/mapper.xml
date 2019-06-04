@@ -108,6 +108,28 @@
         limit #{number}
     </select>
 
+    <select id="searchThesisByProfessorId" resultType="com.woxue.mt.sqldealer.ProfessorOwnThesis">
+        select id, title, author, keyword, url, summary, publishTime, verifyState, referenceCount, professorId, score
+        from
+        (
+            select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score
+            from 本站论文 as a
+            where 专家ID = #{professorId}
+            limit #{limit1}, #{limit2}
+        union
+            select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
+            from 论文表 as b
+            where 论文DOI in
+            (
+                select 论文DOI
+                from 专家拥有论文 as c
+                where 专家ID = #{professorId}
+            )
+            limit #{limit1}, #{limit2}
+        ) as d
+        limit #{limit1}, #{limit2}
+    </select>
+
     <update id="updateThesis">
         update 本站论文
         <set>
@@ -363,7 +385,7 @@
         limit #{limit1}, #{limit2}
     </select>
 
-    <select id="selectUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
+    <select id="searchUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
         select 用户ID as userId, 论文ID as thesisId
         from 购买
         where 用户ID = #{userId}

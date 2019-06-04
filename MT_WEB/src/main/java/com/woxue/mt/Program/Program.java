@@ -1,4 +1,4 @@
-﻿package com.woxue.mt.Program;
+package com.woxue.mt.Program;
 
 import com.woxue.mt.sqldealer.*;
 import java.util.*;
@@ -67,24 +67,15 @@ public class Program
 //            }
 
             //根据科技专家ID搜索论文
-//            {
-//                //根据科技专家ID搜索专家拥有论文
-//                String professorId = "CN-BF73U50J";
-//                int limitStart = 0;
-//                int limitEnd = 3;
-//                List<ProfessorOwnThesis> professorOwnTheses = sqlDealer.searchProfessorOwnThesisByProfessorId(professorId, limitStart, limitEnd);
-//                List<Thesis> theses = new ArrayList<>();
-//                for (ProfessorOwnThesis professorOwnThesis : professorOwnTheses)
-//                    professorOwnThesis.display();
-//                //根据论文ID搜索论文
-//                for (ProfessorOwnThesis professorOwnThesis : professorOwnTheses)
-//                {
-//                    Thesis thesis = sqlDealer.searchThesisById(professorOwnThesis.thesisId);
-//                    theses.add(thesis);
-//                }
-//                for (Thesis thesis : theses)
-//                    thesis.display();
-//            }
+            {
+                //根据科技专家ID搜索专家拥有论文
+                String professorId = "CN-BF73U50J";
+                int limitStart = 0;
+                int limitEnd = 5;
+                List<Thesis> theses = sqlDealer.searchThesisByProfessorId(professorId, limitStart, limitEnd);
+                for (Thesis thesis : theses)
+                    thesis.display();
+            }
 
             //根据科技专家ID搜索关系网络
 //            {
@@ -136,11 +127,11 @@ public class Program
 //            }
 
             //根据被引次数推荐论文
-            {
-                List<Thesis> theses = sqlDealer.searchThesisRecommandedByReferenceCount(1);
-                for (Thesis thesis : theses)
-                    thesis.display();
-            }
+//            {
+//                List<Thesis> theses = sqlDealer.searchThesisRecommandedByReferenceCount(1);
+//                for (Thesis thesis : theses)
+//                    thesis.display();
+//            }
         }
         catch (Exception e)
         {

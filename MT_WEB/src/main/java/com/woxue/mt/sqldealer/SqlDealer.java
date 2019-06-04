@@ -114,6 +114,22 @@ public class SqlDealer
     }
 
     /**
+     * 根据科技专家ID搜索论文
+     * @param professorId 科技专家ID
+     * @param limitStart 起始索引（包括）
+     * @param limitEnd 结束索引（不包括）
+     * @return 搜索结果
+     */
+    public List<Thesis> searchThesisByProfessorId(String professorId, int limitStart, int limitEnd)
+    {
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("professorId", professorId);
+        args.put("limit1", limitStart);
+        args.put("limit2", limitEnd - limitStart);
+        return sqlSession.selectList("mapper.searchThesisByProfessorId", args);
+    }
+
+    /**
      * 更新论文
      * @param thesis 更新后的论文，以ID为目标
      */
@@ -442,7 +458,7 @@ public class SqlDealer
         args.put("userId", userId);
         args.put("limit1", limitStart);
         args.put("limit2", limitEnd - limitStart);
-        return sqlSession.selectList("mapper.selectUserBuyThesisByUserId", args);
+        return sqlSession.selectList("mapper.searchUserBuyThesisByUserId", args);
     }
 
     /**
