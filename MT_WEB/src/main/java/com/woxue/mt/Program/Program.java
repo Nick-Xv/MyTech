@@ -117,8 +117,8 @@ public class Program
             {
                 List<String> keywords = null;
                 SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
-                int limitStart = 0;
-                int limitEnd = 80;
+                int limitStart = 20;
+                int limitEnd = 40;
                 List<Thesis> theses = sqlDealer.searchThesis(keywords, "2010", order, limitStart, limitEnd);
                 for (Thesis thesis : theses)
                     thesis.display();
