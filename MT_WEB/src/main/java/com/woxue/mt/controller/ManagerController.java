@@ -154,7 +154,15 @@ public class ManagerController {
     @RequestMapping("/scienceManage")
     public String scienceManage(Model model) {
         List<Thesis> sciList= sqlDealer.searchThesis(null, "0000", SqlDealer.Order.DEFAULT, 0, 100);
+        Thesis tmp = new Thesis();
+        for (int i = 0 ; i<sciList.size();i++) {
+            tmp = sciList.get(i);
+            if (tmp.getPublishTime() == null) {
+                tmp.setUrl("http://94.191.112.232:8080/UploadTest/DownloadServlet?id="+tmp.getProfessorId()+"&filename="+tmp.getUrl());
+            }
+        }
         net.sf.json.JSONArray sciList_json = net.sf.json.JSONArray.fromObject(sciList);
+
         model.addAttribute("sciList", sciList_json);
         return "scienceManage";
     }

@@ -56,7 +56,7 @@
     $(document).ready(function () {
         $('#table').bootstrapTable({
             data: ${profList},
-            url:'/mytech/jdisjai',
+            url:'/MyTech/jdisjai',
             //queryParamsType: '',              //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
             //queryParams: queryParams,
             //method: 'post',

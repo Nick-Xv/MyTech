@@ -17,7 +17,7 @@
                             <div class="section">
                                 <label for="credit" class="field-label text-muted fs18 mb10">积分数量</label>
                                 <label for="credit" class="field prepend-icon">
-                                    <input type="text" name="credit" id="credit" class="gui-input" placeholder="请输入充值积分数量...">
+                                    <input type="text" name="credit" id="credit" class="gui-input" placeholder="请输入充值积分数量..." >
                                     <label for="credit" class="field-icon">
                                         <i class="glyphicon glyphicon-usd"></i>
                                     </label>

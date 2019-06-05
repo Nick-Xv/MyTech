@@ -17,8 +17,9 @@
                         </div>
 
                         <div class="section">
+                            <div class="col-md-2" style="padding-bottom: 15px;">出生日期</div>
                             <label for="birthday" class="field prepend-icon">
-                                <form:input path="birthday" cssClass="gui-input" placeholder="出生日期..."/>
+                                <form:input path="birthday" cssClass="gui-input" type="date" placeholder="出生日期..."/>
                                 <label for="birthday" class="field-icon">
                                     <i class="fa fa-lock"></i>
                                 </label>

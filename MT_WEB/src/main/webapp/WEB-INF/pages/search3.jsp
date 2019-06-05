@@ -9,12 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>STUDYIO Search</title>
+    <title>搜索STUDYIO的专利</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
 </head>
 <body onload="GetRequest()">
 <nav id="navbar" class="navbar-inverse">
@@ -25,7 +25,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
                 <li>
-                    <a href="/MyTech/index">OTHER</a>
+                    <a href="/MyTech/index">WELCOME</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">

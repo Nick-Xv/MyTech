@@ -16,7 +16,7 @@
 }
 
 #introjumbotron {
-	background: url(../img/intro.jpg);
+	background: url(../img/intro2.jpg);
 	background-size: 100%;
 	background-repeat: no-repeat;
 	color: #FFFFFF;
@@ -109,6 +109,14 @@
 
 .btnjump {
 	background-color: #661F66;
+	margin: 0;
+	width: auto;
+}
+
+.btnhold,
+.btnhold:hover,
+.btnhold:active{
+	background-color: #BBB;
 	margin: 0;
 	width: auto;
 }

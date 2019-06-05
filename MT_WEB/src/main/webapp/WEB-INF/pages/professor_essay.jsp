@@ -9,10 +9,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Bootstrap 模板</title>
+    <title>${name}的论文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
 </head>
 <body onload="GetRequest()">
 <div id="totalpage" hidden="">${totalPage}</div>
@@ -24,7 +25,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-hover">
                 <li>
-                    <a href="/MyTech/index">OTHER</a>
+                    <a href="/MyTech/index">WELCOME</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-hover">
@@ -77,7 +78,25 @@
         <%--</div>--%>
     </div>
     <nav aria-label="Page navigation">
-        <ul class="pagination paginationctm" id="pagerlist"></ul>
+        <ul class="pagination paginationctm">
+            <li id="previous">
+                <a href="javascript:void(0);" onclick="pager(-1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li id="firstpage" style="display: none;"><a href="javascript:void(0);" onclick="pager(-10)">1</a></li>
+            <li id="ellipsis" style="display: none;" class="disabled"><a href="javascript:void(0);">...</a></li>
+            <li id="pager1"><a href="javascript:void(0);" onclick="pager(1)">1</a></li>
+            <li id="pager2"><a href="javascript:void(0);" onclick="pager(2)">2</a></li>
+            <li id="pager3"><a href="javascript:void(0);" onclick="pager(3)">3</a></li>
+            <li id="pager4"><a href="javascript:void(0);" onclick="pager(4)">4</a></li>
+            <li id="pager5"><a href="javascript:void(0);" onclick="pager(5)">5</a></li>
+            <li id="next">
+                <a href="javascript:void(0);" onclick="pager(0)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
     </nav>
 </div>
 

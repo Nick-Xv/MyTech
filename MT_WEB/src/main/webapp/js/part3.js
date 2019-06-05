@@ -22,31 +22,32 @@ function GetRequest() {
 }
 
 function pagerdecider() {
-	totalpage = document.getElementById("totalpage").innerHTML;
-	if(theRequest['start']!=undefined && theRequest['start'] != 20) {
-		startpage = theRequest['start'] / 20;
-	}
-	var list = "";
-	list += "<li id=\"previous\"><a href=\"javascript:void(0);\" onclick=\"pager(-1)\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>";
-	for(var i = 1; i <= totalpage; i++) {
-		list += "<li id=\"pager"+i+"\"><a href=\"javascript:void(0);\" onclick=\"pager("+i+")\">"+i+"</a></li>";
-	}
-	list += "<li id=\"next\"><a href=\"javascript:void(0);\" onclick=\"pager(0)\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>";
-	//alert(document.getElementById("totalpage"));
-	pagerlist.innerHTML = list;
-	document.getElementById("pager"+startpage).classList.add("active");
-	document.getElementById("pager"+startpage).innerHTML=
-	"<span>"+startpage+"</span>";
-	if(startpage == totalpage) {
-		document.getElementById("next").className="disabled";
-		document.getElementById("next").innerHTML=
-		"<span>&raquo;</span>";
-	}
-	else if(startpage == 1){
-		document.getElementById("previous").className="disabled";
-		document.getElementById("previous").innerHTML=
-		"<span>&laquo;</span>";
-	}
+    if(theRequest['start']!=undefined && theRequest['start'] != 20) {
+        startpage = theRequest['start'] / 20;
+        if(startpage >= 5) {
+            for(var i = 1; i <= 5; i++) {
+                document.getElementById("pager"+i).innerHTML=
+                    "<a href=\"javascript:void(0);\" onclick=\"pager("+i+")\">"+(startpage + i - 3)+"</a>";
+            }
+            document.getElementById("pager3").classList.add("active");
+            document.getElementById("pager3").innerHTML=
+                "<span>"+(startpage)+"</span>";
+            document.getElementById("firstpage").style.display="inline";
+            document.getElementById("ellipsis").style.display="inline";
+        }
+        else {
+            document.getElementById("pager"+startpage).classList.add("active");
+            document.getElementById("pager"+startpage).innerHTML=
+                "<span>"+startpage+"</span>";
+        }
+    } else {
+        document.getElementById("pager1").classList.add("active");
+        document.getElementById("pager1").innerHTML=
+            "<span>1</span>";
+        document.getElementById("previous").className="disabled";
+        document.getElementById("previous").innerHTML=
+            "<span>&laquo;</span>";
+    }
 }
 
 function filter(num) {
@@ -80,17 +81,18 @@ function sorter(num) {
 	}
 }
 function pager(num) {
-	var res;
-	if(num == -1) {res = (startpage - 1) * 20;}
-	else if(num == 0) {res = (startpage + 1) * 20;}
-	else {
-		res = document.getElementById("pager"+num).innerText * 20;
-	}
-	if(theRequest['start'] == undefined) {
-		window.location.href=location+"start="+res;
-	}
-	else {
-		window.location.href=location.pathname
-							+url.replace(/start=[0-9]*/,"start="+res);
-	}
+    var res;
+    if(num == -1) {res = (startpage - 1) * 20;}
+    else if(num == 0) {res = (startpage + 1) * 20;}
+    else if(num == -10) {res = 20;}
+    else {
+        res = document.getElementById("pager"+num).innerText * 20;
+    }
+    if(theRequest['start'] == undefined) {
+        window.location.href=location+"&start="+res;
+    }
+    else {
+        window.location.href=location.pathname
+            +url.replace(/&start=[0-9]*/,"&start="+res);
+    }
 }
