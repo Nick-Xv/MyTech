@@ -20,18 +20,18 @@
 <body>
 <nav id="navbar" class="navbar-inverse">
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand">StudyIO</a>
+        <div class="navbar-header navbar-hover">
+            <a class="navbar-brand" href="/MyTech/search">STUDYIO</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-hover">
                 <li>
                     <a href="/MyTech/search">SEARCH</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right navbar-hover">
                 <li>
-                    <a href="/MyTech/background/overview">SIGN IN</a>
+                    <a href="/MyTech/${jump}">${login}</a>
                 </li>
             </ul>
         </div>
@@ -41,25 +41,25 @@
     <div class="container">
         <h1>StudyIO</h1>
         <h2>科研成果聚集处。</h2>
-        <a class="btn btn-primary btn-sm" href="/MyTech/search" role="button" style="margin-top: 20px; margin-bottom: 150px">现在加入</a>
+        <a class="btn btn-primary btn-sm" href="/MyTech/to_register" role="button" style="margin-top: 20px;">现在加入</a>
     </div>
 </div>
-<%--<div class="container">--%>
-    <%--<div class="row">--%>
-        <%--<div class="col-md-4">--%>
-            <%--<h2>科技热点</h2>--%>
-            <%--<p>这里展示最近访问量较多的科技成果</p>--%>
-        <%--</div>--%>
-        <%--<div class="col-md-4">--%>
-            <%--<h2>科技热点</h2>--%>
-            <%--<p>这里展示最近访问量较多的科技成果</p>--%>
-        <%--</div>--%>
-        <%--<div class="col-md-4">--%>
-            <%--<h2>个性化推荐</h2>--%>
-            <%--<p>这里展示个性化推荐</p>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>丰富的文献资源</h2>
+            <p>StudyIO有着足够的文献资源存储，与众多数据库进行对接，可以为您整理出您的专属资源库。</p>
+        </div>
+        <div class="col-md-4">
+            <h2>变现您的创作</h2>
+            <p>StudyIO提供积分系统，可以为您的科研成果进行标价，提供增值服务。</p>
+        </div>
+        <div class="col-md-4">
+            <h2>完善的统计网络</h2>
+            <p>StudyIO为您统计合作关系、领域热点新闻等动态信息，方便您的科研。</p>
+        </div>
+    </div>
+</div>
 
 
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
