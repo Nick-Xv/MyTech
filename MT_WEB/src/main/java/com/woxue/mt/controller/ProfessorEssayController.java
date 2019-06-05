@@ -1,6 +1,7 @@
 package com.woxue.mt.controller;
 
 import com.woxue.mt.entity.User;
+import com.woxue.mt.sqldealer.Professor;
 import com.woxue.mt.sqldealer.ProfessorOwnThesis;
 import com.woxue.mt.sqldealer.SqlDealer;
 import com.woxue.mt.sqldealer.Thesis;
@@ -40,24 +41,31 @@ public class ProfessorEssayController {
             try{
                 model.addAttribute("name",name);
                 SqlDealer sqlDealer = new SqlDealer();
-                List<ProfessorOwnThesis> tList = sqlDealer.searchProfessorOwnThesisByProfessorId(id,st,st+20);
-                //int count = sqlDealer.searchProfessorOwnThesisCountByProfessorId(id);
-                //System.out.println(count);
-                //model.addAttribute("totalPage",count/20 + 1);
+                Professor prof = sqlDealer.searchProfessorById(id);
+                List<ProfessorOwnThesis> tList = new ArrayList<>();
+
                 Thesis tempT = new Thesis();
                 List<Thesis> potThesisList = new ArrayList<Thesis>();
-                if(tList.size()!=0){
-                    int i=0;
-                    for(ProfessorOwnThesis temp1 : tList){
-                        tempT = sqlDealer.searchThesisById(temp1.getThesisId());
-                        if(tempT != null){
-                            potThesisList.add(tempT);
-                            i++;
+                if(prof.getBirthday()==null){
+                    tList = sqlDealer.searchProfessorOwnThesisByProfessorId(id,st,st+20);
+                    if(tList.size()!=0){
+                        int i=0;
+                        for(ProfessorOwnThesis temp1 : tList){
+                            tempT = sqlDealer.searchThesisById(temp1.getThesisId());
+                            if(tempT != null){
+                                potThesisList.add(tempT);
+                                i++;
+                            }
+                            if(i>=15)break;
                         }
-                        if(i>=15)break;
+                        model.addAttribute("productList",potThesisList);
                     }
+                }
+                else{
+                    potThesisList = sqlDealer.searchLocalThesisById(id);
                     model.addAttribute("productList",potThesisList);
                 }
+
             }catch (Exception e){
                 e.printStackTrace();
             }
