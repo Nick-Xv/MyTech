@@ -19,6 +19,7 @@
             <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
                 lower(concat_ws(' ', 标题, 作者, 关键字)) regexp lower(#{item})
             </foreach>
+            limit #{limit1}, #{limit2}
         union(
             select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
             from 论文表 as b
@@ -31,8 +32,9 @@
             <if test='order == "REFERENCE_COUNT"'> cast(被引次数 as signed integer) desc, </if>
             <if test='order == "RECENT"'> 发表时间 desc, </if>
             论文DOI asc
+            limit #{limit1}, #{limit2})
         ) as c
-        limit #{limit1}, #{limit2}
+        limit (#{limit2} - #{limit1})
     </select>
 
     <select id="searchThesisById" resultType="com.woxue.mt.sqldealer.Thesis">
@@ -68,6 +70,7 @@
             <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
                 lower(关键字) regexp lower(#{item})
             </foreach>
+            limit #{limit1}, #{limit2}
         union(
             select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
             from 论文表 as b
@@ -88,8 +91,9 @@
             <if test='order == "REFERENCE_COUNT"'> cast(被引次数 as signed integer) desc, </if>
             <if test='order == "RECENT"'> 发表时间 desc, </if>
             论文DOI asc
+            limit #{limit1}, #{limit2})
         ) as c
-        limit #{limit1}, #{limit2}
+        limit (#{limit2} - #{limit1})
     </select>
 
     <select id="searchThesisRecommandedByReferenceCount" resultType="com.woxue.mt.sqldealer.Thesis">
@@ -113,6 +117,7 @@
             select ID as id, 标题 as title, 作者 as author, 关键字 as keyword, 链接 as url, 简介 as summary, null publishTime, null verifyState, null referenceCount, 专家ID as professorId, 积分 as score
             from 本站论文 as a
             where 专家ID = #{professorId}
+            limit #{limit1}, #{limit2}
         union
             select 论文DOI as id, 论文名字 as title, 作者 as author, 关键词 as keyword, 链接 as url, 摘要 as summary, 发表时间 as publishTime, 审核状态 as verifyState, 被引次数 as referenceCount, null professorId, null score
             from 论文表 as b
@@ -122,8 +127,9 @@
                 from 专家拥有论文 as c
                 where 专家ID = #{professorId}
             )
+            limit #{limit1}, #{limit2}
         ) as d
-        limit #{limit1}, #{limit2}
+        limit (#{limit2} - #{limit1})
     </select>
 
     <update id="updateThesis">
@@ -160,6 +166,7 @@
             <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
                 lower(concat_ws(' ', 姓名, 机构)) regexp lower(#{item})
             </foreach>
+            limit #{limit1}, #{limit2}
         union
             select scholar_id as id, name as name, org as organization, area as area, ach_num as referenceCount, work_num as workNumber, 审核状态 as verifyState, null birthday, null summary, null title
             from xuezhebiao as b
@@ -167,8 +174,9 @@
             <foreach collection="keywords" index="index" item="item" open="" separator="and" close="">
                 lower(concat_ws(' ', name, org, area)) regexp lower(#{item})
             </foreach>
+            limit #{limit1}, #{limit2}
         ) as c
-        limit #{limit1}, #{limit2}
+        limit (#{limit2} - #{limit1})
     </select>
 
     <select id="advancedSearchProfessor" resultType="com.woxue.mt.sqldealer.Professor">
@@ -189,6 +197,7 @@
             <foreach collection="areas" index="index" item="item" open="" separator="and" close="">
                 lower(简介) regexp lower(#{item})
             </foreach>
+            limit #{limit1}, #{limit2}
         union
             select scholar_id as id, name as name, org as organization, area as area, ach_num as referenceCount, work_num as workNumber, 审核状态 as verifyState, null birthday, null summary, null title
             from xuezhebiao as b
@@ -204,8 +213,9 @@
             <foreach collection="areas" index="index" item="item" open="" separator="and" close="">
                 lower(area) regexp lower(#{item})
             </foreach>
+            limit #{limit1}, #{limit2}
         ) as c
-        limit #{limit1}, #{limit2}
+        limit (#{limit2} - #{limit1})
     </select>
 
     <select id="searchProfessorById" resultType="com.woxue.mt.sqldealer.Professor">
@@ -412,7 +422,7 @@
         where 申请号 = #{id}
     </select>
 
-    <select id="searchUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
+    <select id="selectUserBuyThesisByUserId" resultType="com.woxue.mt.sqldealer.UserBuyThesis">
         select 用户ID as userId, 论文ID as thesisId
         from 购买
         where 用户ID = #{userId}
@@ -491,7 +501,7 @@
         (
             select name as name, org as organization, scholar_id as id, ach_num as referenceCount, work_num as workNumber, area as area, 审核状态 as verifyState
             from xuezhebiao as a
-            order by cast(ach_num as signed integer) desc
+            order by ach_num desc
             limit #{limit}
         ) as b
         order by rand()
