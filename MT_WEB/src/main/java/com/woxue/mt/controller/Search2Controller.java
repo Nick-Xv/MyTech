@@ -49,7 +49,7 @@ public class Search2Controller {
         if(keywords.size()==0){
             keywords = null;
         }
-        SqlDealer.Order order = SqlDealer.Order.DEFAULT;
+        SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
         String filter = request.getParameter("filter");
         String sorter = request.getParameter("sorter");
         String startYear = "0000";
@@ -83,7 +83,11 @@ public class Search2Controller {
                 System.out.println(keywords);
                 SqlDealer sqlDealer = new SqlDealer();
                 List<Thesis> result = sqlDealer.searchThesis(keywords,startYear,order,st,st+20);
+                System.out.println(result.size());
+                System.out.println(startYear);
+                System.out.println(order);
                 for(Thesis temp : result){
+                    temp.display();
                     if(temp.getPublishTime() == null){
                         temp.setPublishTime("2019");
                     }

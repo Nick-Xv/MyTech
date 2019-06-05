@@ -19,6 +19,8 @@ function GetRequest() {
 		strs = str.split("&");
 		for (var i = 0; i < strs.length; i++) {
 			theRequest[decodeURIComponent(strs[i].split("=")[0])] = unescape(decodeURIComponent(strs[i].split("=")[1]));
+			//alert(theRequest[decodeURIComponent(strs[i].split("=")[0])]);
+            theRequest[decodeURIComponent(strs[i].split("=")[0])] = theRequest[decodeURIComponent(strs[i].split("=")[0])].replace(/\+/g," ");
 		}
 	}
 

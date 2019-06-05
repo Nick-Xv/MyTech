@@ -64,6 +64,7 @@ public class ProfessorController {
                 }
                 if(professor != null){
                     if(professor.getBirthday()==null){
+
                         model.addAttribute("watched","false");
                         model.addAttribute("p1","hidden");
                         model.addAttribute("p2","");
