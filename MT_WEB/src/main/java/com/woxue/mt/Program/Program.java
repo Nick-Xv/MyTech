@@ -67,14 +67,14 @@ public class Program
 //            }
 
             //根据科技专家ID搜索论文
-            {
-                String professorId = "CN-BF73U50J";
-                int limitStart = 0;
-                int limitEnd = 5;
-                List<Thesis> theses = sqlDealer.searchThesisByProfessorId(professorId, limitStart, limitEnd);
-                for (Thesis thesis : theses)
-                    thesis.display();
-            }
+//            {
+//                String professorId = "CN-BF73U50J";
+//                int limitStart = 0;
+//                int limitEnd = 5;
+//                List<Thesis> theses = sqlDealer.searchThesisByProfessorId(professorId, limitStart, limitEnd);
+//                for (Thesis thesis : theses)
+//                    thesis.display();
+//            }
 
             //根据科技专家ID搜索关系网络
 //            {
@@ -114,15 +114,15 @@ public class Program
 //            }
 
             //搜索论文
-//            {
-//                List<String> keywords = new ArrayList<>(Arrays.asList("test"));
-//                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
-//                int limitStart = 0;
-//                int limitEnd = 5;
-//                List<Thesis> theses = sqlDealer.searchThesis(keywords, "2010", order, limitStart, limitEnd);
-//                for (Thesis thesis : theses)
-//                    thesis.display();
-//            }
+            {
+                List<String> keywords = null;
+                SqlDealer.Order order = SqlDealer.Order.REFERENCE_COUNT;
+                int limitStart = 0;
+                int limitEnd = 80;
+                List<Thesis> theses = sqlDealer.searchThesis(keywords, "2010", order, limitStart, limitEnd);
+                for (Thesis thesis : theses)
+                    thesis.display();
+            }
 
             //根据被引次数推荐论文
 //            {
@@ -132,12 +132,12 @@ public class Program
 //            }
 
             //搜索科技专家
-            {
-                String id="xyh";
-                List<Thesis> professors = sqlDealer.searchLocalThesisById(id);
-                for (Thesis professor : professors)
-                    professor.display();
-            }
+//            {
+//                String id="xyh";
+//                List<Thesis> professors = sqlDealer.searchLocalThesisById(id);
+//                for (Thesis professor : professors)
+//                    professor.display();
+//            }
         }
         catch (Exception e)
         {
