@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>科技专家资源共享平台</title>
+    <title>登录到STUDYIO</title>
     <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
     <meta name="description" content="AbsoluteAdmin - A Responsive HTML5 Admin UI Framework">
     <meta name="author" content="AbsoluteAdmin">
@@ -21,11 +21,11 @@
         <section id="content" style="background-color: #661f66;">
             <div id="login" class="admin-form theme-info mw500">
                 <div class="content-header">
-                    <h1 style="color:#fff;"> MyTech</h1>
+                    <h1 style="color:#fff;">STUDYIO</h1>
                     <p class="lead" style="color:#fff;">欢迎使用科技专家资源共享平台</p>
                 </div>
                 <div class="panel mt30 mb25" style="border-radius:0;background-color: #661f66;/* width: 560px; */">
-                    <form method="post" action="http://localhost:8080/MyTech/login" id="contact" style="border-radius=0;">
+                    <form method="post" action="/MyTech/login" id="contact" style="border-radius=0;">
                         <div class="panel-body bg-light p25 pb15" style="background-color: #fff;padding: 50px 30px;/* width: 560px; */text-align:center;height:275px;vertical-align:middle;display: table-cell;">
                             <div class="section" style="width:400px; display:inline-block;padding-bottom:10px;">
                                 <label for="id" class="field-label text-muted fs18 mb10" style="color:#661f66; text-align:left;">账号</label>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="panel-footer clearfix" style="border-radius:0;">
                             <button type="submit" class="button btn-primary mr10 pull-right" style="background-color: #661f66;">登录</button>
-                            <a href="http://localhost:8080/MyTech/to_register">
+                            <a href="/MyTech/to_register">
                                 <span class="button btn-default mr10 pull-right">注册</span>
                             </a>
                             <label class="switch ib switch-primary mt10">

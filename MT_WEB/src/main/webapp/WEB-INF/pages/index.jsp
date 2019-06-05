@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Bootstrap 模板</title>
+    <title>欢迎使用STUDYIO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
     <script>
 
     </script>

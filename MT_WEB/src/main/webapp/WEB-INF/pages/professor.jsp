@@ -9,11 +9,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>STUDYIO Professor</title>
+    <title>${name}的资料</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/part1.css" rel="stylesheet">
-
+	<link rel="shortcut icon" href="assets/img/favicon.ico">
 
 </head>
 <body onload="checkwatch()">

@@ -122,3 +122,28 @@ textarea.form-control:focus{
 textarea.form-control {
     border-radius: 0;
 }
+
+.admin-form .prepend-icon > input:hover,
+.admin-form.theme-info .gui-input:hover{
+    border:1px solid #661f66;
+    outline: 0;
+}
+
+.admin-form .prepend-icon > input:focus,
+.admin-form.theme-info .gui-input:focus {
+    border:0;
+    outline: 1px solid #661f66;
+}
+
+.admin-form .gui-input {
+    transition-property:none;
+    -moz-transition-property: none; /* Firefox 4 */
+    -webkit-transition-property:none; /* Safari 和 Chrome */
+    -o-transition-property:none;
+    -ms-transition-property:none;
+}
+
+.admin-form.theme-info .gui-input:focus ~ .field-icon i {
+    color: #661f66;
+}
+

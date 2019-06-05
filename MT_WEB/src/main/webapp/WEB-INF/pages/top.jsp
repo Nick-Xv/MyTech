@@ -46,7 +46,7 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <script src="//cdn.bootcss.com/Chart.js/2.1.6/Chart.bundle.js"></script>
-    <title> MyTech--欢迎使用科技专家资源共享平台 </title>
+    <title>个人资料</title>
 </head>
 
 <body class="admin-validation-page" data-spy="scroll" data-target="#nav-spy" data-offset="200">
@@ -54,7 +54,7 @@
     <header class="navbar navbar-fixed-top navbar-shadow">
         <div class="navbar-branding">
             <a class="navbar-brand" href="/MyTech/search">
-                <b>MyTech</b> System
+                <b>STUDYIO</b> System
             </a>
             <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
         </div>
